@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --p-green-500: #025a4e;
+  --p-gold-500: #B68045;
+
+  --p-black: #1D1D1F;
+  --p-white: #ffffff;
+  --p-gray-50: #f5f5f5;
+  --p-gray-200: #ebebeb;
+  --p-gray-400: #CBCBCB;
+  --p-gray-600: #666666;
+
+  --ease-cubic: cubic-bezier(.19, .61, .15, .82);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+@layer base {
+  :root {
+    --background: var(--p-white);
+    --surface: var(--p-gray-50);
+
+    --primary: var(--p-gold-500);
+    --primary-foreground: #ffffff;
+
+    --accent: var(--p-green-500);
+    --accent-foreground: #ffffff;
+
+    --foreground: var(--p-black);
+    --muted-foreground: var(--p-gray-600);
+    --border: var(--p-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {}
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  --animate-spin-slow: spin 3s linear infinite;
+
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-fade-out: fade-out 0.2s ease-out;
+
+
+  --transition-duration-base: 300ms;
+  --transition-duration-slow: 800ms;
+  --transition-ease: ease-in-out;
+}
+
+@utility transition-fancy {
+  transition-property: color, background-color, border-color, opacity, transform, filter;
+  transition-timing-function: var(--ease-cubic);
+  transition-duration: 800ms;
+}
