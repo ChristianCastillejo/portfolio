@@ -115,3 +115,45 @@
   mix-blend-mode: multiply;
   /* O overlay, prueba cuál queda mejor con tu beige */
 }
+
+.bg-premium-layered {
+  position: relative;
+  /* 1. COLOR BASE: Aseguramos que este sea el protagonista */
+  background-color: #EDEBE8;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Capa 1: VIÑETA ATMOSFÉRICA (Solo bordes) */
+.bg-premium-layered::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  /* CAMBIO: En vez de blanco en el centro, usamos transparente.
+     Solo tintamos las esquinas con tu verde corporativo muy suave. */
+  background: radial-gradient(circle at 50% 50%,
+      transparent 0%,
+      transparent 20%,
+      rgba(2, 90, 78, 0.03) 100%
+      /* Un 3% de verde en las esquinas */
+    );
+  pointer-events: none;
+}
+
+/* Capa 2: TEXTURA DE RUIDO (Grano Físico) */
+.bg-premium-layered::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+  /* CAMBIO IMPORTANTE: 'multiply' oscurece sutilmente para crear textura.
+     'overlay' aclaraba demasiado. */
+  mix-blend-mode: multiply;
+  opacity: 0.08;
+  /* Ajusta esto entre 0.05 y 0.10 según tu gusto */
+  pointer-events: none;
+  filter: contrast(120%) brightness(90%);
+  /* Hacemos el ruido un poco más gris */
+}
