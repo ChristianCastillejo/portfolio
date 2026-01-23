@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
-import { Geist, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
+import { GeistSans } from "geist/font/sans";
 
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
-
-const displayFont = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-display",
+const acorn = localFont({
+  src: "../fonts/Acorn-SemiBold.woff2",
+  variable: "--font-acorn",
   display: "swap",
 });
 
@@ -23,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geist.variable} ${displayFont.variable} antialiased`}
+        className={`${GeistSans.variable} ${acorn.variable} antialiased`}
       >
         {children}
       </body>

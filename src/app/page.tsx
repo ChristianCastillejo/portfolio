@@ -1,9 +1,12 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { WorkSection } from "@/components/sections/work-section";
+import { HeroSection } from "@/components/sections/hero-section"
+import { WorkSection } from "@/components/sections/work-section"
 
 export default function Home() {
   return (
-    <WorkSection />
-  );
+    <main className="flex min-h-screen flex-col bg-noise">
+      <HeroSection />
+
+      <WorkSection />
+    </main>
+  )
 }

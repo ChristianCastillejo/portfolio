@@ -19,16 +19,11 @@
 
   --ease-cubic: cubic-bezier(.19, .61, .15, .82);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-
-
-
 }
 
 
 @layer base {
   :root {
-
-
     --primary: var(--p-vermilion-500);
     --primary-foreground: #ffffff;
 
@@ -46,30 +41,10 @@
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {}
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-wrap: balance;
-}
-
 @theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-acorn), ui-serif, Georgia, serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
@@ -79,9 +54,6 @@ h6 {
 
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), ui-serif, Georgia, serif;
 
   @keyframes fade-in {
     0% {
@@ -102,6 +74,31 @@ h6 {
   --transition-duration-base: 300ms;
   --transition-duration-slow: 800ms;
   --transition-ease: ease-in-out;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {}
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--accent);
+  font-family: var(--font-acorn), ui-serif, Georgia, serif;
+  font-weight: 600;
+  text-wrap: balance;
+  padding-top: 0.12em;
 }
 
 @utility transition-fancy {
