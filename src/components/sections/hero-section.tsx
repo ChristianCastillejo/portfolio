@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Variants } from "framer-motion";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -10,7 +11,8 @@ const containerVariants = {
     },
 }
 
-const itemVariants = {
+
+const itemVariants: Variants = {
     hidden: { y: "100%", opacity: 0 },
     visible: {
         y: 0,
@@ -30,8 +32,6 @@ export function HeroSection() {
                     viewport={{ once: true }}
                     className="flex flex-col items-center gap-6"
                 >
-                    {/* SEMANTIC CHANGE: h2 -> h1 for SEO */}
-                    {/* FONT FIX: leading-none + padding-top relativo */}
                     <h1 className="flex flex-col font-display text-4xl font-bold leading-none text-accent md:text-5xl lg:text-6xl">
                         <div className="overflow-hidden">
                             <motion.span variants={itemVariants} className="block pt-[0.12em]">
@@ -40,7 +40,7 @@ export function HeroSection() {
                         </div>
                         <div className="overflow-hidden">
                             <motion.span variants={itemVariants} className="block text-primary/80 pt-[0.12em]">
-                                A holistic product designer.
+                                Design Engineer.
                             </motion.span>
                         </div>
                     </h1>
@@ -49,9 +49,8 @@ export function HeroSection() {
                         variants={itemVariants}
                         className="max-w-2xl font-sans text-lg text-accent/80 md:text-xl"
                     >
-                        I combine a passion for human-centered design with my background
-                        in software engineering to craft thoughtful and feasible digital
-                        experiences.
+                        Bridging the gap between design and engineering. I build scalable products
+                        combining architectural logic with creative curiosity.
                     </motion.p>
                 </motion.div>
             </div>

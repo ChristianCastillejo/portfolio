@@ -31,7 +31,7 @@ export function ProjectCard({
                 "bg-surface border border-black/5",
                 isComingSoon
                     ? "cursor-not-allowed grayscale-[0.8]" // Desaturar si está desactivado
-                    : "shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                    : "shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-0"
             )}
             style={{ transform: "translateZ(0)" }}
         >
