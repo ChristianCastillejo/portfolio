@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+
 :root {
   --p-green-500: #025a4e;
-  --p-gold-500: #B68045;
+
+  --p-vermilion-500: #E35028;
+  --p-vermilion-600: #c23e1b;
+
+  --p-beige-500: #EDEBE8;
+  --p-beige-200: #F9F9F8;
 
   --p-black: #1D1D1F;
   --p-white: #ffffff;
@@ -14,46 +20,53 @@
   --ease-cubic: cubic-bezier(.19, .61, .15, .82);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
+
+
 }
 
 
 @layer base {
   :root {
-    --background: var(--p-white);
-    --surface: var(--p-gray-50);
 
-    --primary: var(--p-gold-500);
+
+    --primary: var(--p-vermilion-500);
     --primary-foreground: #ffffff;
 
     --accent: var(--p-green-500);
-    --accent-foreground: #ffffff;
+    --accent-foreground: var(--p-white);
 
+    --background: var(--p-beige-500);
     --foreground: var(--p-black);
-    --muted-foreground: var(--p-gray-600);
-    --border: var(--p-gray-200);
-  }
 
-  @media (prefers-color-scheme: dark) {
-    :root {}
+    --surface: var(--p-white);
+    --border: rgba(28, 25, 23, 0.08);
+    /* Borde muy sutil, como lápiz */
+    --ease-cubic: cubic-bezier(.19, .61, .15, .82);
   }
+}
 
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-wrap: balance;
-  }
+@media (prefers-color-scheme: dark) {
+  :root {}
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-wrap: balance;
 }
 
 @theme {
@@ -118,42 +131,20 @@
 
 .bg-premium-layered {
   position: relative;
-  /* 1. COLOR BASE: Aseguramos que este sea el protagonista */
-  background-color: #EDEBE8;
+  background-color: var(--background);
   isolation: isolate;
   overflow: hidden;
 }
 
-/* Capa 1: VIÑETA ATMOSFÉRICA (Solo bordes) */
-.bg-premium-layered::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  /* CAMBIO: En vez de blanco en el centro, usamos transparente.
-     Solo tintamos las esquinas con tu verde corporativo muy suave. */
-  background: radial-gradient(circle at 50% 50%,
-      transparent 0%,
-      transparent 20%,
-      rgba(2, 90, 78, 0.03) 100%
-      /* Un 3% de verde en las esquinas */
-    );
-  pointer-events: none;
-}
-
-/* Capa 2: TEXTURA DE RUIDO (Grano Físico) */
 .bg-premium-layered::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-  /* CAMBIO IMPORTANTE: 'multiply' oscurece sutilmente para crear textura.
-     'overlay' aclaraba demasiado. */
-  mix-blend-mode: multiply;
-  opacity: 0.08;
-  /* Ajusta esto entre 0.05 y 0.10 según tu gusto */
+  mix-blend-mode: overlay;
+  /* En grises, overlay funciona mejor que multiply */
+  opacity: 0.03;
+  /* Extremadamente sutil */
   pointer-events: none;
-  filter: contrast(120%) brightness(90%);
-  /* Hacemos el ruido un poco más gris */
 }

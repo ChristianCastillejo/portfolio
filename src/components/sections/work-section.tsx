@@ -56,7 +56,7 @@ const itemVariants = {
 
 export function WorkSection() {
     return (
-        <section className="w-full bg-premium-layered px-4 py-24 md:py-32 lg:px-8">
+        <section className="w-full bbg-noise px-4 py-24 md:py-32 lg:px-8">
             <div className="mx-auto flex max-w-[1200px] flex-col gap-16 md:gap-24">
 
                 <motion.div
