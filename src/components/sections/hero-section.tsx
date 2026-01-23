@@ -28,7 +28,10 @@ export function HeroSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
+                    className="flex flex-col items-center gap-6"
                 >
+                    {/* SEMANTIC CHANGE: h2 -> h1 for SEO */}
+                    {/* FONT FIX: leading-none + padding-top relativo */}
                     <h1 className="flex flex-col font-display text-4xl font-bold leading-none text-accent md:text-5xl lg:text-6xl">
                         <div className="overflow-hidden">
                             <motion.span variants={itemVariants} className="block pt-[0.12em]">
@@ -44,7 +47,7 @@ export function HeroSection() {
 
                     <motion.p
                         variants={itemVariants}
-                        className="mt-6 max-w-2xl font-sans text-lg text-accent/80 md:text-xl mx-auto"
+                        className="max-w-2xl font-sans text-lg text-accent/80 md:text-xl"
                     >
                         I combine a passion for human-centered design with my background
                         in software engineering to craft thoughtful and feasible digital

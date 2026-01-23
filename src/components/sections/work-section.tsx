@@ -2,6 +2,7 @@
 
 import { ProjectCard } from "@/components/work/project-card"
 
+// He mantenido tus datos intactos
 const PROJECTS = [
     {
         title: "Inner Green",
@@ -32,11 +33,10 @@ const PROJECTS = [
 
 export function WorkSection() {
     return (
+        // Padding ajustado para conectar con el Hero sin huecos raros
         <section className="w-full px-4 pb-24 md:pb-32 lg:px-8">
             <div className="mx-auto max-w-[1200px]">
-                {/* Título opcional de la sección, si quieres separar visualmente */}
-                {/* <h3 className="mb-8 font-display text-2xl text-accent">Selected Work</h3> */}
-
+                {/* Isolation isolate mantenido para tu grid */}
                 <div className="grid w-full grid-cols-1 gap-8 items-start md:grid-cols-2 md:gap-12 isolation-isolate">
                     {PROJECTS.map((project, index) => (
                         <ProjectCard
