@@ -3,10 +3,22 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Mail } from "lucide-react" // Asegúrate de tener lucide-react instalado
+import { ArrowUpRight, Mail, Linkedin, FileText } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
 // --- DATOS (Single Source of Truth) ---
+const aButton = ({ href, children, icon: Icon }: { href: string; children: React.ReactNode; icon?: any }) => (
+    <Link href={href} target="_blank" className="group relative inline-flex">
+        {/* Sombra sólida (Vermilion) */}
+        <div className="absolute inset-0 bg-[var(--primary)] rounded-full translate-y-1 transition-transform group-hover:translate-y-0 duration-300 ease-out" />
 
+        {/* Contenedor principal (Surface/White) */}
+        <div className="relative bg-[var(--surface)] border-2 border-[var(--primary)] text-[var(--primary)] px-6 py-3 rounded-full flex items-center gap-3 font-display font-semibold text-lg transition-transform group-hover:-translate-y-0.5 duration-300 ease-out group-active:translate-y-0.5">
+            {Icon && <Icon size={20} strokeWidth={2.5} />}
+            {children}
+        </div>
+    </Link>
+)
 const PHILOSOPHY_ITEMS = [
     {
         id: 1,
@@ -45,16 +57,6 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
     <section className={`w-full max-w-[1200px] mx-auto px-4 md:px-8 py-24 flex flex-col gap-16 ${className}`}>
         {children}
     </section>
-)
-
-const Button = ({ href, children, icon: Icon }: { href: string; children: React.ReactNode; icon?: any }) => (
-    <Link href={href} target="_blank" className="group relative inline-flex">
-        <div className="absolute inset-0 bg-primary rounded-full translate-y-1 transition-transform group-hover:translate-y-0 duration-300" />
-        <div className="relative bg-[#D9E8F7] border-2 border-primary text-primary px-6 py-3 rounded-full flex items-center gap-3 font-display font-semibold text-lg transition-transform group-hover:-translate-y-0.5 duration-300 group-active:translate-y-0.5">
-            {Icon && <Icon size={20} />}
-            {children}
-        </div>
-    </Link>
 )
 
 // --- PÁGINA PRINCIPAL ---
@@ -158,8 +160,8 @@ export default function AboutPage() {
                     </div>
 
                     <div className="mt-12 flex justify-center md:justify-start">
-                        <Button href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={ArrowUpRight}>
-                            See CV - Resumé
+                        <Button href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={FileText}>
+                            Download CV
                         </Button>
                     </div>
                 </div>
@@ -215,11 +217,11 @@ export default function AboutPage() {
                         I am always open to conversations about projects that bring more awareness, health, and organic simplicity into people's lives.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                         <Button href="mailto:christiancastillejo@proton.me" icon={Mail}>
                             Email Me
                         </Button>
-                        <Button href="https://www.linkedin.com/in/christiancastillejo" icon={ArrowUpRight}>
+                        <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>
                             LinkedIn
                         </Button>
                     </div>
