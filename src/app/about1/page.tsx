@@ -1,17 +1,48 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Mail, Linkedin, Download } from "lucide-react"
-import Link from "next/link"
 
-import { PHILOSOPHY_ITEMS, EXPERIENCE_ITEMS } from "@/data/about"
-import { Section } from "@/components/ui/section"
+const PHILOSOPHY_ITEMS = [
+    {
+        id: "01",
+        title: "The Design-Code Bridge",
+        content: "I comfortably discuss React Architecture and Design Tokens in the same sentence. I translate design needs into component structures that engineers actually enjoy maintaining."
+    },
+    {
+        id: "02",
+        title: "Product Vision",
+        content: "Clean code is useless if it solves the wrong problem. I question the 'why' before the 'how', prioritizing business value and user experience over just writing code."
+    },
+    {
+        id: "03",
+        title: "Design Systems",
+        content: "I don’t believe in reinventing the wheel. I build systems that function as true infrastructure, allowing the team to ship faster without accumulating technical debt."
+    },
+    {
+        id: "04",
+        title: "Engineering Rigor",
+        content: "Visual sensitivity doesn't mean lowering the engineering bar. I focus on strict TypeScript and stability, writing solid code that others can read, extend, and trust."
+    }
+]
 
+const EXPERIENCE_ITEMS = [
+    { company: "Nectar Studio", role: "Founding Design Engineer", period: "2024 - Present" },
+    { company: "Grandado", role: "Lead Frontend Engineer & Design Engineer", period: "2020 - 2023" },
+    { company: "OGD", role: "Full Stack Engineer", period: "2018 - 2020" },
+    { company: "Stack Shuttle", role: "Full Stack Engineer", period: "2017 - 2018" },
+    { company: "IBT", role: "Software Engineer", period: "2016 - 2017" },
+]
 
-const Button = ({ href, children, icon: Icon, primary = false, stable = false }: {
-    href: string; children: React.ReactNode; icon?: any, primary?: boolean, stable?: boolean
-}) => (
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+    <section className={`w-full max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 flex flex-col gap-10 md:gap-14 ${className}`}>
+        {children}
+    </section>
+)
+
+const Button = ({ href, children, icon: Icon, primary = false, stable = false }: { href: string; children: React.ReactNode; icon?: any, primary?: boolean, stable?: boolean }) => (
     <Link href={href} target="_blank" className="group relative inline-flex">
         <div className={`
       relative px-8 py-4 rounded-full flex items-center gap-3 font-display font-medium text-lg border transition-all duration-300 ease-out
@@ -24,13 +55,6 @@ const Button = ({ href, children, icon: Icon, primary = false, stable = false }:
             {Icon && <Icon size={18} className={`${primary ? "text-white" : "text-accent"} transition-opacity opacity-90 group-hover:opacity-100`} />}
         </div>
     </Link>
-)
-
-
-const Separator = () => (
-    <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8">
-        <div className="w-full border-t border-border/60 my-16 md:my-20" />
-    </div>
 )
 
 export default function AboutPage() {
@@ -93,6 +117,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
+                            // Layout: h-full + flex-col + justify-between para igualar alturas
                             className="group relative h-full p-10 md:p-14 rounded-[2.5rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:bg-white/60 transition-colors transition-shadow duration-500 ease-out flex flex-col items-start"
                         >
                             <div className="flex flex-col gap-4 mb-8 md:mb-12 w-full">
@@ -115,7 +140,10 @@ export default function AboutPage() {
             </Section>
 
 
-            <Separator />
+            <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8">
+                <div className="w-full border-t border-border/60 my-16 md:my-20" />
+            </div>
+
 
             <Section>
                 <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
@@ -143,6 +171,7 @@ export default function AboutPage() {
                             <div className="flex flex-col h-full bg-white/50 p-6 rounded-2xl border border-transparent hover:border-accent/40 hover:bg-white hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md gap-4">
                                 <div className="flex flex-col gap-1">
                                     <span className="font-display text-2xl text-accent block leading-tight">{job.company}</span>
+                                    {/* Reserva de espacio (min-h) para alinear el año en todas las cards */}
                                     <span className="font-sans text-foreground/80 text-sm leading-snug font-medium min-h-[3rem] flex items-center">
                                         {job.role}
                                     </span>
@@ -159,7 +188,10 @@ export default function AboutPage() {
                 </div>
             </Section>
 
-            <Separator />
+            <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8">
+                <div className="w-full border-t border-border/60 my-16 md:my-20" />
+            </div>
+
 
             <Section className="grid md:grid-cols-12 gap-12 items-center">
                 <div className="md:col-span-5 space-y-8">
@@ -238,7 +270,7 @@ export default function AboutPage() {
                             </p>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center">
+                        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
                             <Button href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
                                 Say hello
                             </Button>
