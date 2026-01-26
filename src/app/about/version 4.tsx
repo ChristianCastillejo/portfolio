@@ -1,0 +1,284 @@
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { ArrowUpRight, Mail, Linkedin, Download } from "lucide-react"
+
+// --- DATOS ---
+const PHILOSOPHY_ITEMS = [
+    {
+        id: "01",
+        title: "Bridge Code & Empathy",
+        content: "My engineering background isn't just a skill—it's a lens. It allows me to design with a deep grasp of feasibility, ensuring visionary work is also viable product."
+    },
+    {
+        id: "02",
+        title: "Presence & Focus",
+        content: "Innovation requires clarity. I approach problems with a calm, methodical mindset, reducing cognitive load to bring organic ease to the user's digital life."
+    },
+    {
+        id: "03",
+        title: "The Unpaved Path",
+        content: "I thrive in ambiguity. My solo travels taught me resilience and adaptability—traits I bring to the iterative, often chaotic process of product design."
+    },
+    {
+        id: "04",
+        title: "Long-Term Growth",
+        content: "Great products are living systems. I design sustainable digital ecosystems that evolve organically with the people who use them, not just for launch day."
+    }
+]
+
+const EXPERIENCE_ITEMS = [
+    { company: "Nectar Studio", role: "Founding Design Engineer", period: "2025 - Present" },
+    { company: "Grandado", role: "Lead Frontend Engineer", period: "2020 - 2023" },
+    { company: "OGD", role: "Full Stack Engineer", period: "2018 - 2020" },
+    { company: "Stack Shuttle", role: "Full Stack Engineer", period: "2018" },
+    { company: "IBT", role: "Software Engineer", period: "2016 - 2017" },
+]
+
+// --- COMPONENTES UI ---
+
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+    <section className={`w-full max-w-[1200px] mx-auto px-6 md:px-8 py-24 flex flex-col gap-20 ${className}`}>
+        {children}
+    </section>
+)
+
+// BOTÓN SDE (Fixed Animation)
+// Usamos CSS puro para el hover para evitar los "tirones" de JS.
+const Button = ({ href, children, icon: Icon, primary = false }: { href: string; children: React.ReactNode; icon?: any, primary?: boolean }) => (
+    <Link href={href} target="_blank" className="group relative inline-flex">
+        <div className={`
+      relative px-8 py-4 rounded-full flex items-center gap-3 font-display font-medium text-lg border transition-all duration-300 ease-out
+      ${primary
+                ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90 hover:-translate-y-1'
+                : 'bg-white/80 backdrop-blur-md border-border text-foreground hover:border-accent/50 hover:bg-white hover:-translate-y-1 hover:shadow-lg shadow-sm'}
+    `}>
+            <span>{children}</span>
+            {Icon && <Icon size={18} className={`transition-transform duration-300 group-hover:translate-x-1 ${primary ? "text-white" : "text-accent"}`} />}
+        </div>
+    </Link>
+)
+
+export default function AboutPage() {
+    return (
+        <main className="w-full min-h-screen bg-[#EDEBE8] text-[#1D1D1F] selection:bg-accent/20 overflow-x-hidden">
+
+            {/* Fondo de Ruido Sutil */}
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
+
+            {/* --- HERO SECTION (Versión Penúltima + Borde Orgánico) --- */}
+            <Section className="items-center text-center !pt-32 md:!pt-48 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    // EL BORDE BLANCO ORGÁNICO QUE TE GUSTA
+                    className="relative w-48 h-48 md:w-64 md:h-64 mb-10 rounded-full overflow-hidden p-1.5 bg-white/40 backdrop-blur-sm border border-white/60 shadow-sm hover:shadow-md transition-shadow duration-500"
+                >
+                    <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-200">
+                        <Image
+                            src="/images/profile.webp"
+                            alt="Christian Castillejo"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="max-w-3xl space-y-8"
+                >
+                    <div>
+                        <h1 className="font-display text-5xl md:text-7xl font-bold text-accent mb-6 leading-[0.9]">
+                            I’m Christian.
+                        </h1>
+                        <h2 className="font-display text-2xl md:text-3xl text-accent/80 leading-tight text-balance">
+                            A holistic product designer & researcher bridging the logic of code with the art of human-centered experience.
+                        </h2>
+                    </div>
+
+                    <div className="font-sans text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl mx-auto space-y-6">
+                        <p>
+                            With a foundation in software engineering, I bring a uniquely grounded perspective to UX/UI design, ensuring a seamless bridge between creative vision and technical execution.
+                        </p>
+                        <p>
+                            I create products that are not only intuitive and beautiful but also feasible and robust. My goal is to craft digital experiences that make people's lives simpler, more conscious, and more connected to what truly matters.
+                        </p>
+                    </div>
+                </motion.div>
+            </Section>
+
+            {/* --- PHILOSOPHY (Layout Última + Estilo Penúltima) --- */}
+            <Section>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                >
+                    {PHILOSOPHY_ITEMS.map((item, index) => (
+                        <motion.article
+                            key={item.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            // Estilo Penúltima: Limpio, verde/neutro, sin naranja
+                            className="group bg-surface/40 backdrop-blur-sm border border-border/60 p-8 md:p-12 rounded-[2.5rem] hover:border-accent/30 hover:bg-surface/60 transition-all duration-500 flex flex-col gap-6 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.05)]"
+                        >
+                            <span className="font-mono text-accent text-sm font-bold tracking-widest uppercase opacity-60 group-hover:opacity-100 transition-opacity">
+                                {item.id}
+                            </span>
+                            <h3 className="font-display text-2xl md:text-3xl text-accent font-bold">
+                                {item.title}
+                            </h3>
+                            <p className="font-sans text-foreground/70 leading-relaxed text-lg">
+                                {item.content}
+                            </p>
+                        </motion.article>
+                    ))}
+                </motion.div>
+            </Section>
+
+            {/* --- CAREER PATH (Mix: Layout Antepenúltima + Estilo Penúltima) --- */}
+            <div className="w-full bg-surface/30 border-y border-border/60 py-24 relative z-10">
+                <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                        <h3 className="font-display text-4xl text-accent font-bold">
+                            Career Path
+                        </h3>
+                        {/* Botón a la derecha como pediste */}
+                        <Button href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={Download}>
+                            Download CV
+                        </Button>
+                    </div>
+
+                    {/* Grid Responsivo (Scroll móvil / Grid desktop) */}
+                    <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-5 md:overflow-visible">
+                        {EXPERIENCE_ITEMS.map((job) => (
+                            <div
+                                key={job.company}
+                                className="flex-shrink-0 w-[260px] md:w-auto flex flex-col justify-between h-full group"
+                            >
+                                <div>
+                                    {/* Barra de progreso animada (Penúltima) */}
+                                    <div className="h-1 w-full bg-border/40 mb-6 group-hover:bg-accent/20 transition-colors rounded-full overflow-hidden">
+                                        <div className="h-full w-0 group-hover:w-full bg-accent transition-all duration-700 ease-out" />
+                                    </div>
+                                    <span className="font-display text-2xl text-accent mb-2 block">{job.company}</span>
+                                    <p className="font-sans text-foreground/60 text-sm font-medium leading-snug">{job.role}</p>
+                                </div>
+                                <span className="font-mono text-xs text-foreground/40 mt-8 block uppercase tracking-wider">{job.period}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* --- BEYOND SCREENS (Layout Última + 4 Imágenes a Color) --- */}
+            <Section className="grid md:grid-cols-12 gap-12 items-center">
+                {/* Columna Texto (Izquierda) */}
+                <div className="md:col-span-5 space-y-12">
+                    <article className="space-y-4">
+                        <h3 className="font-display text-3xl text-accent font-bold">Beyond the Code</h3>
+                        <p className="font-sans text-lg text-foreground/70 leading-relaxed">
+                            When I'm not designing, I'm finding stillness. Whether it's tending to my vegetable garden, meditating, or exploring remote corners of Asia and South America.
+                        </p>
+                        <p className="font-sans text-lg text-foreground/70 leading-relaxed">
+                            These moments of disconnection are exactly where I find the clarity to solve complex connection problems.
+                        </p>
+                    </article>
+
+                    <article className="space-y-4">
+                        <h3 className="font-display text-3xl text-accent font-bold">Professional Focus</h3>
+                        <p className="font-sans text-lg text-foreground/70 leading-relaxed">
+                            I am driven to design and improve digital products that genuinely make people's lives easier and more intentional. My focus is on creating holistic experiences for products related to wellness, sustainability, and personal growth.
+                        </p>
+                    </article>
+                </div>
+
+                {/* Columna Imágenes (Derecha - 4 Fotos Scattered) */}
+                <div className="md:col-span-7 relative h-[600px] w-full hidden md:block">
+                    {/* Foto 1 - Arriba Derecha */}
+                    <motion.div
+                        whileHover={{ scale: 1.05, rotate: 0, zIndex: 20 }}
+                        className="absolute top-0 right-0 w-64 h-72 bg-white p-2 shadow-xl rotate-3 rounded-2xl z-10 transition-all duration-500 ease-out cursor-pointer"
+                    >
+                        <div className="relative w-full h-full rounded-xl overflow-hidden">
+                            <Image src="/images/about/1.webp" fill alt="Travel" className="object-cover" />
+                        </div>
+                    </motion.div>
+
+                    {/* Foto 2 - Abajo Izquierda */}
+                    <motion.div
+                        whileHover={{ scale: 1.05, rotate: 0, zIndex: 20 }}
+                        className="absolute bottom-10 left-0 w-60 h-64 bg-white p-2 shadow-xl -rotate-2 rounded-2xl z-20 transition-all duration-500 ease-out cursor-pointer"
+                    >
+                        <div className="relative w-full h-full rounded-xl overflow-hidden">
+                            <Image src="/images/about/2.webp" fill alt="Garden" className="object-cover" />
+                        </div>
+                    </motion.div>
+
+                    {/* Foto 3 - Centro Arriba (Pequeña) */}
+                    <motion.div
+                        whileHover={{ scale: 1.1, rotate: 0, zIndex: 20 }}
+                        className="absolute top-10 left-10 w-48 h-48 bg-white p-2 shadow-lg -rotate-6 rounded-2xl z-0 transition-all duration-500 ease-out cursor-pointer"
+                    >
+                        <div className="relative w-full h-full rounded-xl overflow-hidden">
+                            <Image src="/images/about/3.webp" fill alt="Nature" className="object-cover" />
+                        </div>
+                    </motion.div>
+
+                    {/* Foto 4 - Centro Abajo (Vertical) */}
+                    <motion.div
+                        whileHover={{ scale: 1.05, rotate: 0, zIndex: 20 }}
+                        className="absolute bottom-20 right-20 w-52 h-64 bg-white p-2 shadow-lg rotate-6 rounded-2xl z-5 transition-all duration-500 ease-out cursor-pointer"
+                    >
+                        <div className="relative w-full h-full rounded-xl overflow-hidden">
+                            <Image src="/images/about/4.webp" fill alt="Texture" className="object-cover" />
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Versión Móvil de Imágenes (Grid simple) */}
+                <div className="md:hidden grid grid-cols-2 gap-4">
+                    <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md"><Image src="/images/about/1.webp" fill alt="Travel" className="object-cover" /></div>
+                    <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md"><Image src="/images/about/2.webp" fill alt="Garden" className="object-cover" /></div>
+                    <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md"><Image src="/images/about/3.webp" fill alt="Nature" className="object-cover" /></div>
+                    <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md"><Image src="/images/about/4.webp" fill alt="Texture" className="object-cover" /></div>
+                </div>
+            </Section>
+
+            {/* --- CTA FINAL (Limpio, Sin Sparkles, Sombra SDE) --- */}
+            <Section className="!pb-32">
+                <div className="relative rounded-[3rem] bg-gradient-to-b from-white/80 to-white/40 backdrop-blur-xl border border-white/60 p-12 md:p-20 text-center overflow-hidden shadow-xl shadow-black/5">
+                    {/* Luz de fondo sutil */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent opacity-40" />
+
+                    <div className="relative z-10 flex flex-col items-center gap-8">
+                        {/* Sin Icono de Sparkles */}
+
+                        <h2 className="font-display text-4xl md:text-6xl font-bold text-[#1D1D1F] leading-[1.1]">
+                            Let's create something<br />meaningful.
+                        </h2>
+
+                        <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                            <Button href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
+                                Get in Touch
+                            </Button>
+                            <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>
+                                LinkedIn
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </Section>
+
+        </main>
+    )
+}
