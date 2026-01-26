@@ -3,122 +3,133 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Mail, Linkedin, FileText } from "lucide-react"
+import { ArrowUpRight, Mail, Linkedin, Download, Sparkles } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-// --- DATOS (Single Source of Truth) ---
-const aButton = ({ href, children, icon: Icon }: { href: string; children: React.ReactNode; icon?: any }) => (
-    <Link href={href} target="_blank" className="group relative inline-flex">
-        {/* Sombra sólida (Vermilion) */}
-        <div className="absolute inset-0 bg-[var(--primary)] rounded-full translate-y-1 transition-transform group-hover:translate-y-0 duration-300 ease-out" />
-
-        {/* Contenedor principal (Surface/White) */}
-        <div className="relative bg-[var(--surface)] border-2 border-[var(--primary)] text-[var(--primary)] px-6 py-3 rounded-full flex items-center gap-3 font-display font-semibold text-lg transition-transform group-hover:-translate-y-0.5 duration-300 ease-out group-active:translate-y-0.5">
-            {Icon && <Icon size={20} strokeWidth={2.5} />}
-            {children}
-        </div>
-    </Link>
-)
+// --- DATOS (Mismos datos, nueva presentación) ---
 const PHILOSOPHY_ITEMS = [
     {
-        id: 1,
-        title: "1. Bridge Code and Empathy",
-        content: "My background as a software engineer is one of my greatest asset as a designer. It allows me to design with a deep understanding of technical possibilities and constraints, ensuring my work is not just visionary but also viable. I foster seamless collaboration between design and development, speaking both languages to build better products, faster."
+        id: "01",
+        title: "Bridge Code & Empathy",
+        content: "My engineering background isn't just a skill—it's a lens. It allows me to design with a deep grasp of feasibility, ensuring visionary work is also viable product."
     },
     {
-        id: 2,
-        title: "2. Design from a Place of Presence",
-        content: "True innovation comes from clarity and deep focus. I approach complex problems with a calm, methodical mindset, allowing me to see the signal in the noise. My practice is centered on creating experiences that promote well-being, reduce cognitive load, and bring a sense of organic ease to the user's digital life."
+        id: "02",
+        title: "Presence & Focus",
+        content: "Innovation requires clarity. I approach problems with a calm, methodical mindset, reducing cognitive load to bring organic ease to the user's digital life."
     },
     {
-        id: 3,
-        title: "3. Embrace the Unpaved Path",
-        content: "Experience has taught me to thrive in ambiguity and make confident decisions with limited resources. I am highly adaptable, resourceful, and skilled at finding creative solutions when the path isn't clear. This adventurous spirit translates into a resilient and proactive approach to the iterative design process."
+        id: "03",
+        title: "The Unpaved Path",
+        content: "I thrive in ambiguity. My solo travels taught me resilience and adaptability—traits I bring to the iterative, often chaotic process of product design."
     },
     {
-        id: 4,
-        title: "4. Nurture Long-Term Growth",
-        content: "I believe great products, like living systems, require patience and a long-term vision. I am passionate about creating digital ecosystems that are sustainable and healthy, iterating thoughtfully and listening deeply to ensure they grow and evolve organically with the people who use them."
+        id: "04",
+        title: "Long-Term Growth",
+        content: "Great products are living systems. I design sustainable digital ecosystems that evolve organically with the people who use them, not just for launch day."
     }
 ]
 
-// Actualizado con datos reales de tu CV para coherencia SDE
 const EXPERIENCE_ITEMS = [
-    { company: "Nectar Studio", role: "Founding Product Design Engineer", period: "2025 - Present" },
-    { company: "Grandado", role: "Lead Frontend & Design Engineer", period: "2020 - 2023" },
+    { company: "Nectar Studio", role: "Founding Design Engineer", period: "2025 - Present" },
+    { company: "Grandado", role: "Lead Frontend Engineer", period: "2020 - 2023" },
     { company: "OGD", role: "Full Stack Engineer", period: "2018 - 2020" },
     { company: "Stack Shuttle", role: "Full Stack Engineer", period: "2018" },
     { company: "IBT", role: "Software Engineer", period: "2016 - 2017" },
 ]
 
-// --- COMPONENTES UI REUTILIZABLES ---
+// --- COMPONENTES UI REFINADOS (Apple-esque) ---
 
 const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <section className={`w-full max-w-[1200px] mx-auto px-4 md:px-8 py-24 flex flex-col gap-16 ${className}`}>
+    <section className={`w-full max-w-[1100px] mx-auto px-6 md:px-12 py-32 flex flex-col gap-20 ${className}`}>
         {children}
     </section>
 )
 
-// --- PÁGINA PRINCIPAL ---
+// BOTÓN "SOFT TOUCH" 
+// Menos mecánico, más orgánico. Sin bordes duros, usa luz y sombra.
+const Button = ({ href, children, icon: Icon, primary = false }: { href: string; children: React.ReactNode; icon?: any, primary?: boolean }) => (
+    <Link href={href} target="_blank">
+        <motion.button
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className={`
+        relative px-8 py-4 rounded-full flex items-center gap-3 font-display font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300
+        ${primary
+                    ? 'bg-primary text-white shadow-primary/20'
+                    : 'bg-white/80 backdrop-blur-md text-foreground border border-white/40 shadow-black/5 hover:bg-white'}
+      `}
+        >
+            <span>{children}</span>
+            {Icon && <Icon size={18} className={primary ? "opacity-90" : "text-accent"} />}
+        </motion.button>
+    </Link>
+)
 
 export default function AboutPage() {
     return (
-        <main className="w-full min-h-screen bg-background text-foreground bg-noise">
+        <main className="w-full min-h-screen bg-[#EDEBE8] text-[#1D1D1F] overflow-hidden selection:bg-accent/20">
 
-            {/* 1. HERO SECTION */}
-            <Section className="items-center text-center !pt-40">
+            {/* Fondo Ambiental Sutil (Atmósfera) */}
+            <div className="fixed inset-0 pointer-events-none">
+                <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+                <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
+                <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay" />
+            </div>
+
+            {/* --- HERO SECTION --- */}
+            <Section className="items-center text-center !pt-40 md:!pt-52">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative w-48 h-48 md:w-56 md:h-56 mb-8 rounded-full overflow-hidden border-4 border-white/50 shadow-xl"
+                    initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="relative mb-12 group"
                 >
-                    <Image
-                        src="/images/profile.webp" // Asegúrate de que esta imagen exista en public
-                        alt="Christian Castillejo"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
+                    {/* Foto con "Squircle" y sombra suave difusa */}
+                    <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 z-10 transform transition-transform duration-700 group-hover:scale-[1.02]">
+                        <Image
+                            src="/images/profile.webp"
+                            alt="Christian Castillejo"
+                            fill
+                            className="object-cover scale-110" // Ligero zoom para evitar bordes blancos
+                            priority
+                        />
+                    </div>
+                    {/* Glow trasero */}
+                    <div className="absolute inset-4 bg-accent/20 blur-2xl -z-10 rounded-full" />
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="max-w-3xl space-y-6"
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="max-w-4xl space-y-8"
                 >
-                    <h1 className="font-display text-5xl md:text-6xl font-bold text-accent">
-                        I’m Christian.
+                    <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#1D1D1F]">
+                        Logic meets <span className="text-accent italic">Intuition.</span>
                     </h1>
-                    <h2 className="font-display text-2xl md:text-3xl text-accent/90 leading-tight">
-                        A holistic product designer and researcher bridging the logic of code with the art of human-centered experience.
-                    </h2>
 
-                    <div className="font-sans text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto space-y-6 pt-4">
-                        <p>
-                            With a foundation in software engineering, I bring a uniquely grounded perspective to UX/UI design, ensuring a seamless bridge between creative vision and technical execution.
-                        </p>
-                        <p>
-                            I create products that are not only intuitive and beautiful but also feasible and robust. My goal is to craft digital experiences that make people's lives simpler, more conscious, and more connected to what truly matters, delivering solutions that are both human-centered and built to last.
-                        </p>
-                    </div>
+                    <p className="font-sans text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto font-light text-balance">
+                        I’m Christian. A Design Engineer bridging the gap between <strong className="font-medium text-primary">architectural code</strong> and <strong className="font-medium text-accent">human emotion</strong>.
+                    </p>
                 </motion.div>
             </Section>
 
-            {/* 2. PHILOSOPHY GRID */}
+            {/* --- PHILOSOPHY (Bento Grid Suave) --- */}
             <Section>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     {PHILOSOPHY_ITEMS.map((item, index) => (
                         <motion.div
                             key={item.id}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-white/40 backdrop-blur-sm border border-white/60 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4"
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            className="group relative p-8 md:p-12 rounded-[2.5rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:bg-white/60 transition-all duration-500"
                         >
-                            <h3 className="font-display text-2xl text-accent font-semibold">
+                            <div className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full bg-white/50 text-accent font-display font-bold text-sm">
+                                {item.id}
+                            </div>
+                            <h3 className="font-display text-2xl text-[#1D1D1F] font-semibold mb-4 pr-12">
                                 {item.title}
                             </h3>
                             <p className="font-sans text-gray-600 leading-relaxed text-lg">
@@ -129,85 +140,103 @@ export default function AboutPage() {
                 </div>
             </Section>
 
-            {/* 3. EXPERIENCE TIMELINE (Refactorizado a Grid Horizontal) */}
-            <div className="w-full bg-white/50 border-y border-border py-24">
-                <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-                    <motion.h3
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        className="font-display text-4xl text-accent mb-12 text-center md:text-left"
-                    >
-                        Career Path
-                    </motion.h3>
-
-                    {/* Scroll horizontal en móvil, Grid en desktop */}
-                    <div className="flex flex-col md:flex-row gap-6 md:gap-4 overflow-x-auto pb-8 md:pb-0 scrollbar-hide">
-                        {EXPERIENCE_ITEMS.map((job, index) => (
-                            <motion.div
-                                key={job.company}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="flex-shrink-0 w-full md:w-auto md:flex-1 min-w-[200px]"
-                            >
-                                <div className="flex flex-col h-full bg-background/80 p-6 rounded-2xl border border-border/50 hover:border-accent/30 transition-colors">
-                                    <span className="font-display text-2xl text-accent mb-1">{job.company}</span>
-                                    <span className="font-sans text-sm font-bold text-primary mb-3">{job.period}</span>
-                                    <span className="font-sans text-gray-600 text-sm leading-snug">{job.role}</span>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="mt-12 flex justify-center md:justify-start">
-                        <Button href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={FileText}>
-                            Download CV
-                        </Button>
-                    </div>
+            {/* --- EXPERIENCE (Clean List - Estilo Ajustes iOS) --- */}
+            <Section className="!gap-12">
+                <div className="flex flex-col md:flex-row justify-between items-end border-b border-black/5 pb-8">
+                    <h3 className="font-display text-4xl font-bold text-[#1D1D1F]">Path</h3>
+                    <Link href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" target="_blank" className="text-primary font-medium hover:opacity-80 flex items-center gap-2 transition-opacity">
+                        Download CV <ArrowUpRight size={18} />
+                    </Link>
                 </div>
-            </div>
 
-            {/* 4. PERSONAL & BEHIND SCREENS */}
-            <Section className="items-center text-center">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    className="max-w-3xl space-y-8"
-                >
-                    <div className="space-y-4">
-                        <h3 className="font-display text-4xl text-accent">My Professional Focus</h3>
-                        <p className="font-sans text-lg text-gray-600 leading-relaxed">
-                            I am driven to design and improve digital products that genuinely make people's lives easier and more intentional. My focus is on creating holistic experiences for products related to wellness, sustainability, and personal growth. I thrive on bringing a global vision to a project—from initial research to final UI—and am adept at collaborating within a fully remote team to ensure every detail serves a conscious purpose.
-                        </p>
-                    </div>
-
-                    <div className="space-y-4 pt-12">
-                        <h3 className="font-display text-4xl text-accent">Behind Screens</h3>
-                        <p className="font-sans text-lg text-gray-600 leading-relaxed">
-                            When I'm not designing, I'm often exploring. This can mean finding stillness through meditation, traveling across different cultures or nurturing the quiet patience of my own vegetable garden. My perspective is also shaped by formative experiences, from a 18-month solo journey through Asia and South America... which taught me profound lessons in resilience, adaptability and resourcefulness.
-                        </p>
-                    </div>
-                </motion.div>
-
-                {/* Photo Grid - Masonry Style Simplified */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full mt-12 h-96 md:h-80">
-                    {/* Reemplaza src con tus imágenes reales 1.webp, 2.webp, etc */}
-                    {[1, 2, 3, 4].map((num, i) => (
+                <div className="space-y-4">
+                    {EXPERIENCE_ITEMS.map((job, index) => (
                         <motion.div
-                            key={num}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.1 }}
-                            className={`relative rounded-2xl overflow-hidden shadow-lg ${i % 2 === 0 ? 'mt-0' : 'mt-8 md:mt-12'}`} // Staggered effect
+                            key={job.company}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="flex flex-col md:flex-row md:items-center justify-between p-6 rounded-3xl hover:bg-white/40 transition-colors duration-300 group cursor-default"
                         >
-                            <div className="absolute inset-0 bg-gray-200 animate-pulse" /> {/* Placeholder */}
-                            <Image src={`/images/about/${num}.webp`} fill className="object-cover" alt="Personal photo" />
+                            <div className="flex items-center gap-6">
+                                {/* Indicador visual minimalista */}
+                                <div className="w-3 h-3 rounded-full bg-accent/20 group-hover:bg-accent transition-colors duration-500" />
+                                <div>
+                                    <h4 className="font-display text-2xl font-medium text-[#1D1D1F]">{job.company}</h4>
+                                    <p className="font-sans text-gray-500 text-base">{job.role}</p>
+                                </div>
+                            </div>
+                            <span className="font-mono text-sm text-gray-400 mt-2 md:mt-0 pl-9 md:pl-0 tabular-nums">
+                                {job.period}
+                            </span>
                         </motion.div>
                     ))}
                 </div>
             </Section>
 
-            {/* 5. CTA SECTION */}
+            {/* --- PERSONAL & PHOTOS (Polaroid Vibe) --- */}
+            <Section>
+                <div className="grid md:grid-cols-12 gap-12 items-center">
+                    <div className="md:col-span-5 space-y-8">
+                        <h3 className="font-display text-4xl font-bold text-[#1D1D1F]">Beyond the Code</h3>
+                        <p className="font-sans text-xl text-gray-600 leading-relaxed">
+                            When I'm not designing, I'm finding stillness. Whether it's tending to my vegetable garden, meditating, or exploring remote corners of Asia and South America.
+                        </p>
+                        <p className="font-sans text-xl text-gray-600 leading-relaxed">
+                            These moments of disconnection are exactly where I find the clarity to solve complex connection problems.
+                        </p>
+                    </div>
+
+                    <div className="md:col-span-7 relative h-[500px] w-full">
+                        {/* Foto Principal */}
+                        <motion.div
+                            whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+                            className="absolute top-0 right-0 w-72 h-80 bg-white p-3 pb-8 shadow-2xl rotate-3 rounded-lg z-0 transition-all duration-500 ease-out"
+                        >
+                            <div className="relative w-full h-full bg-gray-100 overflow-hidden">
+                                <Image src="/images/about/1.webp" fill alt="Travel" className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                            </div>
+                        </motion.div>
+
+                        {/* Foto Secundaria */}
+                        <motion.div
+                            whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+                            className="absolute bottom-10 left-10 w-64 h-72 bg-white p-3 pb-8 shadow-xl -rotate-6 rounded-lg z-10 transition-all duration-500 ease-out"
+                        >
+                            <div className="relative w-full h-full bg-gray-100 overflow-hidden">
+                                <Image src="/external/about/2.webp" fill alt="Garden" className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </Section>
+
+            {/* --- CTA FINAL (Apple Glass Card) --- */}
+            <Section className="!pb-32">
+                <div className="relative rounded-[3rem] bg-gradient-to-b from-white/60 to-white/30 backdrop-blur-2xl border border-white/50 p-12 md:p-24 text-center overflow-hidden shadow-2xl shadow-accent/5">
+                    {/* Luz de fondo */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent opacity-50" />
+
+                    <div className="relative z-10 flex flex-col items-center gap-8">
+                        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm text-accent mb-4">
+                            <Sparkles size={32} />
+                        </div>
+
+                        <h2 className="font-display text-4xl md:text-6xl font-bold text-[#1D1D1F]">
+                            Let's create something<br />meaningful.
+                        </h2>
+
+                        <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                            <Button href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
+                                Get in Touch
+                            </Button>
+                            <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>
+                                LinkedIn
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </Section>    {/* 5. CTA SECTION */}
             <section className="w-full px-4 pb-24">
                 <div className="max-w-[800px] mx-auto border-2 border-accent/30 rounded-3xl p-8 md:p-16 bg-white/30 backdrop-blur-md text-center shadow-lg">
                     <h2 className="font-display text-4xl md:text-5xl text-accent mb-6">
@@ -228,6 +257,29 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* --- CTA FINAL --- */}
+            <section className="w-full px-4 pb-32">
+                <div className="max-w-[900px] mx-auto bg-surface border border-accent/10 rounded-[3rem] p-10 md:p-20 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden">
+                    {/* Gradiente sutil para dar volumen */}
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
+
+                    <h2 className="font-display text-4xl md:text-6xl text-accent font-bold mb-8 leading-[0.95] relative z-10">
+                        Let's Create Together
+                    </h2>
+                    <p className="font-sans text-xl text-foreground/60 mb-12 max-w-2xl mx-auto text-balance relative z-10">
+                        If you're building a product with a mindful mission, I would be delighted to explore how my holistic approach to design and technology could help your team thrive.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
+                        <Button href="mailto:christiancastillejo@proton.me" icon={Mail} variant="primary">
+                            Email Me
+                        </Button>
+                        <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin} variant="secondary">
+                            LinkedIn
+                        </Button>
+                    </div>
+                </div>
+            </section>
         </main>
     )
 }
