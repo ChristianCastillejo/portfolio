@@ -49,7 +49,7 @@ const Button = ({ href, children, icon: Icon, primary = false, stable = false }:
       ${stable ? 'active:scale-[0.98]' : 'hover:-translate-y-0.5 active:scale-[0.98]'} 
       ${primary
                 ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90'
-                : 'bg-white/80 backdrop-blur-md border-border shadow-sm shadow-primary/20 text-primary hover:border-accent/30 hover:bg-white hover:shadow-lg shadow-lg'}
+                : 'bg-white/80 backdrop-blur-md border-border/60 text-foreground shadow-sm hover:border-accent hover:text-accent hover:bg-accent/5'}
     `}>
             <span>{children}</span>
             {Icon && <Icon size={18} className={`${primary ? "text-white" : "text-accent"} transition-opacity opacity-90 group-hover:opacity-100`} />}
@@ -59,7 +59,7 @@ const Button = ({ href, children, icon: Icon, primary = false, stable = false }:
 
 export default function AboutPage() {
     return (
-        <main className="w-full min-h-screen bg-[#EDEBE8] text-[#1D1D1F] selection:bg-primary/20 overflow-x-hidden">
+        <main className="w-full min-h-screen bg-background text-black selection:bg-primary/20 overflow-x-hidden">
 
             <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
 
@@ -195,7 +195,7 @@ export default function AboutPage() {
 
             <Section className="grid md:grid-cols-12 gap-12 items-center">
                 <div className="md:col-span-5 space-y-8">
-                    <h3 className="font-display text-4xl font-bold text-[#1D1D1F]">
+                    <h3 className="font-display text-4xl font-bold text-black">
                         Life beyond code
                     </h3>
                     <div className="space-y-6 font-sans text-lg text-foreground/70 leading-relaxed text-balance">
@@ -260,7 +260,7 @@ export default function AboutPage() {
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent opacity-40 pointer-events-none" />
 
                     <div className="relative z-10 flex flex-col items-center">
-                        <h2 className="font-display text-4xl md:text-6xl font-bold text-[#1D1D1F] leading-[1.05] tracking-tight mb-6">
+                        <h2 className="font-display text-4xl md:text-6xl font-bold text-bla leading-[1.05] tracking-tight mb-6">
                             Let’s build something that lasts.
                         </h2>
 
