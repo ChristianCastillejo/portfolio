@@ -12,8 +12,8 @@ export const SILVESTRA: ProjectCaseStudy = {
     { name: "Figma", iconKey: "figma" },
   ],
   links: {
-    live: "https://demo.vercel.app",
-    repo: "https://github.com/christian/repo"
+    live: "https://silvestra.es",
+    repo: "https://github.com/christiancastillejo/silvestra"
   },
   storySteps: [
     {

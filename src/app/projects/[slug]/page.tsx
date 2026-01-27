@@ -29,13 +29,18 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
     if (!project) {
         notFound()
     }
+    // CORRECCIÓN: Usamos bg-background (beige) y texto foreground, más la textura de ruido
     return (
-        <main className="w-full min-h-screen bg-white text-slate-900 selection:bg-orange-100 selection:text-orange-900">
-            <ProjectHero project={project} />
-            <ProjectStory steps={project.storySteps} />
-            <ProjectComponentLab />
-            <ProjectInsight project={project} />
-            <ProjectFooter nextProjectSlug={project.nextProjectSlug || ""} />
+        <main className="w-full min-h-screen bg-background text-foreground selection:bg-primary/20 overflow-x-hidden relative">
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
+
+            <div className="relative z-10">
+                <ProjectHero project={project} />
+                <ProjectStory steps={project.storySteps} />
+                <ProjectComponentLab />
+                <ProjectInsight project={project} />
+                <ProjectFooter nextProjectSlug={project.nextProjectSlug || ""} />
+            </div>
         </main>
     )
 }

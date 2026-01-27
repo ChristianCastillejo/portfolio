@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { Check, RefreshCcw, Settings2 } from "lucide-react"
 
 export const ProjectComponentLab = () => {
-    // Simulación de estado de un Design System
     const [variant, setVariant] = useState<"primary" | "secondary" | "ghost">("primary")
     const [state, setState] = useState<"idle" | "loading" | "success">("idle")
     const [size, setSize] = useState<"sm" | "md" | "lg">("md")
@@ -12,36 +11,36 @@ export const ProjectComponentLab = () => {
     return (
         <section className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-24">
             <div className="mb-12 text-center">
-                <span className="font-mono text-xs text-orange-500 font-bold uppercase tracking-widest">
+                <span className="font-mono text-xs text-primary font-bold uppercase tracking-widest">
                     Design System Internals
                 </span>
-                <h3 className="mt-4 font-display text-3xl md:text-4xl font-bold text-slate-900">
+                <h3 className="mt-4 font-display text-3xl md:text-4xl font-bold text-accent">
                     Interact with the Atoms
                 </h3>
-                <p className="mt-4 text-slate-500 max-w-xl mx-auto">
-                    We built a component API that is strictly typed and safeguards against inconsistent UI states. Try the interactive demo below.
+                <p className="mt-4 text-foreground/70 max-w-xl mx-auto">
+                    We built a component API that is strictly typed. Try the interactive demo below.
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-12 gap-8 bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
+            <div className="grid md:grid-cols-12 gap-8 bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/60 shadow-lg overflow-hidden">
 
-                {/* 1. CONTROLS (Sidebar) */}
-                <div className="md:col-span-4 bg-slate-50 p-8 border-r border-slate-200 flex flex-col gap-8">
-                    <div className="flex items-center gap-2 text-slate-900 font-bold pb-4 border-b border-slate-200">
+                {/* Sidebar */}
+                <div className="md:col-span-4 bg-white/50 p-8 border-r border-border flex flex-col gap-8">
+                    <div className="flex items-center gap-2 text-foreground font-bold pb-4 border-b border-border">
                         <Settings2 size={18} />
                         <span>Knobs</span>
                     </div>
 
-                    {/* Variant Control */}
                     <div className="space-y-3">
-                        <label className="text-xs font-mono uppercase text-slate-400 font-bold">Variant</label>
+                        <label className="text-xs font-mono uppercase text-foreground/50 font-bold">Variant</label>
                         <div className="flex gap-2">
                             {["primary", "secondary", "ghost"].map((v) => (
                                 <button
                                     key={v}
                                     onClick={() => setVariant(v as any)}
+                                    // CORRECCIÓN: Estados activos usan border-primary y text-primary
                                     className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all capitalize
-                                    ${variant === v ? "bg-white border-orange-500 text-orange-600 shadow-sm" : "bg-transparent border-slate-200 text-slate-500 hover:border-slate-300"}`}
+                                    ${variant === v ? "bg-white border-primary text-primary shadow-sm" : "bg-transparent border-border text-foreground/60 hover:border-foreground/20"}`}
                                 >
                                     {v}
                                 </button>
@@ -49,16 +48,15 @@ export const ProjectComponentLab = () => {
                         </div>
                     </div>
 
-                    {/* State Control */}
                     <div className="space-y-3">
-                        <label className="text-xs font-mono uppercase text-slate-400 font-bold">State</label>
+                        <label className="text-xs font-mono uppercase text-foreground/50 font-bold">State</label>
                         <div className="flex gap-2">
                             {["idle", "loading", "success"].map((s) => (
                                 <button
                                     key={s}
                                     onClick={() => setState(s as any)}
                                     className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-all capitalize
-                                    ${state === s ? "bg-white border-orange-500 text-orange-600 shadow-sm" : "bg-transparent border-slate-200 text-slate-500 hover:border-slate-300"}`}
+                                    ${state === s ? "bg-white border-primary text-primary shadow-sm" : "bg-transparent border-border text-foreground/60 hover:border-foreground/20"}`}
                                 >
                                     {s}
                                 </button>
@@ -67,19 +65,20 @@ export const ProjectComponentLab = () => {
                     </div>
                 </div>
 
-                {/* 2. PREVIEW (Canvas) */}
-                <div className="md:col-span-8 bg-[url('/grid-pattern.svg')] bg-center p-12 flex items-center justify-center relative min-h-[400px]">
-                    <div className="absolute inset-0 bg-slate-50/50 pointer-events-none" />
+                {/* Preview Canvas */}
+                <div className="md:col-span-8 bg-white/30 p-12 flex items-center justify-center relative min-h-[400px]">
+                    {/* Fondo de patrón sutil */}
+                    <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
 
-                    {/* El Componente Simulado */}
                     <motion.button
                         layout
+                        // CORRECCIÓN: Botones usan var(--primary)
                         className={`
                             relative overflow-hidden flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300
                             ${size === 'md' ? 'px-6 py-3 text-base' : 'px-4 py-2 text-sm'}
-                            ${variant === 'primary' ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/20 hover:bg-slate-800' : ''}
-                            ${variant === 'secondary' ? 'bg-white text-slate-900 border border-slate-200 shadow-sm hover:border-slate-300' : ''}
-                            ${variant === 'ghost' ? 'bg-transparent text-slate-600 hover:bg-slate-100' : ''}
+                            ${variant === 'primary' ? 'bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90' : ''}
+                            ${variant === 'secondary' ? 'bg-white text-accent border border-border shadow-sm hover:border-primary/30' : ''}
+                            ${variant === 'ghost' ? 'bg-transparent text-foreground/80 hover:bg-black/5' : ''}
                         `}
                     >
                         {state === "loading" && (
@@ -90,20 +89,16 @@ export const ProjectComponentLab = () => {
                                 <RefreshCcw size={16} />
                             </motion.div>
                         )}
-
                         {state === "success" && <Check size={16} />}
-
                         <span>
                             {state === "loading" ? "Processing..." : state === "success" ? "Completed" : "Interactive Button"}
                         </span>
-
                     </motion.button>
 
-                    {/* Code Preview Overlay */}
-                    <div className="absolute bottom-6 left-6 right-6 bg-slate-900/90 backdrop-blur rounded-lg p-4 font-mono text-xs text-slate-300">
+                    <div className="absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur rounded-lg p-4 font-mono text-xs text-white/80">
                         <p>{`<Button`}</p>
-                        <p className="pl-4 text-orange-300">variant="{variant}"</p>
-                        <p className="pl-4 text-orange-300">state="{state}"</p>
+                        <p className="pl-4 text-primary">variant="{variant}"</p>
+                        <p className="pl-4 text-primary">state="{state}"</p>
                         <p>{`> Click me </Button>`}</p>
                     </div>
                 </div>
