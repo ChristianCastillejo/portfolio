@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation"
-import { ProjectHero } from "@/components/projects/project-hero"
-import { ProjectStory } from "@/components/projects/project-story"
-import { ProjectFooter } from "@/components/projects/project-footer"
+import { ProjectHero } from "@/components/projects/shared/project-hero"
+import { ProjectStory } from "@/components/projects/shared/project-story"
+import { ProjectFooter } from "@/components/projects/shared/project-footer"
 import { getAllProjectSlugs, getProjectBySlug } from "./index"
-import { ProjectComponentLab } from "@/components/projects/project-component-lab"
-import { ProjectInsight } from "@/components/projects/project-insight"
+import { ProjectComponentLab } from "@/components/projects/shared/project-component-lab"
+import { ProjectInsight } from "@/components/projects/shared/project-insight"
 
 export async function generateStaticParams() {
     return getAllProjectSlugs()

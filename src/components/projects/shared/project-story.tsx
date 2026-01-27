@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { StoryStep } from "@/types/project"
-import { CodeWindow } from "@/components/projects/code-window"
+import { CodeWindow } from "@/components/projects/shared/code-window"
 import Image from "next/image"
 
 export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
