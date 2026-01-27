@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { StoryStep } from "@/types/project"
 import { CodeWindow } from "@/components/projects/code-window"
+import Image from "next/image"
 
 export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
     const [activeStep, setActiveStep] = useState(1)
@@ -11,6 +12,7 @@ export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
         <section className="relative w-full max-w-[1200px] mx-auto px-6 md:px-8 py-24">
             <div className="flex flex-col md:flex-row gap-12 md:gap-24">
 
+                {/* --- LEFT COLUMN (STICKY VISUALS) --- */}
                 <div className="hidden md:block w-1/2 relative">
                     <div className="sticky top-24 h-[calc(100vh-12rem)] flex items-center justify-center">
                         <div className="w-full h-full relative">
@@ -24,16 +26,30 @@ export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
                                         scale: activeStep === step.id ? 1 : 0.95,
                                         zIndex: activeStep === step.id ? 10 : 0
                                     }}
-                                    transition={{ duration: 0.5 }}
+                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                     className="absolute inset-0 flex items-center justify-center"
                                 >
                                     {step.visualType === 'code' ? (
-                                        <CodeWindow code={step.codeSnippet!} lang={step.codeLanguage!} title={`step-${step.id}.${step.codeLanguage}`} />
+                                        <CodeWindow
+                                            code={step.codeSnippet!}
+                                            lang={step.codeLanguage!}
+                                            title={`step-${step.id}.${step.codeLanguage}`}
+                                        />
                                     ) : (
-                                        <div className="relative w-full aspect-square bg-white rounded-2xl border border-white/60 shadow-lg overflow-hidden">
-                                            <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-mono">
-                                                Image: {step.title}
-                                            </div>
+                                        // CORRECCIÓN SDE: Rounded-[2rem] y border-border para consistencia con Hero
+                                        <div className="relative w-full aspect-square bg-white rounded-[2rem] border border-border shadow-sm overflow-hidden flex items-center justify-center">
+                                            {step.visualContent ? (
+                                                <Image
+                                                    src={step.visualContent}
+                                                    alt={step.title}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <div className="text-foreground/30 font-mono text-sm">
+                                                    Visual: {step.title}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </motion.div>
@@ -42,6 +58,7 @@ export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
                     </div>
                 </div>
 
+                {/* --- RIGHT COLUMN (NARRATIVE) --- */}
                 <div className="w-full md:w-1/2 flex flex-col gap-[50vh] pb-[20vh] pt-[10vh]">
                     {steps.map((step) => (
                         <StepContent key={step.id} step={step} onActivate={setActiveStep} />
@@ -63,26 +80,39 @@ const StepContent = ({ step, onActivate }: { step: StoryStep, onActivate: (id: n
 
     return (
         <div ref={ref} className="flex flex-col justify-center min-h-[50vh]">
-            {/* CORRECCIÓN: text-primary para el número */}
-            <span className="font-mono text-primary text-sm font-bold mb-4 tracking-widest">
+            {/* CORRECCIÓN: text-accent (Verde) en lugar de primary (Naranja) */}
+            {/* Esto agrupa visualmente el número con el título y lo diferencia de los botones de acción */}
+            <span className="font-mono text-accent text-sm font-bold mb-4 tracking-widest">
                 0{step.id}
             </span>
-            {/* CORRECCIÓN: text-accent para el título (Typography System) */}
+
             <h3 className="font-display text-3xl md:text-4xl font-bold text-accent mb-6 tracking-tight">
                 {step.title}
             </h3>
+
             <h4 className="font-sans text-xl font-medium text-foreground/80 mb-6">
                 {step.subtitle}
             </h4>
+
             <p className="font-sans text-lg text-foreground/70 leading-relaxed text-pretty">
                 {step.description}
             </p>
 
+            {/* Mobile Visual Fallback */}
             <div className="md:hidden mt-8">
                 {step.visualType === 'code' ? (
                     <CodeWindow code={step.codeSnippet!} lang={step.codeLanguage!} title="snippet" />
                 ) : (
-                    <div className="w-full aspect-video bg-white rounded-xl border border-gray-200" />
+                    <div className="relative w-full aspect-square bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
+                        {step.visualContent && (
+                            <Image
+                                src={step.visualContent}
+                                alt={step.title}
+                                fill
+                                className="object-cover"
+                            />
+                        )}
+                    </div>
                 )}
             </div>
         </div>

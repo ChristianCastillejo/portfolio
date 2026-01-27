@@ -31,7 +31,7 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
     }
     // CORRECCIÓN: Usamos bg-background (beige) y texto foreground, más la textura de ruido
     return (
-        <main className="w-full min-h-screen bg-background text-foreground selection:bg-primary/20 overflow-x-hidden relative">
+        <main className="w-full min-h-screen bg-background text-foreground selection:bg-primary/20 relative">
             <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
 
             <div className="relative z-10">

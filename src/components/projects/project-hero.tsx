@@ -65,7 +65,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
                 {/* --- 2. THE CHALLENGE (Estilo Tarjeta Blanca + Verde) --- */}
                 {/* CAMBIO: Recuperado estilo tarjeta blanca sólida, pero con acentos en VERDE (text-accent) */}
-                <div className="md:col-span-1 md:row-span-4 bg-white rounded-[2rem] border border-border p-8 flex flex-col justify-start gap-4 shadow-sm">
+                <div className="md:col-span-1 md:row-span-4 bg-white rounded-[2rem] border border-border p-8 flex flex-col justify-start gap-4 shadow-sm hover:border-accent/30 transition-colors">
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-wider flex items-center gap-2">
                         <div className="w-2 leading-none mb-[3px] h-2 rounded-full bg-accent animate-pulse" />
                         The Challenge
