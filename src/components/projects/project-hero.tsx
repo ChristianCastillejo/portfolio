@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Github, Globe, Code2, Layers, Figma, Database, Cpu, Zap, Box } from "lucide-react"
+import { ArrowUpRight, Github, Globe, Code2, Layers, Figma, Database, Cpu, Zap, Box, Mail, Link } from "lucide-react"
 import { ProjectCaseStudy } from "@/types/project"
 import { Button } from "@/components/ui/button1"
 
@@ -100,7 +100,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
                 {/* --- 4. ACTIONS & METRICS (ESTILO ORANGE RESTAURADO) --- */}
                 {/* --- 4. ACTIONS & METRICS (ESTILO ORANGE RESTAURADO) --- */}
-                <div className="md:col-span-1 md:row-span-4 bg-orange-50/50 rounded-[2rem] border border-orange-100 p-6 flex flex-col justify-between group cursor-pointer hover:bg-orange-50 transition-colors">
+                <div className="md:col-span-1 md:row-span-4 bg-orange-50/50 rounded-[2rem] border border-orange-100 p-6 flex flex-col justify-between group hover:bg-orange-50 transition-colors">
 
                     {/* Header: SDE METRICS (Estilo Naranja que te gustaba) */}
                     <div className="flex justify-between items-start mb-4">
@@ -116,10 +116,10 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
                     {/* Botones: Usando el componente <Button /> del sistema */}
                     <div className="flex flex-col gap-2 mt-auto w-full">
-                        <Button href={project.links.live} icon={ArrowUpRight} primary>
+                        <Button href={project.links.live} icon={ArrowUpRight} variant="primary">
                             View Live Project
                         </Button>
-                        <Button href={project.links.repo} icon={Github}>
+                        <Button href={project.links.repo} icon={Github} variant="secondary">
                             Source Code
                         </Button>
                     </div>

@@ -36,7 +36,6 @@ export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
                                             title={`step-${step.id}.${step.codeLanguage}`}
                                         />
                                     ) : (
-                                        // CORRECCIÓN SDE: Rounded-[2rem] y border-border para consistencia con Hero
                                         <div className="relative w-full aspect-square bg-white rounded-[2rem] border border-border shadow-sm overflow-hidden flex items-center justify-center">
                                             {step.visualContent ? (
                                                 <Image
@@ -80,25 +79,27 @@ const StepContent = ({ step, onActivate }: { step: StoryStep, onActivate: (id: n
 
     return (
         <div ref={ref} className="flex flex-col justify-center min-h-[50vh]">
-            {/* CORRECCIÓN: text-accent (Verde) en lugar de primary (Naranja) */}
-            {/* Esto agrupa visualmente el número con el título y lo diferencia de los botones de acción */}
-            <span className="font-mono text-accent text-sm font-bold mb-4 tracking-widest">
+            {/* 1. NÚMERO: Mantenemos el ACENTO VERDE para identidad, pero pequeño */}
+            <span className="font-mono text-accent text-sm font-bold mb-4 tracking-widest flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-accent/40"></span> {/* Línea decorativa sutil */}
                 0{step.id}
             </span>
 
-            <h3 className="font-display text-3xl md:text-4xl font-bold text-accent mb-6 tracking-tight">
+            {/* 2. TÍTULO: CAMBIO A NEGRO (Foreground). Da seriedad y legibilidad. */}
+            <h3 className="font-display text-3xl md:text-4xl font-bold !text-foreground mb-4 tracking-tight">
                 {step.title}
             </h3>
 
-            <h4 className="font-sans text-xl font-medium text-foreground/80 mb-6">
+            {/* 3. SUBTÍTULO: GRIS TÉCNICO (Foreground/60). Diferencia clara de jerarquía. */}
+            <h4 className="font-sans text-lg font-medium !text-foreground/60 mb-6 font-mono uppercase tracking-wide">
                 {step.subtitle}
             </h4>
 
-            <p className="font-sans text-lg text-foreground/70 leading-relaxed text-pretty">
+            {/* 4. TEXTO: Cuerpo de texto estándar */}
+            <p className="font-sans text-lg text-foreground/80 leading-relaxed text-pretty">
                 {step.description}
             </p>
 
-            {/* Mobile Visual Fallback */}
             <div className="md:hidden mt-8">
                 {step.visualType === 'code' ? (
                     <CodeWindow code={step.codeSnippet!} lang={step.codeLanguage!} title="snippet" />
