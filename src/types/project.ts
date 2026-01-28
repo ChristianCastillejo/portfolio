@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image"
+
 export type TechItem = {
     name: string
     iconKey: string
@@ -9,7 +11,7 @@ export type StoryStep = {
     subtitle: string
     description: string
     visualType: "image" | "code"
-    visualContent?: string
+    visualContent?: string | StaticImageData
     codeLanguage?: string
     codeSnippet?: string
 }
