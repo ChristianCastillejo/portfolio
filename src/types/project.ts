@@ -33,6 +33,12 @@ export type ProjectCaseStudy = {
         repo: string
     }
     storySteps: StoryStep[]
+    standardsHeader: {
+        eyebrow: string
+        title: string
+        subtitle: string
+        description: string
+    }
     standards: Standard[]
     nextProjectSlug?: string, metrics?: {
         label: string

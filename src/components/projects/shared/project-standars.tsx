@@ -14,21 +14,27 @@ const ICON_MAP: Record<string, LucideIcon> = {
 export const ProjectStandards = ({ project }: { project: ProjectCaseStudy }) => {
     const items = project.standards || []
 
+    const header = project.standardsHeader || {
+        eyebrow: "Engineering Standards",
+        title: "Built for Production",
+        subtitle: "Not just Demos",
+        description: "Technical baselines enforced for this project."
+    }
+
     return (
         <section className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24 border-t border-border/40">
             <div className="grid md:grid-cols-12 gap-12">
-
                 <div className="md:col-span-4">
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-4">
                         <ShieldCheck size={14} />
-                        The Ground Rules
+                        {header.eyebrow}
                     </span>
                     <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-                        My technical <br />
-                        <span className="text-foreground/40">non-negotiables.</span>
+                        {header.title} <br />
+                        <span className="text-foreground/40">{header.subtitle}</span>
                     </h3>
                     <p className="text-foreground/70 leading-relaxed text-pretty">
-                        I’m naturally curious and love trying new tools, but I’ve learned that innovation without stability is just noise. For Silvestra, I drew a line in the sand: the code had to be as high-quality as the design. These are the baselines I refused to compromise on.
+                        {header.description}
                     </p>
                 </div>
 

@@ -1,6 +1,4 @@
 import { ProjectCaseStudy } from "@/types/project"
-import { Globe, Code2, Layers, Database, FileJson } from "lucide-react"
-import structureImage from "@/components/projects/demos/silvestra/silvestra-structure.webp"
 
 export const SILVESTRA: ProjectCaseStudy = {
   slug: "silvestra",
@@ -81,7 +79,12 @@ const buttonVariants = cva(
   }
 );`
     }
-  ],
+  ], standardsHeader: {
+    eyebrow: "The Ground Rules",
+    title: "My technical",
+    subtitle: "non-negotiables.",
+    description: "I’m naturally curious and love trying new tools, but I’ve learned that innovation without stability is just noise. For Silvestra, I drew a line in the sand: the code had to be as high-quality as the design. These are the baselines I refused to compromise on."
+  },
   standards: [
     {
       title: "Real-world Accessibility",

@@ -41,8 +41,8 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
                 <ProjectStory steps={project.storySteps} />
                 <ProjectArchitecture />
                 <ProjectComponentLab />
-                <ProjectInsight project={project} />
                 <ProjectStandards project={project} />
+                <ProjectInsight project={project} />
                 <ProjectFooter nextProjectSlug={project.nextProjectSlug || ""} />
             </div>
         </main>
