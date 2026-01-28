@@ -16,6 +16,13 @@ export type StoryStep = {
     codeSnippet?: string
 }
 
+export type Standard = {
+    title: string
+    icon: string
+    description: string
+    highlight: string
+}
+
 export type ProjectCaseStudy = {
     slug: string
     title: string
@@ -26,6 +33,7 @@ export type ProjectCaseStudy = {
         repo: string
     }
     storySteps: StoryStep[]
+    standards: Standard[]
     nextProjectSlug?: string, metrics?: {
         label: string
         value: string

@@ -18,10 +18,10 @@ const Button = ({ href, children, icon: Icon, primary = false, stable = false }:
       ${stable ? 'active:scale-[0.98]' : 'hover:-translate-y-0.5 active:scale-[0.98]'} 
       ${primary
                 ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90'
-                : 'bg-white/80 backdrop-blur-md border-border/60 text-foreground shadow-sm hover:border-accent hover:text-accent hover:bg-accent/5'}
+                : 'bg-white/80 backdrop-blur-md border-border/60 text-foreground shadow-sm hover:border-foreground '}
     `}>
             <span>{children}</span>
-            {Icon && <Icon size={18} className={`${primary ? "text-white" : "text-accent"} transition-opacity opacity-90 group-hover:opacity-100`} />}
+            {Icon && <Icon size={18} className={`${primary ? "text-white" : "text-black"} transition-opacity opacity-90 group-hover:opacity-100`} />}
         </div>
     </Link>
 )

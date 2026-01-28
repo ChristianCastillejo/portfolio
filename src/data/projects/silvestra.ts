@@ -1,106 +1,128 @@
 import { ProjectCaseStudy } from "@/types/project"
-import silvestraStructureImage from "@/components/projects/demos/silvestra/silvestra-structure.webp"
+import { Globe, Code2, Layers, Database, FileJson } from "lucide-react"
+import structureImage from "@/components/projects/demos/silvestra/silvestra-structure.webp"
 
 export const SILVESTRA: ProjectCaseStudy = {
   slug: "silvestra",
   title: "Silvestra",
-  // WWP: No vendemos "código", vendemos el resultado (velocidad y confianza).
-  // Personalidad: Directo y entusiasta.
-  tagline: "Making Shopify feel instant. My experiment with Next.js 15 and the Edge.",
+  tagline: "Standard Shopify themes were limiting the brand's potential. I stepped in to build a headless experience that actually feels like a high-end artisanal brand.",
 
   techStack: [
     { name: "Next.js 15", iconKey: "globe" },
     { name: "TypeScript", iconKey: "code" },
     { name: "Shopify API", iconKey: "database" },
     { name: "Tailwind v4", iconKey: "layers" },
-    { name: "GraphQL Codegen", iconKey: "file-json" },
+    { name: "GitHub Packages", iconKey: "file-json" },
   ],
 
   links: {
     live: "https://silvestra.es",
     repo: "https://github.com/christiancastillejo/silvestra"
   },
-
   storySteps: [
     {
       id: 1,
       title: "The Backbone",
-      subtitle: "Why Headless?",
-      // Personalidad: Curioso y analítico. Explicas el POR QUÉ, no solo el QUÉ.
-      description: "Honestly, the default Shopify themes felt a bit sluggish for what I wanted. I was curious to see how fast we could push the navigation if we decoupled the frontend. I chose Next.js 15 to fetch data directly from the Storefront API. It wasn't just about speed; it was about having total control over the rendering logic.",
+      subtitle: "Moving away from Liquid",
+      description: "Silvestra sells premium terrariums, but their old site felt generic. I spent some time analyzing why: Shopify's Liquid themes are great, but they hit a performance ceiling quickly. I decided to go Headless with Next.js 15. It wasn't just for the 'hype'; it was about having the surgical precision needed to make a store feel instant.",
       visualType: "code",
       codeLanguage: "typescript",
-      // Mostramos el Codegen porque demuestra que te importa la seguridad, no solo que funcione.
-      codeSnippet: `// codegen.ts
-        const config: CodegenConfig = {
-          schema: 'https://shopify.dev/storefront-api',
-          documents: ['src/lib/shopify/**/*.ts'],
-          generates: {
-            './src/gql/': {
-              preset: 'client',
-              plugins: []
-            }
-          }
-        };`
+      codeSnippet: `// Our type-safe engine
+const config: CodegenConfig = {
+  schema: 'https://shopify.dev/storefront-api',
+  documents: ['src/lib/shopify/**/*.ts'],
+  generates: {
+    './src/gql/': { preset: 'client' }
+  }
+};`
     },
     {
       id: 2,
       title: "The Tricky Part",
-      subtitle: "Solving i18n & Caching",
-      // Personalidad: Reflexivo. Admites que fue difícil (vulnerabilidad amable) y cómo lo solucionaste.
-      description: "This was the real puzzle. How do you serve different languages without breaking the static cache? I spent some time analyzing middleware strategies. The solution I built ('src/middleware.ts') detects the locale and rewrites the URL under the hood. It keeps the product pages static and snappy, but the user feels right at home in their language.",
-      visualType: "image",
-      visualContent: silvestraStructureImage, codeLanguage: "typescript",
-      codeSnippet: `// src/middleware.ts
-        export default async function middleware(request: NextRequest) {
-          // 1. Detect locale (en/es)
-          const handleI18nRouting = createIntlMiddleware(routing);
-          const response = handleI18nRouting(request);
-          
-          // 2. Keep the cache happy
-          response.headers.set('x-middleware-cache', 'no-cache');
-          return response;
-        }`
+      subtitle: "Global without the lag",
+      description: "i18n is one of those things that looks easy until you try to keep it fast. Since Silvestra has international customers, I couldn't settle for a slow client-side translation. I built a middleware strategy that handles locales at the edge. It was a bit of a puzzle to keep the SEO scores perfect, but the result is a site that feels local in every language.",
+
+      visualType: "code",
+      codeLanguage: "bash",
+      codeSnippet: `├── codegen.ts            # Pipeline Config
+├── src
+│   ├── app
+│   │   ├── [locale]      # 👈 Dynamic Routing
+│   │   │   ├── cart
+│   │   └── api
+│   ├── components
+│   │   └── cart
+│   │       └── actions.ts # Server Actions
+│   ├── gql                # Generated Types
+│   ├── i18n               # 👈 The Logic
+│   │   ├── request.ts
+│   │   └── routing.ts
+│   ├── lib
+│   │   └── shopify
+│   └── middleware.ts      # 👈 Edge Matcher`
     },
     {
       id: 3,
       title: "The Look & Feel",
-      subtitle: "My own library on GitHub Packages",
-      description: "I didn't want to just copy-paste components into the project folder. I wanted to treat the UI as a serious dependency. So, I built and published my own component library to GitHub Packages. Under the hood, it uses Radix UI primitives to handle the tricky accessibility details (like focus management and keyboard navigation), while I style everything with Tailwind v4. It keeps the main repo clean and feels incredibly professional to use.",
+      subtitle: "Ownership through Packages",
+      description: "I’m a bit obsessive about consistency, so I built a component library from scratch using Radix UI and Tailwind v4, and published it to my own GitHub Packages. It keeps the UI solid, accessible, and completely separate from the business logic. It’s how I make sure the brand looks perfect on every screen.",
       visualType: "code",
       codeLanguage: "typescript",
-      codeSnippet: `// Inside my package: @christiancastillejo/nectar-ui
-import { Slot } from "@radix-ui/react-slot";
-
+      codeSnippet: `// Published to @christian/ui
 const buttonVariants = cva(
   "rounded-full transition-all active:scale-[0.98]", 
   {
     variants: {
       variant: {
         primary: "bg-[#B68045] text-white hover:opacity-90",
-        ghost: "text-black hover:bg-[#B68045] hover:text-white"
+        ghost: "text-black border-border hover:bg-[#B68045]"
       }
     }
   }
 );`
     }
   ],
-
+  standards: [
+    {
+      title: "Real-world Accessibility",
+      icon: "Eye",
+      description: "For a real store, accessibility is just good business. I used Radix UI to ensure that anyone, regardless of how they navigate, can buy a terrarium without friction. It's about empathy through code.",
+      highlight: "WCAG 2.1 Compliant"
+    },
+    {
+      title: "The 100 Score Goal",
+      icon: "Zap",
+      description: "In e-commerce, speed is revenue. I obsessed over every millisecond, using Next.js 15's architecture to make sure the store feels instant, even on slow mobile connections.",
+      highlight: "Lighthouse Performance"
+    },
+    {
+      title: "Organic Physics",
+      icon: "Smartphone",
+      description: "Artisanal products need a beautiful presentation. I built custom animations that feel organic and high-end, maintaining 60fps to match the brand's premium feel.",
+      highlight: "Touch-Optimized"
+    },
+    {
+      title: "Type-Safe Commerce",
+      icon: "ShieldCheck",
+      description: "I don't like surprises in production. By integrating GraphQL Codegen, I made sure that every product price and description is strictly typed from the Shopify schema to the UI.",
+      highlight: "Zero Runtime Errors"
+    }
+  ],
   nextProjectSlug: "ecommerce-design-system",
 
   metrics: [
-    { label: "Lighthouse", value: "100", description: "It just flies." },
-    { label: "Type Safety", value: "100%", description: "No 'any', no surprises." }
+    { label: "Core Web Vitals", value: "Passed", description: "Real production data." },
+    { label: "Lighthouse", value: "100", description: "SEO & Performance." }
   ],
 
   lessons: [
     {
-      title: "Let the robots write the types",
-      content: "I used to write TypeScript interfaces for API responses by hand. Huge mistake. Integrating GraphQL Codegen gave me peace of mind. Now, if Shopify changes the schema, my build breaks immediately. It’s strict, but it saves so much headache later."
+      title: "Trusting the robots",
+      content: "I've learned that if a task is repetitive, I should probably automate it. Using GraphQL Codegen changed how I work; it's like having a permanent assistant checking that my data and my UI are always in sync. It gives me a peace of mind that manual typing never could."
     },
     {
-      title: "Server Actions just make sense",
-      content: "Instead of building a whole API layer just to add an item to the cart, I used Server Actions. It feels much more natural. The logic stays on the server, the client bundle stays small, and I don't have to worry about exposing sensitive logic."
+      title: "The power of Server Actions",
+      content: "For a real store, security isn't optional. Moving the cart logic to Server Actions made the code much more 'clean' and kept the heavy lifting on the server. It’s one of those modern React features that actually solves a real-world business problem."
     }
   ]
 }

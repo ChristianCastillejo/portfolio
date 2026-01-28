@@ -82,7 +82,7 @@ const StepContent = ({ step, onActivate }: { step: StoryStep, onActivate: (id: n
             {/* 1. NÚMERO: Mantenemos el ACENTO VERDE para identidad, pero pequeño */}
             <span className="font-mono text-accent text-sm font-bold mb-4 tracking-widest flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-accent/40"></span> {/* Línea decorativa sutil */}
-                0{step.id}
+                {`0${step.id}`}
             </span>
 
             {/* 2. TÍTULO: CAMBIO A NEGRO (Foreground). Da seriedad y legibilidad. */}

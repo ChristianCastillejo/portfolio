@@ -42,7 +42,7 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
                 <ProjectArchitecture />
                 <ProjectComponentLab />
                 <ProjectInsight project={project} />
-                <ProjectStandards />
+                <ProjectStandards project={project} />
                 <ProjectFooter nextProjectSlug={project.nextProjectSlug || ""} />
             </div>
         </main>
