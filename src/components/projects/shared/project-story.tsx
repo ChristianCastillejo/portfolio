@@ -33,7 +33,7 @@ export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
                                         <CodeWindow
                                             code={step.codeSnippet!}
                                             lang={step.codeLanguage!}
-                                            title={`step-${step.id}.${step.codeLanguage}`}
+                                            title={`${step.id}.${step.codeLanguage}`}
                                         />
                                     ) : (
                                         <div className="relative w-full aspect-square bg-white rounded-[2rem] border border-border shadow-sm overflow-hidden flex items-center justify-center">
