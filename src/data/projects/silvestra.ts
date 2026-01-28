@@ -76,12 +76,12 @@ export const SILVESTRA: ProjectCaseStudy = {
   ],
   lessons: [
     {
-      title: "The Tailwind v4 Beta Risk",
-      content: "Adopting Tailwind v4 in alpha stage meant dealing with unstable undocumented APIs. However, the trade-off paid off by reducing our CSS bundle size by 30% thanks to the new engine, validating the 'zero-runtime' hypothesis."
+      title: "Middleware-based Localization Content",
+      content: "Implemented a lightweight middleware strategy for internationalization (src/middleware.ts) that handles locale detection and rewriting without compromising the static caching of product pages."
     },
     {
-      title: "Strictness vs. Velocity",
-      content: "Implementing Zod schemas for every single API response slowed down initial development. But this 'Schema-First' approach caught over 15 edge-case bugs during the integration phase that would have otherwise crashed the production UI."
+      title: "Server Actions for Cart Logic",
+      content: "Instead of exposing API routes, I used React Server Actions for cart mutations. This reduced the client bundle size by keeping the Shopify mutation logic strictly on the server and allowing progressive enhancement for the 'Add to Cart' flow."
     }
   ]
 }

@@ -5,6 +5,8 @@ import { ProjectFooter } from "@/components/projects/shared/project-footer"
 import { getAllProjectSlugs, getProjectBySlug } from "./index"
 import { ProjectComponentLab } from "@/components/projects/shared/project-component-lab"
 import { ProjectInsight } from "@/components/projects/shared/project-insight"
+import { ProjectStandards } from "@/components/projects/shared/project-standars"
+import { ProjectArchitecture } from "@/components/projects/shared/project-architecture"
 
 export async function generateStaticParams() {
     return getAllProjectSlugs()
@@ -37,8 +39,10 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
             <div className="relative z-10">
                 <ProjectHero project={project} />
                 <ProjectStory steps={project.storySteps} />
+                <ProjectArchitecture />
                 <ProjectComponentLab />
                 <ProjectInsight project={project} />
+                <ProjectStandards />
                 <ProjectFooter nextProjectSlug={project.nextProjectSlug || ""} />
             </div>
         </main>
