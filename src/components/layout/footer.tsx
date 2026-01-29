@@ -6,16 +6,15 @@ import { ArrowUpRight, Github, Linkedin, Mail, Twitter, Disc } from "lucide-reac
 import { cn } from "@/lib/utils"
 
 const SOCIAL_LINKS = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/christiancastillejo", icon: Linkedin },
-    { name: "GitHub", href: "https://github.com/christiancastillejo", icon: Github },
     { name: "Email", href: "mailto:christiancastillejo@proton.me", icon: Mail },
+    { name: "GitHub", href: "https://github.com/christiancastillejo", icon: Github },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/christiancastillejo", icon: Linkedin },
 ]
 
 const SITEMAP = [
     { name: "Work", href: "/" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
-    // { name: "Lab", href: "/lab" }, // Descomentar cuando exista
 ]
 
 export const Footer = () => {

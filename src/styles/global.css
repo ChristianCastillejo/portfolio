@@ -44,6 +44,7 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-acorn), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -104,10 +105,24 @@ h6 {
   padding-top: 0.12em;
 }
 
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 @utility transition-fancy {
   transition-property: color, background-color, border-color, opacity, transform, filter;
   transition-timing-function: var(--ease-cubic);
   transition-duration: 800ms;
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-feature-settings: "ss09";
+  }
 }
 
 /* TEXTURA DE RUIDO GLOBAL */

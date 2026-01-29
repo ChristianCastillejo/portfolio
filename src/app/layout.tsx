@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/global.css";
 import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from 'geist/font/mono'
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -71,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${acorn.variable} antialiased`}
+        className={`${GeistSans.variable} ${acorn.variable} ${GeistMono.variable} antialiased`}
       > <Header />
         {children}
         <Footer />
