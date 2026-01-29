@@ -1,121 +1,125 @@
 "use client"
-import { useRef, useState, useEffect } from "react"
-import { motion, useInView } from "framer-motion"
-import { StoryStep } from "@/types/project"
-import { CodeWindow } from "@/components/projects/shared/code-window"
+import { motion } from "framer-motion"
 import Image from "next/image"
+import { ProjectCaseStudy, StoryStep } from "@/types/project"
+import { CodeWindow } from "@/components/projects/shared/code-window"
 
-export const ProjectStory = ({ steps }: { steps: StoryStep[] }) => {
-    const [activeStep, setActiveStep] = useState(1)
-
-    return (
-        <section className="relative w-full max-w-[1200px] mx-auto px-6 md:px-8 py-24">
-            <div className="flex flex-col md:flex-row gap-12 md:gap-24">
-
-                {/* --- LEFT COLUMN (STICKY VISUALS) --- */}
-                <div className="hidden md:block w-1/2 relative">
-                    <div className="sticky top-24 h-[calc(100vh-12rem)] flex items-center justify-center">
-                        <div className="w-full h-full relative">
-                            {steps.map((step) => (
-                                <motion.div
-                                    key={step.id}
-                                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                    animate={{
-                                        opacity: activeStep === step.id ? 1 : 0,
-                                        y: activeStep === step.id ? 0 : 20,
-                                        scale: activeStep === step.id ? 1 : 0.95,
-                                        zIndex: activeStep === step.id ? 10 : 0
-                                    }}
-                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                    className="absolute inset-0 flex items-center justify-center"
-                                >
-                                    {step.visualType === 'code' ? (
-                                        <CodeWindow
-                                            code={step.codeSnippet!}
-                                            lang={step.codeLanguage!}
-                                            title={`${step.id}.${step.codeLanguage}`}
-                                        />
-                                    ) : (
-                                        <div className="relative w-full aspect-square bg-white rounded-[2rem] border border-border shadow-sm overflow-hidden flex items-center justify-center">
-                                            {step.visualContent ? (
-                                                <Image
-                                                    src={step.visualContent}
-                                                    alt={step.title}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            ) : (
-                                                <div className="text-foreground/30 font-mono text-sm">
-                                                    Visual: {step.title}
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- RIGHT COLUMN (NARRATIVE) --- */}
-                <div className="w-full md:w-1/2 flex flex-col gap-[50vh] pb-[20vh] pt-[10vh]">
-                    {steps.map((step) => (
-                        <StepContent key={step.id} step={step} onActivate={setActiveStep} />
-                    ))}
-                </div>
-
+// Subcomponente para manejar la lógica visual (Imagen vs Código)
+const StoryVisual = ({ step }: { step: StoryStep }) => {
+    if (step.visualType === "code" && step.codeSnippet) {
+        return (
+            // El CodeWindow ya tiene un diseño sólido, solo le damos el contenedor adecuado
+            <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-border/50 bg-card/50 backdrop-blur-sm">
+                <CodeWindow
+                    code={step.codeSnippet}
+                    lang={step.codeLanguage || 'typescript'}
+                    title={step.title.toLowerCase().replace(/\s/g, '-') + '.' + (step.codeLanguage === 'bash' ? 'sh' : 'ts')}
+                />
             </div>
-        </section>
-    )
+        )
+    }
+
+    if (step.visualType === "image" && step.visualContent) {
+        return (
+            // Contenedor orgánico estilo Apple para imágenes/video
+            <div className="relative aspect-video rounded-[2rem] overflow-hidden shadow-sm border border-border/50 bg-card">
+                {/* Si fuera video, aquí iría la etiqueta video como en el Hero */}
+                {typeof step.visualContent === 'string' ? (
+                    <Image
+                        src={step.visualContent}
+                        alt={step.title}
+                        fill
+                        className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                ) : null}
+
+                {/* Overlay sutil para integración si la imagen es muy clara */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/5 to-transparent pointer-events-none" />
+            </div>
+        )
+    }
+
+    return null
 }
 
-const StepContent = ({ step, onActivate }: { step: StoryStep, onActivate: (id: number) => void }) => {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" })
 
-    useEffect(() => {
-        if (isInView) onActivate(step.id)
-    }, [isInView, step.id, onActivate])
+export const ProjectStory = ({ project }: { project: ProjectCaseStudy }) => {
+    if (!project.storySteps || project.storySteps.length === 0) return null;
 
     return (
-        <div ref={ref} className="flex flex-col justify-center min-h-[50vh]">
-            {/* 1. NÚMERO: Mantenemos el ACENTO VERDE para identidad, pero pequeño */}
-            <span className="font-mono text-accent text-sm font-bold mb-4 tracking-widest flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-accent/40"></span> {/* Línea decorativa sutil */}
-                {`0${step.id}`}
-            </span>
+        // Padding masivo (py-32 md:py-48) para que respire de verdad.
+        <section className="w-full max-w-[1600px] mx-auto px-6 md:px-12 py-32 md:py-48 bg-background overflow-hidden">
 
-            {/* 2. TÍTULO: CAMBIO A NEGRO (Foreground). Da seriedad y legibilidad. */}
-            <h3 className="font-display text-3xl md:text-4xl font-bold !text-foreground mb-4 tracking-tight">
-                {step.title}
-            </h3>
-
-            {/* 3. SUBTÍTULO: GRIS TÉCNICO (Foreground/60). Diferencia clara de jerarquía. */}
-            <h4 className="font-sans text-lg font-medium !text-foreground/60 mb-6 font-mono uppercase tracking-wide">
-                {step.subtitle}
-            </h4>
-
-            {/* 4. TEXTO: Cuerpo de texto estándar */}
-            <p className="font-sans text-lg text-foreground/80 leading-relaxed text-pretty">
-                {step.description}
-            </p>
-
-            <div className="md:hidden mt-8">
-                {step.visualType === 'code' ? (
-                    <CodeWindow code={step.codeSnippet!} lang={step.codeLanguage!} title="snippet" />
-                ) : (
-                    <div className="relative w-full aspect-square bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
-                        {step.visualContent && (
-                            <Image
-                                src={step.visualContent}
-                                alt={step.title}
-                                fill
-                                className="object-cover"
-                            />
-                        )}
-                    </div>
-                )}
+            {/* Header de Sección - Centrado para anclar el flujo */}
+            <div className="max-w-4xl mx-auto text-center mb-24 md:mb-40">
+                <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-6 block"
+                >
+                    The Process
+                </motion.span>
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    // Tipografía gigante estilo About/Hero
+                    className="text-foreground font-display text-5xl md:text-7xl font-bold tracking-tight leading-[0.9]"
+                >
+                    Engineering narrative.
+                </motion.h2>
             </div>
-        </div>
+
+
+            {/* Loop de Pasos - Flujo Editorial Vertical */}
+            <div className="flex flex-col gap-32 md:gap-48">
+                {project.storySteps.map((step, index) => (
+                    <motion.div
+                        key={step.id}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative"
+                    >
+                        {/* 1. La Narrativa (Columna Central) */}
+                        <div className="max-w-3xl mx-auto relative z-10 mb-16 md:mb-24">
+                            {/* Numeración gigante y sutil */}
+                            <span className="absolute -left-4 md:-left-20 -top-12 text-[8rem] md:text-[10rem] font-display font-bold text-foreground/[0.03] select-none leading-none z-0">
+                                0{index + 1}
+                            </span>
+
+                            {/* Título y Subtítulo */}
+                            <div className="relative z-10 mb-8">
+                                <h3 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-3">
+                                    {step.title}
+                                </h3>
+                                <p className="font-mono text-sm md:text-base text-accent uppercase tracking-wider font-bold">
+                                    {step.subtitle}
+                                </p>
+                            </div>
+
+                            {/* Cuerpo de texto - Grande y legible (estilo About) */}
+                            <div className="prose prose-lg md:prose-xl prose-p:text-foreground/70 prose-p:leading-relaxed prose-p:font-medium prose-p:text-pretty max-w-none">
+                                <p>{step.description}</p>
+                            </div>
+                        </div>
+
+                        {/* 2. La Evidencia Visual (Rompiendo la retícula) */}
+                        {/* Se expande más allá del texto (max-w-6xl) para impacto visual */}
+                        <div className="relative z-20 max-w-6xl mx-auto pl-4 md:pl-0">
+                            {/* Línea conectora sutil (opcional, para flujo) */}
+                            {index !== project.storySteps!.length - 1 && (
+                                <div className="absolute left-[50%] -bottom-24 h-24 w-px bg-border/50 hidden md:block"></div>
+                            )}
+                            <StoryVisual step={step} />
+                        </div>
+
+                    </motion.div>
+                ))}
+            </div>
+        </section>
     )
 }
