@@ -1,56 +1,75 @@
 "use client"
 import { motion } from "framer-motion"
 import { ProjectCaseStudy } from "@/types/project"
-import { BrainCircuit, CheckCircle2, ArrowRight } from "lucide-react"
+import { BrainCircuit, Lightbulb, ArrowRight, CornerDownRight } from "lucide-react"
 
 export const ProjectInsight = ({ project }: { project: ProjectCaseStudy }) => {
+    // Si no hay lecciones, no renderizamos nada (limpieza)
     if (!project.lessons || project.lessons.length === 0) return null;
 
     return (
-        <section className="w-full max-w-[1000px] mx-auto px-6 md:px-8 py-32">
-            <div className="flex flex-col gap-16">
+        <section className="w-full border-t border-border/40 relative overflow-hidden py-32 md:py-48">
 
-                {/* Header Centrado - Diferente a Standards */}
-                <div className="text-center max-w-2xl mx-auto">
+            {/* Fondo decorativo sutil (Coherencia con Standards/Architecture) */}
+            <div className="absolute inset-0 bg-foreground/[0.02] -z-10" />
+
+            <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
+
+                {/* 1. HEADER EDITORIAL (Centrado para cerrar la narrativa) */}
+                <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center justify-center gap-2 mb-6">
                         <BrainCircuit size={14} />
                         Retrospective
                     </span>
-                    <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-                        Engineering <br /> <span className="text-foreground/40">Trade-offs</span>
+                    <h3 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+                        Engineering <br /> <span className="text-foreground/40">Trade-offs.</span>
                     </h3>
+                    <p className="text-foreground/70 text-lg md:text-xl leading-relaxed text-pretty">
+                        Every project is a series of decisions. Here are the critical pivot points where I had to balance technical purity with business reality.
+                    </p>
                 </div>
 
-                {/* Lista Editorial (No Cards) */}
-                <div className="flex flex-col divide-y divide-border/50 border-y border-border/50">
+                {/* 2. THE INSIGHT CARDS */}
+                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                     {project.lessons.map((lesson, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="group py-12 md:py-16 flex flex-col md:flex-row gap-8 md:gap-16 hover:bg-foreground/[0.02] transition-colors px-4 rounded-xl -mx-4"
+                            transition={{ delay: idx * 0.15, duration: 0.6 }}
+                            // Material: Glassmorphism unificado con Standards
+                            className="group relative bg-white/60 backdrop-blur-md border border-white/60 p-10 md:p-12 rounded-[2.5rem] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[360px]"
                         >
-                            {/* Columna Izquierda: Título y Contexto */}
-                            <div className="md:w-1/3 flex flex-col justify-between">
-                                <div className="flex items-center gap-4 mb-2">
-                                    <span className="font-mono text-xs text-foreground/40">0{idx + 1}</span>
-                                    <h4 className="font-bold text-xl text-foreground">
-                                        {lesson.title}
-                                    </h4>
-                                </div>
-                                <div className="hidden md:flex items-center gap-2 text-xs font-mono font-bold text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <CheckCircle2 size={14} />
-                                    <span>SOLVED</span>
-                                </div>
+                            {/* Icono de fondo gigante y sutil (Decoración SDE) */}
+                            <div className="absolute -right-8 -bottom-8 text-foreground/[0.03] group-hover:text-foreground/[0.06] transition-colors duration-500 rotate-12">
+                                <Lightbulb size={200} strokeWidth={1} />
                             </div>
 
-                            {/* Columna Derecha: El contenido técnico */}
-                            <div className="md:w-2/3">
-                                <p className="text-lg text-foreground/70 leading-relaxed text-pretty font-sans">
+                            {/* Contenido */}
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="flex items-center justify-center w-10 h-10 leading-none pt-[3px] rounded-full bg-white border border-border text-accent font-mono text-sm font-bold shadow-sm group-hover:scale-110 transition-transform duration-300">
+                                        <span className="leading-none">0{idx + 1}</span>
+                                    </span>
+                                    <div className="h-px flex-1 bg-border/60" />
+                                </div>
+
+                                <h4 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
+                                    {lesson.title}
+                                </h4>
+
+                                <p className="font-sans text-lg text-foreground/70 leading-relaxed font-medium text-pretty">
                                     {lesson.content}
                                 </p>
+                            </div>
+
+                            {/* Decoración: "Takeaway" Arrow */}
+                            <div className="relative z-10 mt-8 pt-6 opacity-40 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-accent">
+                                <CornerDownRight size={20} />
+                                <span className="font-mono text-xs font-bold uppercase tracking-wider">
+                                    Key Takeaway
+                                </span>
                             </div>
                         </motion.div>
                     ))}
