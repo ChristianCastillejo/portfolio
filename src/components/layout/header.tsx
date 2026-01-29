@@ -36,8 +36,7 @@ export const Header = () => {
             >
                 <div
                     className={cn(
-                        "pointer-events-auto relative flex items-center justify-between w-full max-w-4xl rounded-full transition-shadow transition-transform transition-color transition-opacity                                                                     duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] overflow-hidden",
-                        // --- LIQUID GLASS 26 PHYSICS ---
+                        "pointer-events-auto relative flex items-center justify-between w-full max-w-4xl rounded-full transition-[padding,background-color,border-color,box-shadow,transform,opacity,filter,backdrop-filter] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] overflow-hidden",                        // --- LIQUID GLASS 26 PHYSICS ---
                         // 1. Fondo base con opacidad variable
                         scrolled
                             ? "py-3 px-5 md:py-3 md:px-6 bg-white/70"
