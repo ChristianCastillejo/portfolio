@@ -3,6 +3,7 @@ import "@/styles/global.css";
 import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -73,6 +74,7 @@ export default function RootLayout({
         className={`${GeistSans.variable} ${acorn.variable} antialiased`}
       > <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
