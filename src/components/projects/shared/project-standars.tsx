@@ -22,52 +22,75 @@ export const ProjectStandards = ({ project }: { project: ProjectCaseStudy }) => 
     }
 
     return (
-        <section className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24 border-t border-border/40">
-            <div className="grid md:grid-cols-12 gap-12">
-                <div className="md:col-span-4">
-                    <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-4">
+        <section className="w-full border-t border-border/40 relative overflow-hidden py-32 md:py-48">
+
+            {/* Fondo decorativo sutil unificado con el resto del sitio */}
+            <div className="absolute inset-0 bg-foreground/[0.02] -z-10" />
+
+            <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
+
+                {/* 1. HEADER EDITORIAL (Alineado con ComponentLab y Architecture) */}
+                <div className="max-w-3xl mb-20 md:mb-32">
+                    <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-6">
                         <ShieldCheck size={14} />
                         {header.eyebrow}
                     </span>
-                    <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
                         {header.title} <br />
                         <span className="text-foreground/40">{header.subtitle}</span>
                     </h3>
-                    <p className="text-foreground/70 leading-relaxed text-pretty">
+                    <p className="text-foreground/70 text-lg leading-relaxed text-pretty max-w-2xl">
                         {header.description}
                     </p>
                 </div>
 
-                <div className="md:col-span-8 grid sm:grid-cols-2 gap-6">
+                {/* 2. THE GRID OF PILLARS */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {items.map((item, idx) => {
                         const IconComponent = ICON_MAP[item.icon] || Layers
 
                         return (
                             <motion.div
                                 key={item.title}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="group p-6 rounded-2xl bg-white/40 border border-border hover:border-accent/30 hover:bg-white/60 transition-colors transition-shadow duration-300 flex flex-col justify-between"
+                                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                                // Diseño: Monolito de Cristal
+                                className="group relative bg-white/60 backdrop-blur-md border border-white/60 p-8 rounded-[2rem] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-colors transition-transform transition-shadow duration-500 flex flex-col justify-between overflow-hidden min-h-[320px]"
                             >
-                                <div>
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="p-2 bg-background rounded-lg border border-border group-hover:border-accent/20 group-hover:text-accent transition-colors">
-                                            <IconComponent size={20} />
-                                        </div>
-                                        <div className="px-2 py-1 bg-green-500/10 text-green-700 text-[10px] font-mono font-bold uppercase tracking-wider rounded-full border border-green-500/20">
-                                            {item.highlight}
-                                        </div>
+                                {/* Número Gigante de Fondo (Detalle Editorial) */}
+                                <span className="absolute -right-4 -top-4 text-[8rem] font-display font-bold text-foreground/[0.03] select-none leading-none group-hover:text-foreground/[0.05] transition-colors duration-500">
+                                    0{idx + 1}
+                                </span>
+
+                                {/* Contenido Superior */}
+                                <div className="relative z-10">
+                                    {/* Icono Flotante */}
+                                    <div className="w-14 h-14 bg-white rounded-2xl border border-border flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                                        <IconComponent size={24} className="text-foreground/80 group-hover:text-accent transition-colors duration-300" />
                                     </div>
 
-                                    <h4 className="font-bold text-lg text-foreground mb-2 flex items-center gap-2">
+                                    <h4 className="font-bold text-xl text-foreground mb-4 leading-tight">
                                         {item.title}
                                     </h4>
-                                    <p className="text-sm text-foreground/60 leading-relaxed">
+                                    <p className="text-base text-foreground/70 leading-relaxed font-medium">
                                         {item.description}
                                     </p>
                                 </div>
+
+                                {/* Footer de la Tarjeta: El "Highlight" Técnico */}
+                                <div className="relative z-10 mt-8 pt-6 border-t border-border/40">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                                        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                                            {item.highlight}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Brillo sutil en hover */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                             </motion.div>
                         )
                     })}
