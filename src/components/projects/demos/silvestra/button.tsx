@@ -16,9 +16,9 @@ const buttonVariants = cva(
         ghost: "text-text-black border-border hover:bg-[#B68045] hover:text-[#ffffff] hover:border-[#B68045]",
       },
       size: {
-        default: "px-5 py-[13px]",
-        sm: "px-4 py-2 text-sm",
-        lg: "px-8 py-4 text-lg",
+        default: "px-10 py-3",
+        sm: "px-6 py-2 text-sm",
+        lg: "px-12 py-4 text-lg",
       },
       fullWidth: {
         true: "w-full",

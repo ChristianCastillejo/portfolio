@@ -86,7 +86,7 @@ export const ProjectArchitecture = () => {
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.15 }}
                                     // Tarjeta estilo "About": Cristal esmerilado, bordes suaves, sombra difusa
-                                    className="relative bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 flex items-start gap-6 group z-10"
+                                    className="relative bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-colors transition-transform transition-shadow duration-300 flex items-start gap-6 group z-10"
                                 >
                                     {/* Icono */}
                                     <div className="w-16 h-16 rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent/30 transition-colors shadow-inner">
