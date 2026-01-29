@@ -92,7 +92,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-6 block">
-                            Status: <span className="text-accent text-md animate-pulse">●</span> Open to opportunities
+                            Status: <span className="text-accent text-md animate-pulse">●</span> Available for select projects
                         </span>
                         <h1 className="font-display text-5xl md:text-7xl font-bold text-foreground mb-8 leading-[0.9] tracking-tight">
                             Let’s start a <br /> conversation.
