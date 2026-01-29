@@ -125,11 +125,11 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
                     <div className="md:col-span-3 md:pl-8 flex flex-col justify-end gap-4">
                         <div className="flex flex-col gap-3 w-full">
-                            <Button href={project.links.live} icon={ArrowUpRight} variant="primary" className="w-full justify-between">
+                            <Button href={project.links.live} icon={Globe} variant="primary">
                                 Visit Live Site
                             </Button>
-                            <Button href={project.links.repo} icon={Github} variant="secondary" className="w-full justify-between bg-transparent border-border/50 hover:bg-card/50 hover:border-accent/20">
-                                View Source
+                            <Button href={project.links.repo} icon={Github} variant="secondary">
+                                Check the Repo
                             </Button>
                         </div>
                     </div>
