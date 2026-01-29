@@ -1,6 +1,6 @@
 "use client"
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
-import { ArrowUpRight, Github, Globe, Code2, Layers, Database, Cpu, Zap, Box } from "lucide-react"
+import { Github, Globe, Code2, Layers, Database, Cpu, Zap, Box, BarChart3 } from "lucide-react"
 import { ProjectCaseStudy } from "@/types/project"
 import { Button } from "@/components/ui/button1"
 import { useRef } from "react"
@@ -90,7 +90,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
 
             <div className="w-full border-t border-border/50 pt-8 pb-12">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 md:divide-x divide-border/50">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 md:divide-x divide-border/50 items-start">
 
                     <div className="md:col-span-5 md:pr-8 flex flex-col justify-between gap-4">
                         <span className="font-mono text-xs text-foreground/40 font-bold uppercase tracking-wider">Core Stack</span>
@@ -109,17 +109,35 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                         </div>
                     </div>
 
-                    <div className="md:col-span-4 md:px-8 flex flex-col justify-between gap-4">
-                        <span className="font-mono text-xs text-foreground/40 font-bold uppercase tracking-wider">Key Metric</span>
-                        <div>
-                            <div className="flex items-baseline gap-2 text-foreground font-display text-4xl font-bold mb-1">
-                                <Zap size={24} className="fill-accent text-accent" />
-                                <span>100</span>
-                                <span className="text-xl text-foreground/40 font-sans font-medium">/100</span>
-                            </div>
-                            <p className="text-sm text-foreground/60 font-medium">
-                                Lighthouse Performance Score. <br /> Engineered for instant loads.
-                            </p>
+                    <div className="md:col-span-4 md:px-8 flex flex-col gap-4">
+                        <span className="font-mono text-xs text-foreground/40 font-bold uppercase tracking-wider">
+                            {project.metrics && project.metrics.length > 1 ? "Key Metrics" : "Key Metric"}
+                        </span>
+
+                        {/* CAMBIO: Grid interno de 2 columnas para ahorrar espacio vertical */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-6">
+                            {project.metrics && project.metrics.length > 0 ? (
+                                project.metrics.map((metric, idx) => (
+                                    <div key={idx} className="flex flex-col">
+                                        <div className="flex items-baseline gap-2 text-foreground font-display text-3xl font-bold mb-1">
+                                            {idx === 0 ? (
+                                                <Zap size={20} className="fill-accent text-accent" />
+                                            ) : (
+                                                <BarChart3 size={20} className="text-accent" />
+                                            )}
+                                            <span>{metric.value}</span>
+                                        </div>
+                                        <p className="text-xs text-foreground/60 font-medium leading-relaxed text-pretty">
+                                            {metric.label}
+                                        </p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="flex items-center gap-2 text-foreground/40">
+                                    <BarChart3 size={20} />
+                                    <span className="text-sm font-mono">Data compiling...</span>
+                                </div>
+                            )}
                         </div>
                     </div>
 
