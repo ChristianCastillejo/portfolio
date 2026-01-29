@@ -8,8 +8,10 @@ import { CodeWindow } from "@/components/projects/shared/code-window"
 const StoryVisual = ({ step }: { step: StoryStep }) => {
     if (step.visualType === "code" && step.codeSnippet) {
         return (
-            // El CodeWindow ya tiene un diseño sólido, solo le damos el contenedor adecuado
-            <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-border/50 bg-card/50 backdrop-blur-sm">
+            // CAMBIO: Quitamos "border", "bg-card", "backdrop-blur" y "shadow". 
+            // Dejamos que el CodeWindow sea el protagonista.
+            // Solo mantenemos el div para espaciado si fuera necesario, o devolvemos directo.
+            <div className="w-full">
                 <CodeWindow
                     code={step.codeSnippet}
                     lang={step.codeLanguage || 'typescript'}
