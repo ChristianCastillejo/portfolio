@@ -124,7 +124,7 @@ export const Header = () => {
                             </span>
 
                             <span className="text-[10px] font-mono font-medium uppercase tracking-widest text-foreground/60 group-hover:text-accent transition-colors duration-300">
-                                Open to connect
+                                Selectively Open
                             </span>
                         </div>
 

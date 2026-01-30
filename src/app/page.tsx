@@ -16,7 +16,7 @@ const PROJECTS = [
     title: "Silvestra",
     subtitle: "E-commerce Ecosystem",
     description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
-    tags: ["Next.js 15", "Shopify Headless", "Design System"],
+    tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
     image: "/images/silvestra-cover.webp",
     video: "/videos/silvestra/hero.webm",
   },
@@ -32,14 +32,39 @@ const PROJECTS = [
 
 const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const isInView = useInView(videoRef, { margin: "-10% 0px -10% 0px" })
+  const rampTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // CAMBIO CLAVE: Margin al -40%. 
+  // Esto crea una "franja de activación" fina en el centro de la pantalla.
+  // El video solo arrancará cuando esté "en el escenario", no en los bastidores.
+  const isInView = useInView(videoRef, { margin: "-40% 0px -40% 0px" })
 
   useEffect(() => {
     if (!videoRef.current) return;
+
     if (isInView) {
-      videoRef.current.play().catch(() => { })
+      if (videoRef.current.paused) {
+        // Lógica de "Ramp Up" del Hero:
+        // 1. Limpiamos timeouts previos
+        if (rampTimeoutRef.current) clearTimeout(rampTimeoutRef.current)
+
+        // 2. Arrancamos en cámara lenta (Cinemático)
+        videoRef.current.playbackRate = 0.6
+        videoRef.current.play().catch(() => { })
+
+        // 3. Aceleramos a velocidad normal tras 1.2s
+        rampTimeoutRef.current = setTimeout(() => {
+          if (videoRef.current) {
+            videoRef.current.playbackRate = 1.0
+          }
+        }, 1200)
+      }
     } else {
-      videoRef.current.pause()
+      // Pausa inmediata al salir de la zona central
+      if (!videoRef.current.paused) {
+        if (rampTimeoutRef.current) clearTimeout(rampTimeoutRef.current)
+        videoRef.current.pause()
+      }
     }
   }, [isInView])
 
@@ -108,7 +133,10 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
               <div className="relative overflow-hidden rounded-[2rem] bg-black/40 group-hover:bg-black/80 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-all duration-500 p-6 md:p-8 flex flex-col gap-4">
 
                 {/* 1. TOP ROW */}
-                <div className="flex items-center justify-between gap-4">
+                {/* 1. TOP ROW */}
+                {/* CAMBIO: 'items-start' para que el icono se ancle arriba si los tags crecen a 2 líneas */}
+                <div className="flex items-start justify-between gap-4">
+
                   {/* STACK TAGS */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
@@ -119,7 +147,8 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
                   </div>
 
                   {/* ACTION ARROW */}
-                  <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-all duration-300">
+                  {/* CAMBIO: 'shrink-0' para blindar el ancho y que no se aplaste nunca */}
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-[background-color,color,border-color] duration-300">
                     <ArrowUpRight size={16} className="text-white group-hover:text-black transition-colors" />
                   </div>
                 </div>
@@ -161,12 +190,12 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-white/40 border border-white/60 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-white/40 border border-white/60 backdrop-blur-sm shadow-sm hover:bg-white/60 hover:border-accent/30 transition-all duration-300 cursor-default group">
               <div className="relative flex h-2 w-2">
                 <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-accent opacity-50"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent group-hover:scale-125 transition-transform duration-300"></span>
               </div>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent/80">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent/80 group-hover:text-accent transition-colors">
                 Design Engineer
               </span>
             </div>
@@ -256,7 +285,7 @@ export default function HomePage() {
         <Link href="/contact" className="group inline-block">
           <div className="relative overflow-hidden rounded-full bg-foreground text-background px-10 py-5 flex items-center gap-4 transition-colors transition-transform transition-shadow duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
             <span className="font-display text-xl font-bold relative z-10">
-              Available for select projects
+              Discuss a collaboration
             </span>
             <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
 

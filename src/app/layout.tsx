@@ -56,6 +56,9 @@ export const metadata: Metadata = {
   },
 
   metadataBase: new URL("https://christiancastillejo.com"),
+  other: {
+    google: "notranslate",
+  },
 };
 
 const acorn = localFont({
@@ -70,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" translate="no" className="notranslate">
       <body
         className={`${GeistSans.variable} ${acorn.variable} ${GeistMono.variable} antialiased`}
       > <Header />
