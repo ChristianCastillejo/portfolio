@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio v4 — Christian Castillejo
 
-## Getting Started
+> **Status:** 🟢 Open for Select Projects.
 
-First, run the development server:
+![Portfolio Cover](/public/images/readme-hero.webp)
+
+## 🧭 The Philosophy
+**I bridge the gap between pure design and production code.**
+This repository isn't just a gallery; it's a live proof of concept for **Design Engineering**. I built this to dogfood **Next.js 15** and **Tailwind v4**, proving that high-performance sites (Lighthouse 100) can still have organic, complex motion.
+
+## 🛠 The Stack
+Built for developer experience and type safety.
+
+-   **Core:** Next.js 16 (App Router, RSC), TypeScript.
+-   **Style:** Tailwind CSS v4 (Bleeding edge).
+-   **Motion:** Framer Motion (Orchestration & Layout).
+-   **Assets:** Lucide React, Geist Font.
+
+## 🧩 Engineering Highlights
+*For the technical recruiter reviewing the code:*
+
+### 1. Live Component Lab
+`src/components/projects/demos/component-lab.tsx`
+> **The Challenge:** Static docs lie.
+> **The Solution:** A bidirectional playground where props (`variant`, `size`) update both the UI and the live code snippet in real-time.
+
+### 2. Liquid Physics Header
+`src/components/layout/header.tsx`
+> **The Challenge:** Sticky headers feel mechanical.
+> **The Solution:** A reactive glass effect that adjusts blur and shadow depth based on scroll velocity and state.
+
+### 3. Smart Video Playback
+`src/app/page.tsx`
+> **The Challenge:** Heavy media kills performance.
+> **The Solution:** A `useInView` hook with "center-stage" logic. Videos only play when focused, ramping playback from `0.6x` to `1.0x` for a cinematic feel without CPU waste.
+
+## 🚀 Run Locally
 
 ```bash
+git clone [https://github.com/christiancastillejo/portfolio.git](https://github.com/christiancastillejo/portfolio.git)
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📬 Contact
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I am open for select projects that value engineering craftsmanship.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    [christiancastillejo@proton.me](mailto:christiancastillejo@proton.me)
 
-## Learn More
+    [https://www.linkedin.com/in/christiancastillejo](https://www.linkedin.com/in/christiancastillejo)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed & Engineered by Christian Castillejo.
