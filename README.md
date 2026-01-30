@@ -46,8 +46,8 @@ npm run dev
 
 I am open for select projects that value engineering craftsmanship.
 
-    [christiancastillejo@proton.me](mailto:christiancastillejo@proton.me)
+[christiancastillejo@proton.me](mailto:christiancastillejo@proton.me)
 
-    [https://www.linkedin.com/in/christiancastillejo](https://www.linkedin.com/in/christiancastillejo)
+[https://www.linkedin.com/in/christiancastillejo](https://www.linkedin.com/in/christiancastillejo)
 
 Designed & Engineered by Christian Castillejo.
