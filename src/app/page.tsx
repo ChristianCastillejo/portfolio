@@ -7,7 +7,9 @@ import { motion, useScroll, useTransform, useMotionTemplate, useInView } from "f
 import { ArrowRight, ArrowUpRight, Code2, Layers, Zap, ArrowDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// --- DATOS DUMMY (Placeholders para Silvestra y futuros proyectos) ---
+
+// --- DATOS DUMMY ---
+// NOTA: He eliminado la propiedad 'color' (border-...) para forzar consistencia de sistema.
 const PROJECTS = [
   {
     slug: "silvestra",
@@ -16,10 +18,8 @@ const PROJECTS = [
     description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
     tags: ["Next.js 15", "Shopify Headless", "Design System"],
     image: "/images/silvestra-cover.webp",
-    video: "/videos/silvestra/hero.webm", // <--- Video añadido
-    color: "bg-[#E35028]" // Color de acento del proyecto (Vermilion)
+    video: "/videos/silvestra/hero.webm",
   },
-  // Puedes duplicar este objeto para visualizar más tarjetas
   {
     slug: "chronos",
     title: "Chronos",
@@ -27,10 +27,9 @@ const PROJECTS = [
     description: "Reducing operational friction by 40% through a custom React-based dashboard for data visualization.",
     tags: ["React", "D3.js", "TypeScript"],
     image: "/images/chronos-cover.webp",
-    // video: "...", 
-    color: "bg-[#3B82F6]"
   }
 ]
+
 const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const isInView = useInView(videoRef, { margin: "-10% 0px -10% 0px" })
@@ -53,65 +52,75 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
       className="group relative w-full"
     >
       <Link href={`/projects/${project.slug}`} className="block w-full">
+
         {/* 1. EL CONTENEDOR */}
-        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm transition-colors transition-transform transition-shadow duration-700 group-hover:shadow-2xl group-hover:shadow-accent/5 group-hover:-translate-y-2">
+        {/* CAMBIO DE DISEÑO:
+            - Eliminado borde de color variable.
+            - Default: border-white/60 (Vidrio sutil).
+            - Hover: border-accent (Tu Verde corporativo) con un glow sutil.
+            - Esto comunica: "Soy parte del sistema de Christian", no "Soy un anuncio".
+        */}
+        <div className={cn(
+          "relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden transition-all duration-700",
+          "border-[3px] border-white/60 bg-white/40 backdrop-blur-xl", // Estado Base
+          "group-hover:border-accent/50 group-hover:shadow-2xl group-hover:shadow-accent/10 group-hover:-translate-y-2" // Estado Activo (System Accent)
+        )}>
 
           {/* Ruido sutil */}
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10 mix-blend-overlay bg-noise" />
 
           {/* --- ESTRUCTURA DE MARCO --- */}
-          <div className="absolute inset-0 overflow-hidden rounded-[2.5rem]">
+          <div className="absolute inset-0 overflow-hidden ">
 
-            {/* MARCO DE COLOR */}
-            <div className={cn("w-full h-full opacity-10 group-hover:opacity-20 transition-opacity duration-700", project.color)} />
+            {/* MARCO INTERNO (Gap) */}
+            {/* Mantenemos transparente o blanco muy bajito, sin tintes de color */}
+            <div className="w-full h-full opacity-0" />
 
             {/* CONTENEDOR DE VIDEO (Inset) */}
-            <div className="absolute inset-4 md:inset-8 rounded-[2rem] overflow-hidden bg-white shadow-inner isolate">
+            <div className="absolute inset-0 overflow-hidden ">
               {project.video ? (
-                // VIDEO
                 <video
                   ref={videoRef}
                   src={project.video}
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105 opacity-95 mix-blend-multiply grayscale-[20%]"
+                  className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
               ) : (
-                // Fallback
                 <div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
                   {project.title}
                 </div>
               )}
 
-              <div className="absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+              {/* Overlay gradiente sutil SOLO abajo para integrar la caja oscura visualmente con el video */}
+              <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none opacity-60" />
             </div>
           </div>
 
-          {/* --- UI LAYER: THE SMOKED GLASS HUD --- */}
-          {/* Alineamos todo abajo a la izquierda para dejar el video respirar */}
-          {/* --- UI LAYER: THE LIQUID OBSIDIAN HUD --- */}
+          {/* --- UI LAYER: THE OBSIDIAN HUD --- */}
           <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end items-start z-20 pointer-events-none">
 
             {/* LA CAJA FLOTANTE */}
             <div className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 w-full max-w-md">
 
-              <div className="relative overflow-hidden rounded-[2rem] bg-black/40 group-hover:bg-black/70 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-all duration-500 p-6 md:p-8 flex flex-col gap-4">
+              {/* Ajuste Visual: Borde más fino y sombra más técnica */}
+              <div className="relative overflow-hidden rounded-[2rem] bg-black/40 group-hover:bg-black/80 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-all duration-500 p-6 md:p-8 flex flex-col gap-4">
 
-                {/* 1. TOP ROW: Tags & Arrow */}
+                {/* 1. TOP ROW */}
                 <div className="flex items-center justify-between gap-4">
                   {/* STACK TAGS */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
-                      <span key={tag} className="px-2.5 py-1 rounded-full bg-white/10 border border-white/5 text-[10px] font-mono uppercase tracking-widest font-bold text-white/90 group-hover:text-white transition-colors">
+                      <span key={tag} className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-mono uppercase tracking-widest font-bold text-white/80 group-hover:text-white transition-colors">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* ACTION ARROW (Integrada y reactiva) */}
-                  <div className="w-8 h-8 rounded-full bg-white/0 group-hover:bg-white/20 flex items-center justify-center transition-colors duration-300">
-                    <ArrowUpRight size={16} className="text-white/70 group-hover:text-white transition-colors" />
+                  {/* ACTION ARROW */}
+                  <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-all duration-300">
+                    <ArrowUpRight size={16} className="text-white group-hover:text-black transition-colors" />
                   </div>
                 </div>
 
@@ -127,8 +136,6 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
 
               </div>
             </div>
-
-
 
           </div>
         </div>
@@ -160,7 +167,7 @@ export default function HomePage() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
               </div>
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent/80">
-                Senior Design Engineer
+                Design Engineer
               </span>
             </div>
 
@@ -183,7 +190,7 @@ export default function HomePage() {
         >
           <div className="h-px w-12 bg-foreground" />
           <span className="font-mono text-xs uppercase tracking-widest">Selected Work</span>
-          <ArrowDown className="w-4 h-4 animate-bounce" />
+          <ArrowDown className="w-4 h-4 mt-1 animate-bounce" />
         </motion.div>
       </section>
 
