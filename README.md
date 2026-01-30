@@ -37,7 +37,7 @@ Built for developer experience and type safety.
 ## 🚀 Run Locally
 
 ```bash
-git clone [https://github.com/christiancastillejo/portfolio.git](https://github.com/christiancastillejo/portfolio.git)
+git clone https://github.com/christiancastillejo/portfolio.git
 npm install
 npm run dev
 ```
