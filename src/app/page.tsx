@@ -85,7 +85,7 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105 opacity-95 mix-blend-multiply grayscale-[20%]"
                 />
               ) : (
                 <div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
