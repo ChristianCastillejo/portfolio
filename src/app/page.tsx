@@ -17,7 +17,7 @@ const PROJECTS = [
     tags: ["Next.js 15", "Shopify Headless", "Design System"],
     image: "/images/silvestra-cover.webp",
     video: "/videos/silvestra/hero.webm", // <--- Video añadido
-    color: "border-[#E35028]" // Color de acento del proyecto (Vermilion)
+    color: "bg-[#E35028]" // Color de acento del proyecto (Vermilion)
   },
   // Puedes duplicar este objeto para visualizar más tarjetas
   {
@@ -28,13 +28,10 @@ const PROJECTS = [
     tags: ["React", "D3.js", "TypeScript"],
     image: "/images/chronos-cover.webp",
     // video: "...", 
-    color: "border-[#3B82F6]"
+    color: "bg-[#3B82F6]"
   }
 ]
-
-// --- COMPONENTE: PROJECT CARD (The Framed Edition) ---
 const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
-  // 1. Lógica de Video Inteligente (Scroll)
   const videoRef = useRef<HTMLVideoElement>(null)
   const isInView = useInView(videoRef, { margin: "-10% 0px -10% 0px" })
 
@@ -56,72 +53,82 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
       className="group relative w-full"
     >
       <Link href={`/projects/${project.slug}`} className="block w-full">
-        {/* 1. EL CONTENEDOR DE CRISTAL (Glass Container) */}
-        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-accent/5 group-hover:-translate-y-2">
+        {/* 1. EL CONTENEDOR */}
+        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm transition-colors transition-transform transition-shadow duration-700 group-hover:shadow-2xl group-hover:shadow-accent/5 group-hover:-translate-y-2">
 
-          {/* Ruido sutil en la tarjeta */}
+          {/* Ruido sutil */}
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10 mix-blend-overlay bg-noise" />
 
-          {/* --- ESTRUCTURA DE MARCO (Tu petición exacta) --- */}
+          {/* --- ESTRUCTURA DE MARCO --- */}
           <div className="absolute inset-0 overflow-hidden rounded-[2.5rem]">
 
-            {/* EL MARCO DE COLOR: Este div crea el borde de color alrededor del video */}
+            {/* MARCO DE COLOR */}
             <div className={cn("w-full h-full opacity-10 group-hover:opacity-20 transition-opacity duration-700", project.color)} />
 
-            {/* EL CONTENEDOR DEL VIDEO: Inset-4/8 crea el margen respecto al borde */}
-            <div className="absolute inset-4 md:inset-8 rounded-[2rem] overflow-hidden bg-white shadow-inner">
+            {/* CONTENEDOR DE VIDEO (Inset) */}
+            <div className="absolute inset-4 md:inset-8 rounded-[2rem] overflow-hidden bg-white shadow-inner isolate">
               {project.video ? (
-                // VIDEO REAL: Sin overlays, sin tintes. Limpio.
+                // VIDEO
                 <video
                   ref={videoRef}
                   src={project.video}
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover opacity-95 mix-blend-multiply grayscale-[30%] transform transition-transform duration-1000 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105 opacity-95 mix-blend-multiply grayscale-[20%]"
                 />
               ) : (
-                // Fallback (Placeholder original) si no hay video
+                // Fallback
                 <div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
                   {project.title}
                 </div>
               )}
+
+              <div className="absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
             </div>
           </div>
-          {/* ----------------------------------------------- */}
 
-          {/* OVERLAY DE INFORMACIÓN (Floating UI - Código Original) */}
-          {/* OVERLAY DE INFORMACIÓN (Floating UI) */}
-          <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-20 pointer-events-none">
+          {/* --- UI LAYER: THE SMOKED GLASS HUD --- */}
+          {/* Alineamos todo abajo a la izquierda para dejar el video respirar */}
+          {/* --- UI LAYER: THE LIQUID OBSIDIAN HUD --- */}
+          <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end items-start z-20 pointer-events-none">
 
-            {/* A. HEADER: Tags más sólidos para contraste */}
-            <div className="flex justify-between items-start">
-              <div className="flex flex-wrap gap-2 max-w-[70%]">
-                {project.tags.map(tag => (
-                  <span key={tag} className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/50 text-[10px] font-mono uppercase tracking-widest font-bold text-foreground/80 shadow-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            {/* LA CAJA FLOTANTE */}
+            <div className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 w-full max-w-md">
 
-              {/* Botón View Case */}
-              <div className="w-12 h-12 rounded-full bg-white border border-white/50 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                <ArrowUpRight className="w-5 h-5 text-foreground opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="relative overflow-hidden rounded-[2rem] bg-black/40 group-hover:bg-black/70 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-all duration-500 p-6 md:p-8 flex flex-col gap-4">
+
+                {/* 1. TOP ROW: Tags & Arrow */}
+                <div className="flex items-center justify-between gap-4">
+                  {/* STACK TAGS */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-1 rounded-full bg-white/10 border border-white/5 text-[10px] font-mono uppercase tracking-widest font-bold text-white/90 group-hover:text-white transition-colors">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* ACTION ARROW (Integrada y reactiva) */}
+                  <div className="w-8 h-8 rounded-full bg-white/0 group-hover:bg-white/20 flex items-center justify-center transition-colors duration-300">
+                    <ArrowUpRight size={16} className="text-white/70 group-hover:text-white transition-colors" />
+                  </div>
+                </div>
+
+                {/* 2. TEXT CONTENT */}
+                <div>
+                  <h3 className="font-display text-3xl md:text-4xl font-bold !text-white mb-2 leading-none tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="font-sans text-sm md:text-base text-white/70 group-hover:text-white/90 leading-relaxed line-clamp-2 font-medium text-pretty transition-colors duration-500">
+                    {project.description}
+                  </p>
+                </div>
+
               </div>
             </div>
 
-            {/* B. FOOTER: "The Frosted Plate" (Placa de Cristal Local) */}
-            {/* En lugar de texto suelto, creamos un contenedor de vidrio solo para el texto */}
-            <div className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
-              <div className="inline-block p-6 rounded-[2rem] bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm">
-                <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2 leading-none">
-                  {project.title}
-                </h3>
-                <p className="font-sans text-sm md:text-base text-foreground/70 max-w-md leading-relaxed line-clamp-2 font-medium">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+
 
           </div>
         </div>
@@ -129,8 +136,6 @@ const ProjectCard = ({ project, index }: { project: typeof PROJECTS[0], index: n
     </motion.div>
   )
 }
-
-
 // --- COMPONENTE PRINCIPAL DE LA PÁGINA ---
 export default function HomePage() {
   return (
@@ -242,7 +247,7 @@ export default function HomePage() {
       {/* 5. SOFT CTA */}
       <section className="relative z-10 px-6 md:px-12 pb-20 max-w-[1400px] mx-auto text-center">
         <Link href="/contact" className="group inline-block">
-          <div className="relative overflow-hidden rounded-full bg-foreground text-background px-10 py-5 flex items-center gap-4 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
+          <div className="relative overflow-hidden rounded-full bg-foreground text-background px-10 py-5 flex items-center gap-4 transition-colors transition-transform transition-shadow duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20">
             <span className="font-display text-xl font-bold relative z-10">
               Available for select projects
             </span>
