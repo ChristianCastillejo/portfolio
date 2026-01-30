@@ -78,15 +78,6 @@ export const ProjectFooter = ({ project }: { project: ProjectCaseStudy }) => {
 
                 </div>
 
-                {/* Firma final sutil (Toque personal) */}
-                <div className="mt-32 pt-12 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 hover:opacity-100 transition-opacity duration-500">
-                    <span className="font-mono text-xs uppercase tracking-widest text-foreground">
-                        Designed & Engineered by Christian Castillejo
-                    </span>
-                    <span className="font-mono text-xs text-foreground">
-                        © {new Date().getFullYear()}
-                    </span>
-                </div>
             </div>
         </footer>
     )
