@@ -42,7 +42,7 @@ const ContactCard = ({
                     {title}
                 </span>
                 {/* CAMBIO: El texto principal se ilumina en Primary al pasar el mouse */}
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 truncate w-full text-left">
+                <h3 className="font-display text-lg md:text-xl lg:text-3xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 break-all lg:truncate w-full text-left">
                     {value}
                 </h3>
             </div>
@@ -50,7 +50,7 @@ const ContactCard = ({
     )
 
     // AÑADIDO: 'flex flex-col' para que Link y Button se comporten igual estructuralmente
-    const containerClasses = "group relative w-full p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:bg-white/60 transition-all duration-500 ease-out cursor-pointer overflow-hidden min-h-[240px] flex flex-col"
+    const containerClasses = "group relative w-full p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:bg-white/60 transition-all duration-500 ease-out cursor-pointer overflow-hidden min-h-[180px] md:min-h-[240px] flex flex-col"
 
     if (href) {
         return (
@@ -84,7 +84,7 @@ export default function ContactPage() {
             <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
 
             {/* --- HERO SECTION --- */}
-            <section className="relative z-10 pt-32 md:pt-48 pb-20 px-6">
+            <section className="relative z-10 pt-40 md:pt-48 pb-20 px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -94,7 +94,7 @@ export default function ContactPage() {
                         <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-6 block">
                             Status: <span className="text-accent text-md animate-pulse">●</span> Available for select projects
                         </span>
-                        <h1 className="font-display text-5xl md:text-7xl font-bold text-foreground mb-8 leading-[0.9] tracking-tight">
+                        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-8 leading-[0.9] tracking-tight">
                             Let’s start a <br /> conversation.
                         </h1>
                         <p className="font-sans text-xl text-foreground/70 leading-relaxed max-w-2xl mx-auto text-pretty">
@@ -212,7 +212,7 @@ export default function ContactPage() {
                         </div>
 
                         {/* Columna de Filosofía (The Filter) */}
-                        <div className="md:col-span-8 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/60 p-10 md:p-12">
+                        <div className="md:col-span-8 bg-white/40 backdrop-blur-md rounded-[2rem] md:rounded-[2.5rem] border border-white/60 p-6 md:p-12">
                             <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-8 block">
                                 Are we a match?
                             </span>
