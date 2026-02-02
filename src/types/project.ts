@@ -51,6 +51,12 @@ export type ProjectCaseStudy = {
         }
 
     }
+    componentLab: {
+        eyebrow: string
+        title: string
+        spanTitle: string
+        description: string
+    }
     standardsHeader: {
         eyebrow: string
         title: string

@@ -5,8 +5,12 @@ import { Settings2, TestTube2, Sparkles, Box } from "lucide-react"
 import { Button } from "@/components/projects/demos/silvestra/button" // Asumo que este path es correcto
 import { cn } from "@/lib/utils"
 import { CodeWindow } from "@/components/projects/shared/code-window"
+import { ProjectCaseStudy } from "@/types/project"
 
-export const ProjectComponentLab = () => {
+export const ProjectComponentLab = ({ project }: { project: ProjectCaseStudy }) => {
+    // Fail-safe: Si no hay configuración de Lab, no mostramos nada.
+    if (!project.componentLab) return null;
+    const { componentLab } = project;
     // Estado del Playground
     const [variant, setVariant] = useState<"primary" | "secondary" | "ghost">("primary")
     const [isLoading, setIsLoading] = useState(false)
@@ -34,13 +38,13 @@ export const ProjectComponentLab = () => {
                     <div>
                         <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-6">
                             <TestTube2 size={14} />
-                            Design System Lab
+                            {componentLab.eyebrow}
                         </span>
                         <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                            Atomic <br /> <span className="text-foreground/40">Interactions.</span>
+                            {componentLab.title} <br /> <span className="text-foreground/40">{componentLab.spanTitle}</span>
                         </h3>
                         <p className="text-foreground/70 text-lg leading-relaxed text-pretty">
-                            A living component playground to test usability, feedback states, and aesthetic consistency in isolation.
+                            {componentLab.description}
                         </p>
                     </div>
 

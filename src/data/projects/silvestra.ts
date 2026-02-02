@@ -129,7 +129,14 @@ const config: CodegenConfig = {
 
 export default config;`
     }
-  }, standardsHeader: {
+  },
+  componentLab: {
+    eyebrow: "Design System Lab",
+    title: "Atomic",
+    spanTitle: "Interactions.",
+    description: "A living component playground to test usability, feedback states, and aesthetic consistency in isolation."
+  },
+  standardsHeader: {
     eyebrow: "The Ground Rules",
     title: "My technical",
     subtitle: "non-negotiables.",
