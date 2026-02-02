@@ -29,7 +29,7 @@ export const Footer = () => {
                2. 'border-white/80': Borde más nítido.
                3. 'shadow-2xl': Sombra más profunda para elevarlo visualmente del fondo.
             */}
-            <div className="relative w-full max-w-[1400px] mx-auto bg-white/80 backdrop-blur-3xl saturate-150 border border-white/60 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/[0.02]">
+            <div className="relative w-full max-w-[1400px] mx-auto bg-white/80 backdrop-blur-3xl saturate-150 border border-white/60 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/[0.02]">
 
                 {/* 1. TEXTURA ORGÁNICA (NOISE) - Mantenemos esto, es tu firma */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0 mix-blend-overlay">
@@ -46,9 +46,8 @@ export const Footer = () => {
 
 
                 {/* CONTENIDO INTERIOR */}
-                <div className="relative z-10 p-8 md:p-12 lg:p-16">
-
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16 md:mb-24">
+                <div className="relative z-10 p-6 md:p-12 lg:p-16">
+                    <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 mb-12 md:mb-24">
 
                         {/* A. MANIFIESTO (Izquierda) */}
                         <div className="flex flex-col justify-between gap-8">
@@ -69,7 +68,7 @@ export const Footer = () => {
                         </div>
 
                         {/* B. NAVEGACIÓN (Derecha) */}
-                        <div className="grid grid-cols-2 gap-10 lg:gap-20 content-start lg:justify-end">
+                        <div className="grid grid-cols-2 gap-8 md:gap-10 lg:gap-20 content-start lg:justify-end">
                             {/* Sitemap */}
                             <div className="flex flex-col gap-4">
                                 <span className="font-mono text-xs text-foreground/40 font-bold uppercase tracking-widest mb-2">
