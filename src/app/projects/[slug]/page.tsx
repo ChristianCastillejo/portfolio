@@ -39,7 +39,7 @@ export default async function ProjectCasePage({ params }: { params: Promise<{ sl
             <div className="relative z-10">
                 <ProjectHero project={project} />
                 <ProjectStory project={project} />
-                <ProjectArchitecture />
+                <ProjectArchitecture project={project} />
                 <ProjectComponentLab />
                 <ProjectStandards project={project} />
                 <ProjectInsight project={project} />

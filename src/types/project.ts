@@ -32,7 +32,25 @@ export type ProjectCaseStudy = {
         live: string
         repo: string
     }
-    storySteps: StoryStep[]
+    storySteps: StoryStep[],
+    architecture: {
+        eyebrow: string
+        title: string
+        spanTitle: string
+        description: string
+        diagramSteps: {
+            title: string
+            subtitle: string
+            icon: string
+            desc: string
+        }[]
+        codeSnippet: {
+            fileName: string
+            language: string
+            code: string
+        }
+
+    }
     standardsHeader: {
         eyebrow: string
         title: string

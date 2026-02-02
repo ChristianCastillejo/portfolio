@@ -1,8 +1,12 @@
 "use client"
 import { motion } from "framer-motion"
-import { Database, ArrowRight, FileJson, Layers, ShieldCheck, Server } from "lucide-react"
+import { Database, ArrowRight, FileJson, Layers, ShieldCheck, LucideIcon } from "lucide-react"
 import { CodeWindow } from "@/components/projects/shared/code-window"
+import { ProjectCaseStudy } from "@/types/project"
 
+const ARCHITECTURE_ICONS: Record<string, LucideIcon> = {
+    Database, FileJson, Layers, ShieldCheck
+}
 // Datos limpios y semánticos. Eliminamos los colores hardcodeados.
 const FLOW_STEPS = [
     {
@@ -47,7 +51,11 @@ const config: CodegenConfig = {
 
 export default config;`
 
-export const ProjectArchitecture = () => {
+export const ProjectArchitecture = ({ project }: { project: ProjectCaseStudy }) => {
+    if (!project.architecture) return null;
+
+    const { architecture } = project;
+
     return (
         <section className="w-full border-t border-border/40 relative overflow-hidden py-24 md:py-48">
 
@@ -63,13 +71,13 @@ export const ProjectArchitecture = () => {
                         <div className="mb-16">
                             <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-6">
                                 <Layers size={14} />
-                                System Architecture
+                                {architecture.eyebrow}
                             </span>
                             <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                                Type-Safe <br /> <span className="text-foreground/40">Data Pipeline.</span>
+                                {architecture.title} <br /> <span className="text-foreground/40">{architecture.spanTitle}</span>
                             </h3>
                             <p className="text-foreground/70 text-lg leading-relaxed text-pretty max-w-xl">
-                                Bridging the gap between Shopify's flexible API and a rigid TypeScript frontend. I implemented <strong className="text-foreground font-medium">GraphQL Codegen</strong> to ensure that if the API changes, the build fails before production.
+                                {architecture.description}
                             </p>
                         </div>
 
@@ -78,33 +86,37 @@ export const ProjectArchitecture = () => {
                             {/* Línea conectora sutil (Vertical) */}
                             <div className="absolute left-8 top-8 bottom-8 w-px bg-border md:left-8" />
 
-                            {FLOW_STEPS.map((step, idx) => (
-                                <motion.div
-                                    key={step.title}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.15 }}
-                                    // Tarjeta estilo "About": Cristal esmerilado, bordes suaves, sombra difusa
-                                    className="relative bg-white/60 backdrop-blur-md border border-white/60 p-5 md:p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-colors transition-transform transition-shadow duration-300 flex items-start gap-4 md:gap-6 group z-10"
-                                >
-                                    {/* Icono */}
-                                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent/30 transition-colors shadow-inner">
-                                        <step.icon size={24} className="text-foreground/80 group-hover:text-accent transition-colors" />
-                                    </div>
+                            {architecture.diagramSteps.map((step, idx) => {
+                                const Icon = ARCHITECTURE_ICONS[step.icon] || Layers
 
-                                    {/* Texto */}
-                                    <div>
-                                        <h4 className="font-bold text-lg text-foreground mb-1">{step.title}</h4>
-                                        <span className="text-xs font-mono text-accent uppercase tracking-wider block mb-2 font-bold opacity-80">
-                                            {step.subtitle}
-                                        </span>
-                                        <p className="text-sm text-foreground/70 leading-relaxed font-medium">
-                                            {step.desc}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                return (
+                                    <motion.div
+                                        key={step.title}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.15 }}
+                                        // Tarjeta estilo "About": Cristal esmerilado, bordes suaves, sombra difusa
+                                        className="relative bg-white/60 backdrop-blur-md border border-white/60 p-5 md:p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-colors transition-transform transition-shadow duration-300 flex items-start gap-4 md:gap-6 group z-10"
+                                    >
+                                        {/* Icono */}
+                                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent/30 transition-colors shadow-inner">
+                                            <Icon size={24} className="text-foreground/80 group-hover:text-accent transition-colors" />
+                                        </div>
+
+                                        {/* Texto */}
+                                        <div>
+                                            <h4 className="font-bold text-lg text-foreground mb-1">{step.title}</h4>
+                                            <span className="text-xs font-mono text-accent uppercase tracking-wider block mb-2 font-bold opacity-80">
+                                                {step.subtitle}
+                                            </span>
+                                            <p className="text-sm text-foreground/70 leading-relaxed font-medium">
+                                                {step.desc}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )
+                            })}
                         </div>
                     </div>
 
@@ -134,9 +146,10 @@ export const ProjectArchitecture = () => {
                             {/* Tu componente CodeWindow real, limpio y sin hacks */}
                             <div className="shadow-2xl shadow-accent/5 rounded-2xl md:rounded-[1.5rem]">
                                 <CodeWindow
-                                    code={CODEGEN_SNIPPET}
-                                    lang="typescript"
-                                    title="codegen.config.ts"
+                                    code={architecture.codeSnippet.code}
+                                    lang={architecture.codeSnippet.language}
+                                    title={architecture.codeSnippet.fileName}
+
                                 />
                             </div>
 

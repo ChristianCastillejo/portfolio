@@ -79,7 +79,57 @@ const buttonVariants = cva(
   }
 );`
     }
-  ], standardsHeader: {
+  ],
+  architecture: {
+    eyebrow: "System Architecture",
+    title: "Type-Safe",
+    spanTitle: "Data Pipeline",
+    description: "Bridging the gap between Shopify's flexible API and a rigid TypeScript frontend. I implemented GraphQL Codegen to ensure that if the API changes, the build fails before production, enforcing strict contract adherence across the stack.",
+    diagramSteps: [
+      {
+        title: "Headless CMS",
+        subtitle: "Shopify API",
+        icon: "Database",
+        desc: "Source of truth for product data & checkout logic via Storefront API."
+      },
+      {
+        title: "GraphQL Layer",
+        subtitle: "Typed Queries",
+        icon: "FileJson",
+        desc: "Precise data fetching preventing over-fetching and reducing payload size."
+      },
+      {
+        title: "CodeGen Engine",
+        subtitle: "Type Safety Guard",
+        icon: "ShieldCheck",
+        desc: "Auto-generated TypeScript definitions tailored to the schema."
+      },
+      {
+        title: "Server Components",
+        subtitle: "Next.js 15 RSC",
+        icon: "Layers",
+        desc: "Hydrated interactive islands served from the Edge."
+      }
+    ],
+    codeSnippet: {
+      fileName: "codegen.config.ts",
+      language: "typescript",
+      code: `import type { CodegenConfig } from '@graphql-codegen/cli';
+
+const config: CodegenConfig = {
+  schema: 'https://shopify.dev/storefront-api',
+  documents: ['src/lib/shopify/**/*.ts'],
+  generates: {
+    './src/gql/': {
+      preset: 'client',
+      plugins: []
+    }
+  }
+};
+
+export default config;`
+    }
+  }, standardsHeader: {
     eyebrow: "The Ground Rules",
     title: "My technical",
     subtitle: "non-negotiables.",
