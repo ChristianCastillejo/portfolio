@@ -54,8 +54,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
     })
 
     return (
-        <section ref={containerRef} className="relative w-full max-w-[1600px] mx-auto px-6 md:px-12 pt-32 md:pt-40 min-h-[90vh] flex flex-col justify-between">
-
+        <section ref={containerRef} className="relative w-full max-w-[1600px] mx-auto px-6 md:px-12 pt-44 md:pt-40 min-h-[90vh] flex flex-col justify-between">
             <div className="mb-12 md:mb-20">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -65,7 +64,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-4 block">
                         Case Study / 01
                     </span>
-                    <h1 className="text-foreground font-display text-6xl md:text-[8vw] font-bold tracking-tight leading-[0.9] mb-6">
+                    <h1 className="text-foreground font-display text-4xl sm:text-5xl md:text-[8vw] font-bold tracking-tight leading-[0.9] mb-6">
                         {project.title}
                     </h1>
                     <p className="font-sans text-xl md:text-3xl leading-relaxed font-medium text-foreground/70 max-w-3xl text-pretty">
@@ -77,8 +76,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
             <motion.div
                 style={{ y }}
-                className="relative w-full aspect-video mt-16 mb-24 md:aspect-[21/9] bg-card rounded-[2rem] overflow-hidden shadow-sm border border-border/50 mb-12"
-            >
+                className="relative w-full aspect-[3/4] md:aspect-[16/9] lg:aspect-[21/9] mt-12 mb-16 md:mt-16 md:mb-24 bg-card rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50"            >
                 <video
                     ref={videoRef}
                     src="/videos/silvestra/hero.webm"
@@ -92,7 +90,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
             <div className="w-full border-t border-border/50 pt-8 pb-12">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 md:divide-x divide-border/50 items-start">
 
-                    <div className="md:col-span-5 md:pr-8 flex flex-col justify-between gap-4">
+                    <div className="md:col-span-4 lg:col-span-5 md:pr-8 flex flex-col justify-between gap-4">
                         <span className="font-mono text-xs text-foreground/40 font-bold uppercase tracking-wider">Core Stack</span>
                         <div className="flex flex-wrap gap-x-6 gap-y-2">
                             {project.techStack.map((tech) => {
@@ -141,7 +139,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                         </div>
                     </div>
 
-                    <div className="md:col-span-3 md:pl-8 flex flex-col justify-end gap-4">
+                    <div className="md:col-span-4 lg:col-span-3 md:pl-8 flex flex-col justify-end gap-4">
                         <div className="flex flex-col gap-3 w-full">
                             <Button href={project.links.live} icon={Globe} variant="primary">
                                 Visit Live Site
