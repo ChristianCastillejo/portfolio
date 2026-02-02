@@ -8,17 +8,16 @@ export const ProjectInsight = ({ project }: { project: ProjectCaseStudy }) => {
     if (!project.lessons || project.lessons.length === 0) return null;
 
     return (
-        <section className="w-full border-t border-border/40 relative overflow-hidden py-32 md:py-48">
-
+        <section className="w-full border-t border-border/40 relative overflow-hidden py-24 md:py-48">
             <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
 
                 {/* 1. HEADER EDITORIAL (Centrado para cerrar la narrativa) */}
-                <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
+                <div className="text-center max-w-3xl mx-auto mb-12 md:mb-32">
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center justify-center gap-2 mb-6">
                         <BrainCircuit size={14} />
                         Retrospective
                     </span>
-                    <h3 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+                    <h3 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
                         Engineering <br /> <span className="text-foreground/40">Trade-offs.</span>
                     </h3>
                     <p className="text-foreground/70 text-lg md:text-xl leading-relaxed text-pretty">
@@ -39,7 +38,7 @@ export const ProjectInsight = ({ project }: { project: ProjectCaseStudy }) => {
                             className="group relative bg-white/60 backdrop-blur-md border border-white/60 p-10 md:p-12 rounded-[2.5rem] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-colors transition-transform transition-shadow duration-500 overflow-hidden flex flex-col justify-between min-h-[360px]"
                         >
                             {/* Icono de fondo gigante y sutil (Decoración SDE) */}
-                            <div className="absolute -right-8 -bottom-8 text-foreground/[0.03] group-hover:text-foreground/[0.06] transition-colors duration-500 rotate-12">
+                            <div className="absolute -right-8 -bottom-8 text-foreground/[0.03] group-hover:text-foreground/[0.06] transition-colors duration-500 rotate-12 scale-75 md:scale-100 origin-bottom-right">
                                 <Lightbulb size={200} strokeWidth={1} />
                             </div>
 
