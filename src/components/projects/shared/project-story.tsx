@@ -68,7 +68,7 @@ export const ProjectStory = ({ project }: { project: ProjectCaseStudy }) => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                     // Tipografía gigante estilo About/Hero
-                    className="text-foreground font-display text-5xl md:text-7xl font-bold tracking-tight leading-[0.9]"
+                    className="text-foreground font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[0.9]"
                 >
                     Engineering narrative.
                 </motion.h2>
@@ -89,7 +89,7 @@ export const ProjectStory = ({ project }: { project: ProjectCaseStudy }) => {
                         {/* 1. La Narrativa (Columna Central) */}
                         <div className="max-w-3xl mx-auto relative z-10 mb-16 md:mb-24">
                             {/* Numeración gigante y sutil */}
-                            <span className="absolute -left-4 md:-left-20 -top-12 text-[8rem] md:text-[10rem] font-display font-bold text-foreground/[0.03] select-none leading-none z-0">
+                            <span className="absolute -left-4 md:-left-20 -top-12 text-[6rem] md:text-[10rem] font-display font-bold text-foreground/[0.03] select-none leading-none z-0">
                                 0{index + 1}
                             </span>
 
@@ -111,7 +111,7 @@ export const ProjectStory = ({ project }: { project: ProjectCaseStudy }) => {
 
                         {/* 2. La Evidencia Visual (Rompiendo la retícula) */}
                         {/* Se expande más allá del texto (max-w-6xl) para impacto visual */}
-                        <div className="relative z-20 max-w-6xl mx-auto pl-4 md:pl-0">
+                        <div className="relative z-20 max-w-6xl mx-auto md:pl-0">
                             {/* Línea conectora sutil (opcional, para flujo) */}
                             {index !== project.storySteps!.length - 1 && (
                                 <div className="absolute left-[50%] -bottom-24 h-24 w-px bg-border/50 hidden md:block"></div>

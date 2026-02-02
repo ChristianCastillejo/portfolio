@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils"
 export const CodeWindow = ({ code, lang, title, className }: { code: string, lang: string, title: string, className?: string }) => (
     <div className={cn(
         // BASE: Usamos bg-foreground (tu negro carbón) para contraste máximo con el beige
-        "relative w-full rounded-[1.5rem] bg-foreground text-background shadow-2xl overflow-hidden font-mono text-sm group",
+        "relative w-full rounded-2xl md:rounded-[1.5rem] bg-foreground text-background shadow-2xl overflow-hidden font-mono text-xs md:text-sm group",
         // BORDE: Un borde blanco muy sutil (10% opacidad) para definirlo sobre fondos oscuros o claros
         "border border-white/10",
         className
     )}>
 
         {/* HEADER: Minimalista estilo macOS pero con tu identidad */}
-        <div className="flex items-center justify-between px-6 py-4 bg-white/5 backdrop-blur-lg border-b border-white/5 select-none">
+        <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 bg-white/5 backdrop-blur-lg border-b border-white/5 select-none">
 
             {/* Traffic Lights: Colores estándar pero suavizados (opacity-60) hasta hover */}
             <div className="flex gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
