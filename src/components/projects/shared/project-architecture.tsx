@@ -49,7 +49,7 @@ export default config;`
 
 export const ProjectArchitecture = () => {
     return (
-        <section className="w-full border-t border-border/40 relative overflow-hidden py-32 md:py-48">
+        <section className="w-full border-t border-border/40 relative overflow-hidden py-24 md:py-48">
 
             {/* FONDO FULL-WIDTH: Ahora "inset-0" cubre todo el ancho de la pantalla */}
             <div className="absolute inset-0 bg-foreground/[0.02] -z-10" />
@@ -59,7 +59,7 @@ export const ProjectArchitecture = () => {
 
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     {/* COLUMNA IZQUIERDA: Contexto y Diagrama */}
-                    <div>
+                    <div className="min-w-0">
                         <div className="mb-16">
                             <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest flex items-center gap-2 mb-6">
                                 <Layers size={14} />
@@ -86,10 +86,10 @@ export const ProjectArchitecture = () => {
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.15 }}
                                     // Tarjeta estilo "About": Cristal esmerilado, bordes suaves, sombra difusa
-                                    className="relative bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-colors transition-transform transition-shadow duration-300 flex items-start gap-6 group z-10"
+                                    className="relative bg-white/60 backdrop-blur-md border border-white/60 p-5 md:p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-colors transition-transform transition-shadow duration-300 flex items-start gap-4 md:gap-6 group z-10"
                                 >
                                     {/* Icono */}
-                                    <div className="w-16 h-16 rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent/30 transition-colors shadow-inner">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent/30 transition-colors shadow-inner">
                                         <step.icon size={24} className="text-foreground/80 group-hover:text-accent transition-colors" />
                                     </div>
 
@@ -110,7 +110,7 @@ export const ProjectArchitecture = () => {
 
 
                     {/* COLUMNA DERECHA: La Evidencia (CodeWindow Gigante) */}
-                    <div className="relative lg:h-full flex items-center">
+                    <div className="relative lg:h-full flex items-center min-w-0">
                         {/* Elemento decorativo detrás del código */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent rounded-[3rem] blur-3xl -z-10" />
 
@@ -119,7 +119,7 @@ export const ProjectArchitecture = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2, duration: 0.8 }}
-                            className="w-full"
+                            className="w-full min-w-0"
                         >
                             {/* Header flotante sobre el código */}
                             <div className="mb-6 flex items-center justify-between px-2">
@@ -132,7 +132,7 @@ export const ProjectArchitecture = () => {
                             </div>
 
                             {/* Tu componente CodeWindow real, limpio y sin hacks */}
-                            <div className="shadow-2xl shadow-accent/5 rounded-[1.5rem]">
+                            <div className="shadow-2xl shadow-accent/5 rounded-2xl md:rounded-[1.5rem]">
                                 <CodeWindow
                                     code={CODEGEN_SNIPPET}
                                     lang="typescript"

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 export const CodeWindow = ({ code, lang, title, className }: { code: string, lang: string, title: string, className?: string }) => (
     <div className={cn(
         // BASE: Usamos bg-foreground (tu negro carbón) para contraste máximo con el beige
-        "relative w-full rounded-2xl md:rounded-[1.5rem] bg-foreground text-background shadow-2xl overflow-hidden font-mono text-xs md:text-sm group",
+        "relative w-full max-w-full rounded-2xl md:rounded-[1.5rem] bg-foreground text-background shadow-2xl overflow-hidden font-mono text-xs md:text-sm group",
         // BORDE: Un borde blanco muy sutil (10% opacidad) para definirlo sobre fondos oscuros o claros
         "border border-white/10",
         className
