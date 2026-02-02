@@ -96,13 +96,13 @@ export const ProjectComponentLab = () => {
                         {/* Control: State */}
                         <div className="space-y-5">
                             <label className="text-xs font-mono uppercase text-foreground/40 font-bold tracking-wider">State</label>
-                            <div className="flex items-center justify-between p-1 !mt-1 md:!mt-2 bg-white/40 rounded-full border border-border/60 relative">
+                            <div className="flex items-center justify-between p-1 !mt-1 md:!mt-2 bg-white/40 rounded-full border border-border/60 relative w-full max-w-[240px]">
                                 {/* Fondo deslizante (Opcional, simplificado por ahora con lógica directa) */}
                                 <button
                                     onClick={() => setIsLoading(false)}
                                     className={cn(
                                         "w-1/2 py-2 text-sm font-bold rounded-full transition-all duration-300 z-10",
-                                        !isLoading ? "bg-white shadow-sm text-accent" : "text-foreground/50 hover:text-foreground/80"
+                                        !isLoading ? "bg-foreground shadow-sm text-background" : "text-foreground/50 hover:text-foreground/80"
                                     )}
                                 >
                                     Idle
@@ -111,7 +111,7 @@ export const ProjectComponentLab = () => {
                                     onClick={() => setIsLoading(true)}
                                     className={cn(
                                         "w-1/2 py-2 text-sm font-bold rounded-full transition-all duration-300 z-10 flex items-center justify-center gap-2",
-                                        isLoading ? "bg-white shadow-sm text-accent" : "text-foreground/50 hover:text-foreground/80"
+                                        isLoading ? "bg-foreground shadow-sm text-background" : "text-foreground/50 hover:text-foreground/80"
                                     )}
                                 >
                                     <Sparkles size={12} />
