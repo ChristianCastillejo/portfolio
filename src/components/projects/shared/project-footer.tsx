@@ -3,7 +3,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Github, Globe, ExternalLink } from "lucide-react"
 import { ProjectCaseStudy } from "@/types/project"
-import { Button } from "@/components/ui/button1" // Asumo que tienes este botón disponible del Hero
+import { Button } from "@/components/ui/button" // Asumo que tienes este botón disponible del Hero
 
 export const ProjectFooter = ({ project }: { project: ProjectCaseStudy }) => {
     // Formatear el slug para que se vea bonito (ej: "ecommerce-design-system" -> "Ecommerce Design System")

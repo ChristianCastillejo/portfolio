@@ -26,6 +26,10 @@ export type Standard = {
 export type ProjectCaseStudy = {
     slug: string
     title: string
+    subtitle: string
+    description: string
+    tags: string[]
+    video: string
     tagline: string
     techStack: TechItem[]
     links: {

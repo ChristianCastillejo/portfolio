@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
 import { Github, Globe, Code2, Layers, Database, Cpu, Zap, Box, BarChart3 } from "lucide-react"
 import { ProjectCaseStudy } from "@/types/project"
-import { Button } from "@/components/ui/button1"
+import { Button } from "@/components/ui/button"
 import { useRef } from "react"
 
 const TECH_ICONS: Record<string, any> = {
@@ -79,7 +79,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                 className="relative w-full aspect-[3/4] md:aspect-[16/9] lg:aspect-[21/9] mt-12 mb-16 md:mt-16 md:mb-24 bg-card rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50"            >
                 <video
                     ref={videoRef}
-                    src="/videos/silvestra/hero.webm"
+                    src={project.video}
                     muted loop playsInline
                     className="w-full h-full object-cover opacity-95 mix-blend-multiply grayscale-[20%]"
                 />

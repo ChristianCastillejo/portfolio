@@ -15,7 +15,7 @@ export const AboutHero = () => {
             >
                 <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-200">
                     <Image
-                        src="/images/profile.webp"
+                        src="/images/avatar.webp"
                         alt="Christian Castillejo"
                         fill
                         className="object-cover"

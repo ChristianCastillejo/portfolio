@@ -5,9 +5,9 @@ import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { HomeProject } from "@/data/home"
+import { ProjectCaseStudy } from "@/types/project"
 
-export const ProjectCard = ({ project, index }: { project: HomeProject, index: number }) => {
+export const ProjectCard = ({ project, index }: { project: ProjectCaseStudy, index: number }) => {
     const videoRef = useRef<HTMLVideoElement>(null)
     const rampTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 

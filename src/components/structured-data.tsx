@@ -4,9 +4,9 @@ export function StructuredData() {
         "@type": "Person",
         "name": "Christian Castillejo",
         "url": "https://christiancastillejo.com",
-        "jobTitle": "Founding Product Design Engineer",
+        "jobTitle": "Design Engineer",
         "email": "christiancastillejo@proton.me",
-        "image": "https://christiancastillejo.com/images/avatar.jpg",
+        "image": "https://christiancastillejo.com/images/profile.jpg",
         "address": {
             "@type": "PostalAddress",
             "addressRegion": "Europe/CET"
@@ -21,6 +21,7 @@ export function StructuredData() {
             "https://github.com/christiancastillejo"
         ],
         "knowsAbout": [
+            "Design Engineer",
             "Design Engineering",
             "Next.js",
             "Shopify Headless",

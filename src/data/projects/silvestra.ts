@@ -3,7 +3,12 @@ import { ProjectCaseStudy } from "@/types/project"
 export const SILVESTRA: ProjectCaseStudy = {
   slug: "silvestra",
   title: "Silvestra",
+  subtitle: "E-commerce Ecosystem",
+  description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
   tagline: "Standard Shopify themes were limiting the brand's potential. I stepped in to build a headless experience that actually feels like a high-end artisanal brand.",
+  tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
+
+  video: "/videos/silvestra/hero.webm", // Extracción del Hardcode
 
   techStack: [
     { name: "Next.js 15", iconKey: "globe" },
@@ -168,7 +173,7 @@ export default config;`
       highlight: "Zero Runtime Errors"
     }
   ],
-  nextProjectSlug: "ecommerce-design-system",
+  nextProjectSlug: "kashmir-shaiva-institute",
 
   metrics: [
     { label: "Core Web Vitals", value: "Passed", description: "Real production data." },

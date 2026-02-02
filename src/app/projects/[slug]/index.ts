@@ -1,6 +1,6 @@
 import { SILVESTRA } from "@/data/projects/silvestra"
 
-const PROJECTS = [SILVESTRA /*, ECOMMERCE_DS */]
+export const PROJECTS = [SILVESTRA /*, ECOMMERCE_DS */]
 
 export function getProjectBySlug(slug: string) {
     return PROJECTS.find((p) => p.slug === slug)

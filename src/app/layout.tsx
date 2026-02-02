@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from 'geist/font/mono'
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: {
@@ -38,21 +39,21 @@ export const metadata: Metadata = {
     title: "Christian Castillejo | Design Engineer",
     description: "Design Engineer bridging the gap between design and engineering.",
     siteName: "Christian Castillejo Portfolio",
-    // images: [
-    //   {
-    //     url: "/images/og-image.jpg",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Christian Castillejo - Design Engineer Portfolio",
-    //   },
-    // ],
+    images: [
+      {
+        url: "/images/og-image.webp",
+        width: 630,
+        height: 630,
+        alt: "Christian Castillejo - Design Engineer Portfolio",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Christian Castillejo | Design Engineer",
     description: "Design Engineer bridging the gap between design and engineering.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.webp"],
   },
 
   metadataBase: new URL("https://christiancastillejo.com"),
@@ -77,6 +78,7 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} ${acorn.variable} ${GeistMono.variable} antialiased`}
       > <Header />
+        <StructuredData />
         {children}
         <Footer />
       </body>
