@@ -13,13 +13,13 @@ export const ProjectFooter = ({ project }: { project: ProjectCaseStudy }) => {
         .join(" ")
 
     return (
-        <footer className="w-full border-t border-border/40 relative overflow-hidden py-32 md:py-48">
+        <footer className="w-full border-t border-border/40 relative overflow-hidden py-24 md:py-48">
 
             {/* Fondo de ruido consistente con el resto de la página */}
             <div className="absolute inset-0 bg-foreground/[0.02] -z-10" />
 
             <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-                <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-end">
+                <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-end">
 
                     {/* COLUMNA IZQUIERDA: Cierre y Recursos (Warm & Helpful) */}
                     <div className="flex flex-col gap-8">
@@ -59,7 +59,7 @@ export const ProjectFooter = ({ project }: { project: ProjectCaseStudy }) => {
                                 href={`/projects/${project.nextProjectSlug}`}
                                 className="group relative inline-flex flex-col gap-4 md:items-end"
                             >
-                                <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground group-hover:text-accent transition-colors duration-500 leading-[0.9] tracking-tight">
+                                <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-foreground group-hover:text-accent transition-colors duration-500 leading-[0.9] tracking-tight">
                                     {nextProjectName}
                                 </h2>
 
