@@ -39,8 +39,8 @@ export const Header = () => {
                         "pointer-events-auto relative flex items-center justify-between w-full max-w-4xl rounded-full transition-[padding,background-color,border-color,box-shadow,transform,opacity,filter,backdrop-filter] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] overflow-hidden",                        // --- LIQUID GLASS 26 PHYSICS ---
                         // 1. Fondo base con opacidad variable
                         scrolled
-                            ? "py-3 px-5 md:py-3 md:px-6 bg-white/70"
-                            : "py-4 px-6 md:py-5 md:px-8 bg-white/40",
+                            ? "py-3 px-6 lg:px-6 bg-white/70"
+                            : "py-4 px-6 md:py-5 lg:px-8 bg-white/40",
                         // 2. Blur extremo + Saturación (Efecto Prisma)
                         "backdrop-blur-2xl saturate-150",
                         // 3. Borde Sutil (Corte de diamante)
@@ -89,7 +89,7 @@ export const Header = () => {
                     </Link>
 
                     {/* 2. DESKTOP NAVIGATION (Magnetic Pills) */}
-                    <nav className="hidden md:flex items-center gap-1 relative z-20">
+                    <nav className="hidden lg:flex items-center gap-1 relative z-20">
                         {NAV_ITEMS.map((item) => {
                             const isActive = pathname === item.href
                             return (
@@ -115,8 +115,7 @@ export const Header = () => {
                     </nav>
 
                     <div className="flex items-center gap-4 z-20">
-                        <div
-                            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/[0.03] border border-accent/10 group cursor-help transition-colors hover:bg-accent/[0.05]"
+                        <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/[0.03] border border-accent/10 group cursor-help transition-colors hover:bg-accent/[0.05]"
                             title="Status: Open to discuss new collaborations"
                         >
                             <span className="relative flex h-2 w-2">
@@ -130,7 +129,7 @@ export const Header = () => {
 
                         {/* Mobile Toggle */}
                         <button
-                            className="md:hidden p-2 text-foreground/80 hover:text-foreground active:scale-95 transition-shadow transition-transform transition-color transition-opacity                                                                    "
+                            className="lg:hidden p-2 text-foreground/80 hover:text-foreground active:scale-95 transition-shadow transition-transform transition-color transition-opacity"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -150,7 +149,7 @@ export const Header = () => {
                             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                             exit={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
                             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-                            className="fixed top-24 left-4 right-4 z-40 bg-white/80 backdrop-blur-[40px] saturate-150 border border-white/40 shadow-2xl rounded-[2.5rem] p-2 flex flex-col gap-1 md:hidden overflow-hidden"
+                            className="fixed top-24 left-4 right-4 md:left-6 md:right-6 z-40 bg-white/80 backdrop-blur-[40px] saturate-150 border border-white/40 shadow-2xl rounded-[2.5rem] p-2 flex flex-col gap-1 lg:hidden overflow-hidden max-w-4xl mx-auto"
                         >
                             {/* Noise texture también aquí */}
                             <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay">
