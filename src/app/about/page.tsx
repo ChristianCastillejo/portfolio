@@ -5,7 +5,7 @@ import { AboutPhilosophy } from "@/components/about/philosophy"
 import { AboutCareer } from "@/components/about/career"
 import { AboutPersonal } from "@/components/about/personal"
 import { AboutCTA } from "@/components/about/cta"
-import { AboutSeparator } from "@/components/about/shared"
+import { Separator } from "@/components/ui/separator"
 
 export default function AboutPage() {
     return (
@@ -18,11 +18,11 @@ export default function AboutPage() {
 
             <AboutPhilosophy />
 
-            <AboutSeparator />
+            <Separator />
 
             <AboutCareer />
 
-            <AboutSeparator />
+            <Separator />
 
             <AboutPersonal />
 

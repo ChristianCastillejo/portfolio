@@ -2,7 +2,7 @@
 
 import { Mail, Linkedin } from "lucide-react"
 import { Section } from "@/components/ui/section"
-import { AboutButton } from "./shared"
+import { Button } from "@/components/ui/button"
 
 export const AboutCTA = () => {
     return (
@@ -22,12 +22,12 @@ export const AboutCTA = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center">
-                        <AboutButton href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
+                        <Button href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
                             Say hello
-                        </AboutButton>
-                        <AboutButton href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>
+                        </Button>
+                        <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>
                             LinkedIn
-                        </AboutButton>
+                        </Button>
                     </div>
                 </div>
             </div>

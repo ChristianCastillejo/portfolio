@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Download } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { EXPERIENCE_ITEMS } from "@/data/about"
-import { AboutButton } from "./shared"
+import { Button } from "@/components/ui/button"
 
 export const AboutCareer = () => {
     return (
@@ -17,9 +17,9 @@ export const AboutCareer = () => {
                 >
                     Career Path
                 </motion.h3>
-                <AboutButton href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={Download}>
+                <Button href="https://drive.google.com/file/d/1cE6hIODhup4KMDNrsBn3LwXE80ajxqwS/view?usp=sharing" icon={Download}>
                     Download CV
-                </AboutButton>
+                </Button>
             </div>
 
             <div className="flex gap-6 overflow-x-auto pb-12 scrollbar-hide w-full lg:grid lg:grid-cols-5 lg:overflow-visible snap-x snap-mandatory">

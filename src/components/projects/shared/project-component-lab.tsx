@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Settings2, TestTube2, Sparkles, Box } from "lucide-react"
-import { Button } from "@/components/projects/demos/silvestra/button" // Asumo que este path es correcto
+import { Button, type ButtonProps } from "@/components/projects/demos/silvestra/button"
 import { cn } from "@/lib/utils"
 import { CodeWindow } from "@/components/projects/shared/code-window"
 import { ProjectCaseStudy } from "@/types/project"
@@ -143,7 +143,7 @@ export const ProjectComponentLab = ({ project }: { project: ProjectCaseStudy }) 
                         <div className="relative z-10 transform scale-100 md:scale-[1.2]">
                             <div className="p-8">
                                 <Button
-                                    variant={variant}
+                                    variant={variant as ButtonProps["variant"]}
                                     size={size}
                                     isLoading={isLoading}
                                     className="shadow-2xl shadow-accent/20"
