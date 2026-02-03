@@ -24,14 +24,14 @@ const StoryVisual = ({ step }: { step: StoryStep }) => {
     if (step.visualType === "image" && step.visualContent) {
         return (
             // Contenedor orgánico estilo Apple para imágenes/video
-            <div className="relative aspect-video rounded-[2rem] overflow-hidden shadow-sm border border-border/50 bg-card">
+            <div className="relative aspect-video rounded-[2rem] overflow-hidden bg-card">
                 {/* Si fuera video, aquí iría la etiqueta video como en el Hero */}
                 {typeof step.visualContent === 'string' ? (
                     <Image
                         src={step.visualContent}
                         alt={step.title}
                         fill
-                        className="object-cover transition-transform duration-700 hover:scale-105"
+                        className="object-cover"
                     />
                 ) : null}
 

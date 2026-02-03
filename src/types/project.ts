@@ -14,6 +14,7 @@ export type StoryStep = {
     visualContent?: string | StaticImageData
     codeLanguage?: string
     codeSnippet?: string
+    image?: string | StaticImageData
 }
 
 export type Standard = {

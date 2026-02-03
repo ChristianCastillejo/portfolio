@@ -1,12 +1,12 @@
 "use client"
 import { motion } from "framer-motion"
-import { ShieldCheck, Zap, Eye, Smartphone, Layers, LucideIcon } from "lucide-react"
+import { ShieldCheck, Zap, Eye, Wind, Layers, LucideIcon } from "lucide-react"
 import { ProjectCaseStudy } from "@/types/project"
 
 const ICON_MAP: Record<string, LucideIcon> = {
     Eye: Eye,
     Zap: Zap,
-    Smartphone: Smartphone,
+    Wind: Wind,
     ShieldCheck: ShieldCheck,
     Layers: Layers
 }

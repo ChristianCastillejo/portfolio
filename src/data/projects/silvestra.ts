@@ -5,7 +5,7 @@ export const SILVESTRA: ProjectCaseStudy = {
   title: "Silvestra",
   subtitle: "E-commerce Ecosystem",
   description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
-  tagline: "Standard Shopify themes were limiting the brand's potential. I stepped in to build a headless experience that actually feels like a high-end artisanal brand.",
+  tagline: "Silvestra started as a blank canvas. I owned the entire lifecycle—from Figma design to the final headless deployment—merging artisanal aesthetics with rigid engineering standards.",
   tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
 
   video: "/videos/silvestra/hero.webm", // Extracción del Hardcode
@@ -25,64 +25,62 @@ export const SILVESTRA: ProjectCaseStudy = {
   storySteps: [
     {
       id: 1,
-      title: "The Backbone",
-      subtitle: "Moving away from Liquid",
-      description: "Silvestra sells premium terrariums, but their old site felt generic. I spent some time analyzing why: Shopify's Liquid themes are great, but they hit a performance ceiling quickly. I decided to go Headless with Next.js 15. It wasn't just for the 'hype'; it was about having the surgical precision needed to make a store feel instant.",
-      visualType: "code",
-      codeLanguage: "typescript",
-      codeSnippet: `// Our type-safe engine
-const config: CodegenConfig = {
-  schema: 'https://shopify.dev/storefront-api',
-  documents: ['src/lib/shopify/**/*.ts'],
-  generates: {
-    './src/gql/': { preset: 'client' }
-  }
-};`
+      title: "The Visual System",
+      subtitle: "Tokenizing the Brand",
+      description: "Before writing code, I systematized Silvestra's identity in Figma. I defined a strict set of tokens for typography (Acorn & Geist), spacing, and an earthy color palette. This isn't just 'drawing'; it's defining the physics of the interface so development becomes purely execution.",
+      visualType: "image",
+      visualContent: "/images/projects/silvestra/figma-tokens.jpg",
     },
     {
       id: 2,
-      title: "The Tricky Part",
-      subtitle: "Global without the lag",
-      description: "i18n is one of those things that looks easy until you try to keep it fast. Since Silvestra has international customers, I couldn't settle for a slow client-side translation. I built a middleware strategy that handles locales at the edge. It was a bit of a puzzle to keep the SEO scores perfect, but the result is a site that feels local in every language.",
-
+      title: "The Translation",
+      subtitle: "Figma to CSS Variables",
+      description: "I mapped the Figma tokens directly to CSS variables using Tailwind v4's new engine. Instead of magic numbers, I use semantic variables. This creates a single source of truth: if I update '--p-gold-500' in the root, the entire 'Accent' system updates automatically across the app.",
       visualType: "code",
-      codeLanguage: "bash",
-      codeSnippet: `├── codegen.ts            # Pipeline Config
-├── src
-│   ├── app
-│   │   ├── [locale]      # 👈 Dynamic Routing
-│   │   │   ├── cart
-│   │   └── api
-│   ├── components
-│   │   └── cart
-│   │       └── actions.ts # Server Actions
-│   ├── gql                # Generated Types
-│   ├── i18n               # 👈 The Logic
-│   │   ├── request.ts
-│   │   └── routing.ts
-│   ├── lib
-│   │   └── shopify
-│   └── middleware.ts      # 👈 Edge Matcher`
+      codeLanguage: "css",
+      // Tu código real de global.css, resumido para impacto visual
+      codeSnippet: `:root {
+  /* Primitives */
+  --p-gold-500:  #B68045;
+  --p-sage-500:  #84968B;
+  --p-black-800: #1D1D1F;
+  --p-white-000: #FFFFFF;
+}
+
+@theme {
+  /* Semantic Mapping */
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-md-sans);
+
+  --color-primary: var(--p-gold-500); 
+  --color-accent:  var(--p-sage-500);
+  --color-foreground: var(--p-black-800);
+  --color-background: var(--p-white-000);
+  }`
     },
     {
       id: 3,
-      title: "The Look & Feel",
-      subtitle: "Ownership through Packages",
-      description: "I’m a bit obsessive about consistency, so I built a component library from scratch using Radix UI and Tailwind v4, and published it to my own GitHub Packages. It keeps the UI solid, accessible, and completely separate from the business logic. It’s how I make sure the brand looks perfect on every screen.",
+      title: "The Architecture",
+      subtitle: "Decoupled UI Logic",
+      description: "I didn't want the UI to be trapped inside the Shopify project. I built the design system in a separate repository using Radix UI and exported it as a private package. This separation of concerns ensures that the 'Atomic Interactions' are pure, testable, and reusable, unburdened by the complex business logic of the e-commerce store.",
       visualType: "code",
       codeLanguage: "typescript",
-      codeSnippet: `// Published to @christian/ui
-const buttonVariants = cva(
-  "rounded-full transition-all active:scale-[0.98]", 
-  {
-    variants: {
-      variant: {
-        primary: "bg-[#B68045] text-white hover:opacity-90",
-        ghost: "text-black border-border hover:bg-[#B68045]"
-      }
-    }
-  }
-);`
+      codeSnippet: `// Imported from my external Design System
+import { Button, Card } from "@christian/ui";
+
+// The store logic simply consumes the UI
+export function AddToCart({ product }) {
+  return (
+    <Card variant="glass">
+      <Button 
+        variant="primary" 
+        onClick={() => add(product.id)}
+      >
+        Add to Cart
+      </Button>
+    </Card>
+  );
+}`
     }
   ],
   architecture: {
@@ -117,23 +115,31 @@ const buttonVariants = cva(
       }
     ],
     codeSnippet: {
-      fileName: "codegen.config.ts",
+      fileName: "codegen.ts",
       language: "typescript",
-      code: `import type { CodegenConfig } from '@graphql-codegen/cli';
+      code: `import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: 'https://shopify.dev/storefront-api',
-  documents: ['src/lib/shopify/**/*.ts'],
+  // 1. Live Schema Introspection
+  schema: {
+    [\`https://\${process.env.SHOPIFY_STORE_URL}/api/2025-07/graphql.json\`]: {
+      headers: {
+        "X-Shopify-Storefront-Access-Token": process.env.SHOPIFY_TOKEN!,
+        "Content-Type": "application/json",
+      },
+    },
+  },
+  // 2. Watch for queries in React components
+  documents: ["src/**/*.{ts,tsx}"],
+  
+  // 3. Generate strictly typed outputs
   generates: {
-    './src/gql/': {
-      preset: 'client',
-      plugins: []
-    }
-  }
+    "src/gql/": { preset: "client" },
+  },
 };
 
 export default config;`
-    }
+    },
   },
   componentLab: {
     eyebrow: "Design System Lab",
@@ -142,10 +148,10 @@ export default config;`
     description: "A living component playground to test usability, feedback states, and aesthetic consistency in isolation."
   },
   standardsHeader: {
-    eyebrow: "The Ground Rules",
-    title: "My technical",
-    subtitle: "non-negotiables.",
-    description: "I’m naturally curious and love trying new tools, but I’ve learned that innovation without stability is just noise. For Silvestra, I drew a line in the sand: the code had to be as high-quality as the design. These are the baselines I refused to compromise on."
+    eyebrow: "Engineering Foundations",
+    title: "The technical",
+    subtitle: "pillars I build on.",
+    description: "I’m naturally curious, but I’ve learned that innovation needs a solid floor. For Silvestra, I established these core principles not as constraints, but as the stable ground that allows the design to truly shine without breaking."
   },
   standards: [
     {
@@ -162,9 +168,9 @@ export default config;`
     },
     {
       title: "Organic Physics",
-      icon: "Smartphone",
-      description: "Artisanal products need a beautiful presentation. I built custom animations that feel organic and high-end, maintaining 60fps to match the brand's premium feel.",
-      highlight: "Touch-Optimized"
+      icon: "Wind",
+      description: "Static feels cheap. I used Framer Motion to inject real physics—damping and stiffness—into the UI. This creates tactile, 'expensive' interactions that feel organic, strictly maintaining 60fps.",
+      highlight: "Framer Motion Powered"
     },
     {
       title: "Type-Safe Commerce",
@@ -182,12 +188,12 @@ export default config;`
 
   lessons: [
     {
-      title: "Trusting the robots",
-      content: "I've learned that if a task is repetitive, I should probably automate it. Using GraphQL Codegen changed how I work; it's like having a permanent assistant checking that my data and my UI are always in sync. It gives me a peace of mind that manual typing never could."
+      title: "CSS as an API",
+      content: "I stopped writing styles and started consuming a system. Treating Tailwind not just as utility classes, but as a strict API for my design tokens, removed all guesswork. It turned the subjective task of 'making it look good' into an objective engineering process."
     },
     {
-      title: "The power of Server Actions",
-      content: "For a real store, security isn't optional. Moving the cart logic to Server Actions made the code much more 'clean' and kept the heavy lifting on the server. It’s one of those modern React features that actually solves a real-world business problem."
+      title: "AI Orchestration",
+      content: "I treat AI not as a replacement, but as a high-speed engine that needs a steering wheel. I use granular, highly supervised prompts to guide Cursor through micro-iterations. It allows me to skip the boilerplate and focus purely on architectural decisions, maintaining total control over the code quality."
     }
   ]
 }
