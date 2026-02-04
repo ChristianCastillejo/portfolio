@@ -1,5 +1,4 @@
-import { Mail, Linkedin, Download } from "lucide-react"
-
+import { Mail, Linkedin, Download } from "lucide-react";
 export const PHILOSOPHY_ITEMS = [
     {
         id: "01",
@@ -21,12 +20,11 @@ export const PHILOSOPHY_ITEMS = [
         title: "Engineering Rigor",
         content: "Visual sensitivity doesn't mean lowering the engineering bar. I focus on strict TypeScript and stability, writing solid code that others can read, extend, and trust."
     }
-]
-
+];
 export const EXPERIENCE_ITEMS = [
     { company: "Nectar Studio", role: "Founding Design Engineer", period: "2024 - Present" },
     { company: "Grandado", role: "Lead Frontend Engineer & Design Engineer", period: "2020 - 2023" },
     { company: "OGD", role: "Full Stack Engineer", period: "2018 - 2020" },
     { company: "Stack Shuttle", role: "Full Stack Engineer", period: "2017 - 2018" },
     { company: "IBT", role: "Software Engineer", period: "2016 - 2017" },
-]
+];

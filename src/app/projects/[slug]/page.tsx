@@ -1,50 +1,50 @@
-import { notFound } from "next/navigation"
-import { ProjectHero } from "@/components/projects/shared/project-hero"
-import { ProjectStory } from "@/components/projects/shared/project-story"
-import { ProjectFooter } from "@/components/projects/shared/project-footer"
-import { getAllProjectSlugs, getProjectBySlug } from "./index"
-import { ProjectComponentLab } from "@/components/projects/shared/project-component-lab"
-import { ProjectInsight } from "@/components/projects/shared/project-insight"
-import { ProjectStandards } from "@/components/projects/shared/project-standars"
-import { ProjectArchitecture } from "@/components/projects/shared/project-architecture"
-
+import { notFound } from "next/navigation";
+import { ProjectHero } from "@/components/projects/shared/project-hero";
+import { ProjectStory } from "@/components/projects/shared/project-story";
+import { ProjectFooter } from "@/components/projects/shared/project-footer";
+import { getAllProjectSlugs, getProjectBySlug } from "./index";
+import { ProjectComponentLab } from "@/components/projects/shared/project-component-lab";
+import { ProjectInsight } from "@/components/projects/shared/project-insight";
+import { ProjectStandards } from "@/components/projects/shared/project-standars";
+import { ProjectArchitecture } from "@/components/projects/shared/project-architecture";
 export async function generateStaticParams() {
-    return getAllProjectSlugs()
+    return getAllProjectSlugs();
 }
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params
-    const project = getProjectBySlug(slug)
-    if (!project) return {}
-
+export async function generateMetadata({ params }: {
+    params: Promise<{
+        slug: string;
+    }>;
+}) {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
+    if (!project)
+        return {};
     return {
         title: `${project.title} | Christian Castillejo`,
         description: project.tagline,
-    }
+    };
 }
-
-export default async function ProjectCasePage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params
-
-    const project = getProjectBySlug(slug)
-
+export default async function ProjectCasePage({ params }: {
+    params: Promise<{
+        slug: string;
+    }>;
+}) {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
     if (!project) {
-        notFound()
+        notFound();
     }
-    // CORRECCIÓN: Usamos bg-background (beige) y texto foreground, más la textura de ruido
-    return (
-        <main className="w-full min-h-screen bg-background text-foreground selection:bg-primary/20 relative">
-            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0" />
+    return (<main className="w-full min-h-screen bg-background text-foreground selection:bg-primary/20 relative">
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-noise mix-blend-overlay z-0"/>
 
             <div className="relative z-10">
-                <ProjectHero project={project} />
-                <ProjectStory project={project} />
-                <ProjectArchitecture project={project} />
-                <ProjectComponentLab project={project} />
-                <ProjectStandards project={project} />
-                <ProjectInsight project={project} />
-                <ProjectFooter project={project} />
+                <ProjectHero project={project}/>
+                <ProjectStory project={project}/>
+                <ProjectArchitecture project={project}/>
+                <ProjectComponentLab project={project}/>
+                <ProjectStandards project={project}/>
+                <ProjectInsight project={project}/>
+                <ProjectFooter project={project}/>
             </div>
-        </main>
-    )
+        </main>);
 }
