@@ -220,7 +220,7 @@ export default function ContactPage() {
                             <div className="grid md:grid-cols-2 gap-12">
                                 {/* YES List */}
                                 <div>
-                                    <h4 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                                    <h4 className="font-display text-xl font-bold text-foreground mb-4 flex items-center">
                                         <span className="text-accent">Yes</span>, if you need:
                                     </h4>
                                     <ul className="space-y-3 font-sans text-foreground/70 leading-relaxed">
@@ -242,7 +242,7 @@ export default function ContactPage() {
                                 {/* NO List (Polite but firm) */}
                                 {/* NO List (Polite, Firm & Neutral) */}
                                 <div>
-                                    <h4 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                                    <h4 className="font-display text-xl font-bold text-foreground mb-4 flex items-center">
                                         {/* CAMBIO: De 'text-primary' (Naranja) a 'text-foreground/60' (Gris neutro) */}
                                         {/* Ahora el "No" es firme pero tranquilo, no grita "¡PELIGRO!" */}
                                         <span className="text-foreground/60">No</span>, if you are looking for:
@@ -255,7 +255,7 @@ export default function ContactPage() {
                                         </li>
                                         <li className="flex gap-3">
                                             <div className="w-1.5 h-1.5 rounded-full bg-foreground/20 mt-2.5 shrink-0" />
-                                            <span>Quick & dirty WordPress/Wix templates.</span>
+                                            <span>Synchronous-heavy environments that prioritize presence over deep work.</span>
                                         </li>
                                         <li className="flex gap-3">
                                             <div className="w-1.5 h-1.5 rounded-full bg-foreground/20 mt-2.5 shrink-0" />

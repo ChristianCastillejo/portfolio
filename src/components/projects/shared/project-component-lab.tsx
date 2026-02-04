@@ -23,7 +23,7 @@ export const ProjectComponentLab = ({ project }: { project: ProjectCaseStudy }) 
   isLoading={${isLoading}}
   onClick={() => handleClick()}
 >
-  Add to Cart
+  Click Me
 </Button>`
 
     return (
@@ -148,7 +148,7 @@ export const ProjectComponentLab = ({ project }: { project: ProjectCaseStudy }) 
                                     isLoading={isLoading}
                                     className="shadow-2xl shadow-accent/20"
                                 >
-                                    Add to Cart
+                                    Click Me
                                 </Button>
                             </div>
                         </div>

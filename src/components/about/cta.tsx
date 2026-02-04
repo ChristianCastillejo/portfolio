@@ -22,7 +22,7 @@ export const AboutCTA = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center">
-                        <Button href="mailto:christiancastillejo@proton.me" icon={Mail} primary>
+                        <Button href="mailto:christiancastillejo@proton.me" icon={Mail} variant="primary">
                             Say hello
                         </Button>
                         <Button href="https://www.linkedin.com/in/christiancastillejo" icon={Linkedin}>

@@ -5,7 +5,7 @@ export const SILVESTRA: ProjectCaseStudy = {
   title: "Silvestra",
   subtitle: "E-commerce Ecosystem",
   description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
-  tagline: "Silvestra started as a blank canvas. I owned the entire lifecycle—from Figma design to the final headless deployment—merging artisanal aesthetics with rigid engineering standards.",
+  tagline: "Off-the-shelf templates would have compromised the brand's artisanal soul. I engineered a bespoke headless solution from scratch, ensuring the digital experience feels as premium as the physical product.",
   tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
 
   video: "/videos/silvestra/hero.webm", // Extracción del Hardcode
@@ -183,7 +183,7 @@ export default config;`
 
   metrics: [
     { label: "Core Web Vitals", value: "Passed", description: "Real production data." },
-    { label: "Lighthouse", value: "100", description: "SEO & Performance." }
+    { label: "Lighthouse", value: "99", description: "Performance." }
   ],
 
   lessons: [

@@ -1,9 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter, Disc } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 const SOCIAL_LINKS = [
     { name: "Email", href: "mailto:christiancastillejo@proton.me", icon: Mail },
@@ -18,17 +16,10 @@ const SITEMAP = [
 ]
 
 export const Footer = () => {
-    const currentYear = new Date().getFullYear()
 
     return (
         <footer className="relative w-full px-4 md:px-6 pb-6 pt-20 z-10">
 
-            {/* ESTRUCTURA: LOSA DE CRISTAL DE ALTA DENSIDAD
-               AJUSTE SDE: 
-               1. 'bg-white/80': Más opaco que antes (/60). Se diferencia más del fondo beige.
-               2. 'border-white/80': Borde más nítido.
-               3. 'shadow-2xl': Sombra más profunda para elevarlo visualmente del fondo.
-            */}
             <div className="relative w-full max-w-[1400px] mx-auto bg-white/80 backdrop-blur-3xl saturate-150 border border-white/60 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/[0.02]">
 
                 {/* 1. TEXTURA ORGÁNICA (NOISE) - Mantenemos esto, es tu firma */}
@@ -54,7 +45,7 @@ export const Footer = () => {
                             <div>
                                 <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
                                     <Disc size={14} className="animate-spin-slow" />
-                                    System Offline
+                                    Open for Select Projects
                                 </span>
                                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[0.95] tracking-tight text-balance">
                                     Crafting logic into <br />
@@ -63,7 +54,7 @@ export const Footer = () => {
                             </div>
 
                             <p className="text-foreground/60 font-medium text-lg max-w-md text-pretty">
-                                Based in Seville, working globally. Bridging the gap between engineering rigidity and design intuition.
+                                Remote-first, detail-driven. Bridging the gap between engineering rigidity and design intuition.
                             </p>
                         </div>
 
@@ -117,20 +108,15 @@ export const Footer = () => {
                     <div className="pt-8 border-t border-foreground/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs font-mono text-foreground/50">
 
                         <div className="flex items-center gap-6">
-                            <span>© {currentYear} Christian Castillejo</span>
+                            <span>© 2026 Christian Castillejo</span>
                             <span className="hidden md:inline-block w-px h-3 bg-foreground/20" />
-                            <span className="hidden md:inline-block">Designed & Engineered in Spain</span>
+                            <span className="hidden md:inline-block">Hand-crafted in Design & Code</span>
                         </div>
 
                         {/* El Flex Técnico */}
                         <div className="flex flex-wrap gap-4 items-center">
-                            <span className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/50 border border-white/60 shadow-sm">
-                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.4)]" />
-                                All Systems Normal
-                            </span>
-                            <span className="hover:text-accent transition-colors cursor-help opacity-70 hover:opacity-100" title="Built with Next.js 15, Tailwind v4, Framer Motion">
-                                v4.2.0 (Stable)
-                            </span>
+                            <span className=" text-foreground/50">Built with Next.js 16, Tailwind 4 & Framer</span>
+
                         </div>
 
                     </div>

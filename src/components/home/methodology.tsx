@@ -1,6 +1,6 @@
 "use client"
 
-import { Layers, Zap, Code2 } from "lucide-react"
+import { Layers, Zap, Palette } from "lucide-react"
 
 export const HomeMethodology = () => {
     return (
@@ -21,9 +21,9 @@ export const HomeMethodology = () => {
                         <div className="w-12 h-12 rounded-xl bg-white border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-transform">
                             <Layers size={24} />
                         </div>
-                        <h3 className="font-display text-xl font-bold">System Thinking</h3>
+                        <h3 className="font-display text-xl font-bold">Atomic Architecture</h3>
                         <p className="text-sm text-foreground/70 leading-relaxed">
-                            I don't build isolated pages. I build scalable design systems where every component is a reusable, typed, and accessible Lego block.
+                            I engineer ecosystems, not pages. Using React and SSR, I build reusable, accessible blocks backed by strict TypeScript safety.
                         </p>
                     </div>
 
@@ -32,20 +32,20 @@ export const HomeMethodology = () => {
                         <div className="w-12 h-12 rounded-xl bg-white border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-transform">
                             <Zap size={24} />
                         </div>
-                        <h3 className="font-display text-xl font-bold">Fluid Interaction</h3>
+                        <h3 className="font-display text-xl font-bold">Physics-Driven UX</h3>
                         <p className="text-sm text-foreground/70 leading-relaxed">
-                            Motion isn't an afterthought. It's the connective tissue of UX. I use Framer Motion to make interfaces feel biological, not mechanical.
+                            Motion is body language. I leverage Framer Motion to inject physics, ensuring interactions feel biological and fluid, never mechanical.
                         </p>
                     </div>
 
                     {/* Card 3: Production */}
                     <div className="p-8 rounded-[2rem] bg-white/40 border border-white/60 backdrop-blur-md flex flex-col gap-4 group hover:bg-white/60 transition-colors duration-500">
                         <div className="w-12 h-12 rounded-xl bg-white border border-border flex items-center justify-center text-accent shadow-sm group-hover:scale-110 transition-transform">
-                            <Code2 size={24} />
+                            <Palette size={24} />
                         </div>
-                        <h3 className="font-display text-xl font-bold">Production Grade</h3>
+                        <h3 className="font-display text-xl font-bold">The Design Bridge</h3>
                         <p className="text-sm text-foreground/70 leading-relaxed">
-                            Semantic HTML, type-safe TypeScript, and server-side rendering. Beautiful code that performs as well as it looks.
+                            Code mirrors design. Strict Figma variables and tokens map 1:1 to React components, eliminating the gap between vision and code.
                         </p>
                     </div>
                 </div>
