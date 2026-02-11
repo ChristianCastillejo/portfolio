@@ -34,20 +34,11 @@ export const metadata: Metadata = {
         title: "Christian Castillejo | Design Engineer",
         description: "Design Engineer bridging the gap between design and engineering.",
         siteName: "Christian Castillejo Portfolio",
-        images: [
-            {
-                url: "/images/og-image.webp",
-                width: 630,
-                height: 630,
-                alt: "Christian Castillejo - Design Engineer Portfolio",
-            },
-        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Christian Castillejo | Design Engineer",
         description: "Design Engineer bridging the gap between design and engineering.",
-        images: ["/images/og-image.webp"],
     },
     metadataBase: new URL("https://christiancastillejo.com"),
     other: {
@@ -63,10 +54,10 @@ export default function RootLayout({ children, }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (<html lang="en" translate="no" className="notranslate">
-      <body className={`${GeistSans.variable} ${acorn.variable} ${GeistMono.variable} antialiased`}> <Header />
-        <StructuredData />
-        {children}
-        <Footer />
-      </body>
+        <body className={`${GeistSans.variable} ${acorn.variable} ${GeistMono.variable} antialiased`}> <Header />
+            <StructuredData />
+            {children}
+            <Footer />
+        </body>
     </html>);
 }
