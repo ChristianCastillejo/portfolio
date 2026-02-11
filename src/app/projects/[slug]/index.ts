@@ -1,5 +1,7 @@
 import { SILVESTRA } from "@/data/projects/silvestra";
-export const PROJECTS = [SILVESTRA];
+import { NECTAR_UI } from "@/data/projects/nectar-ui";
+
+export const PROJECTS = [SILVESTRA, NECTAR_UI];
 export function getProjectBySlug(slug: string) {
     return PROJECTS.find((p) => p.slug === slug);
 }

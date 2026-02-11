@@ -6,7 +6,8 @@ export const SILVESTRA: ProjectCaseStudy = {
     description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
     tagline: "Off-the-shelf templates would have compromised the brand's artisanal soul. I engineered a bespoke headless solution from scratch, ensuring the digital experience feels as premium as the physical product.",
     tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
-    video: "/videos/silvestra/hero.webm",
+    homeVideo: "/videos/silvestra/hero.webm",
+    caseVideo: "/videos/silvestra/hero.webm",
     techStack: [
         { name: "Next.js 15", iconKey: "globe" },
         { name: "TypeScript", iconKey: "code" },
@@ -112,7 +113,8 @@ export function AddToCart({ product }) {
         codeSnippet: {
             fileName: "codegen.ts",
             language: "typescript",
-            code: `import type { CodegenConfig } from "@graphql-codegen/cli";
+            description: "This config automatically scans src/lib/shopify for GraphQL queries and generates TypeScript interfaces in real-time.",
+            code: `import type { CodegenConfig } from "@graphql-codegen/cli",
 
 const config: CodegenConfig = {
   // 1. Live Schema Introspection
@@ -188,5 +190,5 @@ export default config;`
             title: "AI Orchestration",
             content: "I treat AI not as a replacement, but as a high-speed engine that needs a steering wheel. I use granular, highly supervised prompts to guide Cursor through micro-iterations. It allows me to skip the boilerplate and focus purely on architectural decisions, maintaining total control over the code quality."
         }
-    ]
+    ],
 };

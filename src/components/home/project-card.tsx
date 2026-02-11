@@ -37,45 +37,45 @@ export const ProjectCard = ({ project, index }: {
         }
     }, [isInView]);
     return (<motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: index * 0.1 }} className="group relative w-full">
-            <Link href={`/projects/${project.slug}`} className="block w-full">
+        <Link href={`/projects/${project.slug}`} className="block w-full">
 
-                <div className={cn("relative w-full aspect-[3/4] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden transition-all duration-700", "border-[3px] border-white/60 bg-white/40 backdrop-blur-xl", "group-hover:border-accent/50 group-hover:shadow-2xl group-hover:shadow-accent/10 group-hover:-translate-y-2")}>
+            <div className={cn("relative w-full aspect-[3/4] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden transition-all duration-700", "border-8 border-white/40 bg-white/40 backdrop-blur-xl", "group-hover:shadow-2xl group-hover:shadow-accent/10")}>
 
-                    <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10 mix-blend-overlay bg-noise"/>
+                <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10 mix-blend-overlay bg-noise" />
+
+                <div className="absolute inset-0 overflow-hidden ">
+                    <div className="w-full h-full opacity-0" />
 
                     <div className="absolute inset-0 overflow-hidden ">
-                        <div className="w-full h-full opacity-0"/>
+                        {project.homeVideo ? (<video ref={videoRef} src={project.homeVideo} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-102 opacity-95 mix-blend-multiply grayscale-[20%]" />) : (<div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
+                            {project.title}
+                        </div>)}
 
-                        <div className="absolute inset-0 overflow-hidden ">
-                            {project.video ? (<video ref={videoRef} src={project.video} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105 opacity-95 mix-blend-multiply grayscale-[20%]"/>) : (<div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
-                                    {project.title}
-                                </div>)}
-
-                            <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none opacity-60"/>
-                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none opacity-60" />
                     </div>
-
-                    <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end items-start z-20 pointer-events-none">
-                        <div className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 w-full max-w-md">
-                            <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-black/40 group-hover:bg-black/60 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-[background-color,box-shadow] duration-500 p-5 md:p-8 flex flex-col justify-end">
-
-                                <div className="absolute top-5 right-5 md:top-8 md:right-8 w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-[background-color,color,border-color] duration-300 z-10">
-                                    <ArrowUpRight size={16} className="text-white group-hover:text-black transition-colors"/>
-                                </div>
-
-                                <div className="pr-16 md:pr-20">
-                                    <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold !text-white mb-2 leading-none tracking-tight">
-                                        {project.title}
-                                    </h3>
-                                    <p className="font-sans text-sm md:text-base text-white/70 group-hover:text-white/90 leading-relaxed line-clamp-5 font-medium text-pretty transition-colors duration-500">                                        {project.description}
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </Link>
-        </motion.div>);
+
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end items-start z-20 pointer-events-none">
+                    <div className="transform transition-transform duration-500 w-full max-w-md">
+                        <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-black/40 group-hover:bg-black/60 backdrop-blur-2xl border border-white/10 shadow-lg group-hover:shadow-2xl transition-[background-color,box-shadow] duration-500 p-5 md:p-8 flex flex-col justify-end">
+
+                            <div className="absolute top-5 right-5 md:top-8 md:right-8 w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black flex items-center justify-center transition-[background-color,color,border-color] duration-300 z-10">
+                                <ArrowUpRight size={16} className="text-white group-hover:text-black transition-colors" />
+                            </div>
+
+                            <div className="pr-16 md:pr-20">
+                                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold !text-white mb-2 leading-none tracking-tight">
+                                    {project.title}
+                                </h3>
+                                <p className="font-sans text-sm md:text-base text-white/70 group-hover:text-white/90 leading-relaxed line-clamp-5 font-medium text-pretty transition-colors duration-500">                                        {project.description}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </Link>
+    </motion.div>);
 };

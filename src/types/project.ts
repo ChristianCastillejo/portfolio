@@ -26,7 +26,8 @@ export type ProjectCaseStudy = {
     subtitle: string;
     description: string;
     tags: string[];
-    video: string;
+    homeVideo: string;
+    caseVideo: string;
     tagline: string;
     techStack: TechItem[];
     links: {
@@ -49,6 +50,7 @@ export type ProjectCaseStudy = {
             fileName: string;
             language: string;
             code: string;
+            description: string;
         };
     };
     componentLab: {
