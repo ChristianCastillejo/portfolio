@@ -58,6 +58,7 @@ export type ProjectCaseStudy = {
         title: string;
         spanTitle: string;
         description: string;
+        activeComponent: string;
     };
     standardsHeader: {
         eyebrow: string;

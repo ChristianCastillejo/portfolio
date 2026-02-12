@@ -6,8 +6,8 @@ export const SILVESTRA: ProjectCaseStudy = {
     description: "A headless Shopify architecture bridging high-end aesthetics with rigid engineering standards.",
     tagline: "Off-the-shelf templates would have compromised the brand's artisanal soul. I engineered a bespoke headless solution from scratch, ensuring the digital experience feels as premium as the physical product.",
     tags: ["Next.js 15", "Shopify Headless", "Design System", "Typescript", "Framer Motion"],
-    homeVideo: "/videos/silvestra/hero.webm",
-    caseVideo: "/videos/silvestra/hero.webm",
+    homeVideo: "/videos/silvestra/silvestra-case.webm",
+    caseVideo: "/videos/silvestra/silvestra-case.webm",
     techStack: [
         { name: "Next.js 15", iconKey: "globe" },
         { name: "TypeScript", iconKey: "code" },
@@ -142,7 +142,8 @@ export default config;`
         eyebrow: "Design System Lab",
         title: "Atomic",
         spanTitle: "Interactions.",
-        description: "A living component playground to test usability, feedback states, and aesthetic consistency in isolation."
+        activeComponent: "button",
+        description: "Test the 'Button' component. It's not just a color change; it includes an internal loading state handler and specific spring physics for the click interaction."
     },
     standardsHeader: {
         eyebrow: "Engineering Foundations",
@@ -176,7 +177,7 @@ export default config;`
             highlight: "Zero Runtime Errors"
         }
     ],
-    nextProjectSlug: "kashmir-shaiva-institute",
+    nextProjectSlug: "nectar-ui",
     metrics: [
         { label: "Core Web Vitals", value: "Passed", description: "Real production data." },
         { label: "Lighthouse", value: "99", description: "Performance." }

@@ -21,7 +21,7 @@ export const NECTAR_UI: ProjectCaseStudy = {
         { name: "Radix UI", iconKey: "layers" },
         { name: "TypeScript", iconKey: "shield-check" },
         { name: "Framer Motion", iconKey: "wind" },
-        { name: "Next.js 14", iconKey: "globe" },
+        { name: "Next.js 16", iconKey: "globe" },
     ],
 
     storySteps: [
@@ -122,6 +122,7 @@ export const NECTAR_UI: ProjectCaseStudy = {
         eyebrow: "Interactive Lab",
         title: "Tactile",
         spanTitle: "Physics.",
+        activeComponent: "card",
         description: "Test the 'Button' component. It's not just a color change; it includes an internal loading state handler and specific spring physics for the click interaction."
     },
 
@@ -162,7 +163,7 @@ export const NECTAR_UI: ProjectCaseStudy = {
     nextProjectSlug: "silvestra",
 
     metrics: [
-        { label: "Elements", value: "15", description: "Fully accessible." },
+        { label: "Components", value: "15", description: "Fully accessible." },
         { label: "Bundle Size", value: "<5kb", description: "Tree-shakeable." }
     ],
 

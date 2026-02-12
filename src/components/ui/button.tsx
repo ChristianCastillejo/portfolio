@@ -28,25 +28,25 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({ className, variant, stable, asChild = false, icon: Icon, href, children, ...props }, ref) => {
     const internalContent = (<>
-                <span>{children}</span>
-                {Icon && (<Icon size={18} className={cn("transition duration-300 ease-out opacity-90 group-hover:opacity-100", variant === "primary"
-                ? "text-white"
-                : "text-neutral-500 group-hover:text-black")}/>)}
-            </>);
+        <span>{children}</span>
+        {Icon && (<Icon size={18} className={cn("transition duration-300 ease-out opacity-90 group-hover:opacity-100", variant === "primary"
+            ? "text-white"
+            : "text-neutral-500 group-hover:text-black")} />)}
+    </>);
     const commonClasses = cn(buttonVariants({ variant, stable, className }));
     if (asChild) {
         return (<Slot className={commonClasses} ref={ref} {...props}>
-                    {children}
-                </Slot>);
+            {children}
+        </Slot>);
     }
     if (href) {
         return (<Link href={href} className={commonClasses} ref={ref as React.Ref<HTMLAnchorElement>} target={props.target || "_blank"} rel={props.target === "_blank" ? "noopener noreferrer" : undefined} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
-                    {internalContent}
-                </Link>);
+            {internalContent}
+        </Link>);
     }
     return (<button className={commonClasses} ref={ref as React.Ref<HTMLButtonElement>} {...props}>
-                {internalContent}
-            </button>);
+        {internalContent}
+    </button>);
 });
 Button.displayName = "Button";
 export { Button, buttonVariants };

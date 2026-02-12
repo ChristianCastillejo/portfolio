@@ -39,7 +39,7 @@ export const ProjectCard = ({ project, index }: {
     return (<motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: index * 0.1 }} className="group relative w-full">
         <Link href={`/projects/${project.slug}`} className="block w-full">
 
-            <div className={cn("relative w-full aspect-[3/4] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden transition-all duration-700", "border-8 border-white/40 bg-white/40 backdrop-blur-xl", "group-hover:shadow-2xl group-hover:shadow-accent/10")}>
+            <div className={cn("relative w-full aspect-[1] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden transition-all duration-700", "border-8 border-white/40 bg-white/40 backdrop-blur-xl", "group-hover:shadow-2xl group-hover:shadow-accent/10")}>
 
                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10 mix-blend-overlay bg-noise" />
 
@@ -47,7 +47,7 @@ export const ProjectCard = ({ project, index }: {
                     <div className="w-full h-full opacity-0" />
 
                     <div className="absolute inset-0 overflow-hidden ">
-                        {project.homeVideo ? (<video ref={videoRef} src={project.homeVideo} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-102 opacity-95 mix-blend-multiply grayscale-[20%]" />) : (<div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
+                        {project.homeVideo ? (<video ref={videoRef} src={project.homeVideo} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out scale-101 group-hover:scale-103 opacity-95 mix-blend-multiply grayscale-[20%]" />) : (<div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
                             {project.title}
                         </div>)}
 
@@ -67,7 +67,8 @@ export const ProjectCard = ({ project, index }: {
                                 <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold !text-white mb-2 leading-none tracking-tight">
                                     {project.title}
                                 </h3>
-                                <p className="font-sans text-sm md:text-base text-white/70 group-hover:text-white/90 leading-relaxed line-clamp-5 font-medium text-pretty transition-colors duration-500">                                        {project.description}
+                                <p className="hidden md:block font-sans text-sm md:text-base text-white/70 group-hover:text-white/90 leading-relaxed line-clamp-5 font-medium text-pretty transition-colors duration-500">
+                                    {project.description}
                                 </p>
                             </div>
 

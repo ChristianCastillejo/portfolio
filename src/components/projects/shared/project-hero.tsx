@@ -60,8 +60,8 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
             </motion.div>
         </div>
 
-        <motion.div style={{ y }} className="relative w-full aspect-[3/4] md:aspect-[16/9] lg:aspect-[21/9] mt-12 mb-16 md:mt-16 md:mb-24 bg-card rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50">
-            <video ref={videoRef} src={project.caseVideo} muted loop playsInline className="w-full h-full object-cover opacity-95 mix-blend-multiply grayscale-[20%]" />
+        <motion.div style={{ y }} className="relative w-full aspect-[1] md:aspect-[16/9] lg:aspect-[21/9] mt-12 mb-16 md:mt-16 md:mb-24 bg-card rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50">
+            <video ref={videoRef} src={project.caseVideo} muted loop playsInline className="w-full h-full object-cover opacity-95 mix-blend-multiply grayscale-[20%] scale-101" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
         </motion.div>
 
