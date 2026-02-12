@@ -49,6 +49,7 @@ const acorn = localFont({
     src: "../fonts/Acorn-SemiBold.woff2",
     variable: "--font-acorn",
     display: "swap",
+    weight: "600",
 });
 export default function RootLayout({ children, }: Readonly<{
     children: React.ReactNode;
