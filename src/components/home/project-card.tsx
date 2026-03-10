@@ -25,7 +25,7 @@ export const ProjectCard = ({ project, index }: {
                     if (videoRef.current) {
                         videoRef.current.playbackRate = 1.0;
                     }
-                }, 1200);
+                }, 300);
             }
         }
         else {
@@ -47,9 +47,12 @@ export const ProjectCard = ({ project, index }: {
                         <div className="w-full h-full opacity-0" />
 
                         <div className="absolute inset-0 overflow-hidden">
-                            {project.homeVideo ? (<video ref={videoRef} src={project.homeVideo} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out scale-101 group-hover:scale-103 opacity-95 mix-blend-multiply grayscale-[20%]" />) : (<div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
-                                {project.title}
-                            </div>)}
+                            {project.homeVideo ? (
+                                <video ref={videoRef} src={project.homeVideo} muted loop playsInline className="w-full h-full object-cover transform transition-transform duration-1000 ease-out scale-101 group-hover:scale-103" />
+                            ) : (
+                                <div className="w-full h-full bg-gray-100 flex items-center justify-center text-foreground/20 font-display text-4xl">
+                                    {project.title}
+                                </div>)}
 
 
                             <div className="absolute bottom-2 left-2 right-2 h-[60%] bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none opacity-60 rounded-b-[2rem]" />
@@ -76,7 +79,7 @@ export const ProjectCard = ({ project, index }: {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute inset-0 rounded-[2.5rem] border-8 border-white/80 pointer-events-none z-50" />
+                    <div className="absolute inset-0 rounded-[2.5rem] border-8 border-[var(--p-gray-50)] pointer-events-none z-50" />
                 </div>
             </Link>
         </motion.div>);

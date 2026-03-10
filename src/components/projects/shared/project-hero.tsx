@@ -1,15 +1,23 @@
 "use client";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { Github, Globe, Code2, Layers, Database, Cpu, Zap, Box, BarChart3 } from "lucide-react";
+import { Github, Globe, Code2, Layers, Database, Cpu, Zap, Box, BarChart3, Wind, Droplet, Share2, Mail } from "lucide-react";
 import { ProjectCaseStudy } from "@/types/project";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const TECH_ICONS: Record<string, any> = {
-    "globe": Globe, "code": Code2, "layers": Layers,
-    "database": Database, "cpu": Cpu,
-    "file-json": Box
+    "globe": Globe,
+    "code": Code2,
+    "layers": Layers,
+    "database": Database,
+    "cpu": Cpu,
+    "file-json": Box,
+    "wind": Wind,
+    "droplet": Droplet,
+    "box": Box,
+    "share-2": Share2,
+    "mail": Mail
 };
 interface ProjectHeroProps {
     project: ProjectCaseStudy;
@@ -35,7 +43,7 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                         if (videoRef.current) {
                             videoRef.current.playbackRate = 1.0;
                         }
-                    }, 1200);
+                    }, 300);
                 }
             }
             else {
@@ -50,11 +58,11 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
 
     return (
 
-        <section ref={containerRef} className="relative w-full max-w-[1600px] mx-auto px-6 md:px-12 pt-44 md:pt-40 min-h-[90vh] flex flex-col justify-between">
+        <section ref={containerRef} className="relative w-full max-w-[1400px] mx-auto px-6 md:px-24 pt-44 md:pt-40 min-h-[90vh] flex flex-col justify-between">
             <div className="mb-12 md:mb-20">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
                     <span className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-4 block">
-                        Case Study / 01
+                        Case Study / {project.id}
                     </span>
                     <h1 className="text-foreground font-display text-4xl sm:text-5xl md:text-[8vw] font-bold tracking-tight leading-[0.9] mb-6">
                         {project.title}
@@ -65,10 +73,10 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                 </motion.div>
             </div>
 
-            <motion.div style={{ y }} className={cn("relative w-full aspect-[1] md:aspect-[16/9] lg:aspect-[21/9] mt-12 mb-16 md:mt-16 md:mb-24 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm [mask-image:radial-gradient(white,black)]", "bg-white/40 backdrop-blur-xl")}>
-                <video ref={videoRef} src={project.caseVideo} muted loop playsInline className="w-full h-full object-cover opacity-95 mix-blend-multiply grayscale-[20%] scale-101" />
+            <motion.div style={{ y }} className={cn("relative w-full aspect-[1] md:aspect-[16/9] mt-12 mb-16 md:mt-16 md:mb-24 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm [mask-image:radial-gradient(white,black)]", "bg-white/40 backdrop-blur-xl")}>
+                <video ref={videoRef} src={project.caseVideo} muted loop playsInline className="w-full h-full object-cover scale-101" />
                 <div className="absolute inset-2 bg-gradient-to-t from-background/20 to-transparent pointer-events-none rounded-[1rem] md:rounded-[1.5rem]" />
-                <div className="absolute inset-0 rounded-[1.5rem] md:rounded-[2rem] border-8 border-white/80 pointer-events-none z-50" />
+                <div className="absolute inset-0 rounded-[1.5rem] md:rounded-[2rem] border-8 border-white/40 pointer-events-none z-50" />
             </motion.div>
 
             <div className="w-full border-t border-border/50 pt-8 pb-12">
@@ -79,12 +87,14 @@ export const ProjectHero = ({ project }: ProjectHeroProps) => {
                         <div className="flex flex-wrap gap-x-6 gap-y-2">
                             {project.techStack.map((tech) => {
                                 const IconComponent = TECH_ICONS[tech.iconKey] || Box;
-                                return (<div key={tech.name} className="flex items-center gap-2 group">
-                                    <IconComponent size={16} className="text-foreground/60 group-hover:text-accent transition-colors" />
-                                    <span className="font-sans text-sm font-medium text-foreground/80">
-                                        {tech.name}
-                                    </span>
-                                </div>);
+                                return (
+                                    <div key={tech.name} className="flex items-center gap-2 group">
+                                        <IconComponent size={16} className="text-foreground/60 group-hover:text-accent transition-colors" />
+                                        <span className="font-sans text-sm font-medium text-foreground/80">
+                                            {tech.name}
+                                        </span>
+                                    </div>
+                                );
                             })}
                         </div>
                     </div>

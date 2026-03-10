@@ -1,5 +1,7 @@
 import { ProjectCaseStudy } from "@/types/project";
+
 export const SILVESTRA: ProjectCaseStudy = {
+    id: 2,
     slug: "silvestra",
     title: "Silvestra",
     subtitle: "E-commerce Ecosystem",

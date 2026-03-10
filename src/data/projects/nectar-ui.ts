@@ -1,6 +1,7 @@
 import { ProjectCaseStudy } from "@/types/project";
 
 export const NECTAR_UI: ProjectCaseStudy = {
+    id: 3,
     slug: "nectar-ui",
     title: "Nectar UI",
     subtitle: "Design Engineering System", // Más potente que "Multi-tenant Design System"
@@ -160,7 +161,7 @@ export const NECTAR_UI: ProjectCaseStudy = {
         }
     ],
 
-    nextProjectSlug: "silvestra",
+    nextProjectSlug: "kashmir-shaiva-institute",
 
     metrics: [
         { label: "Components", value: "15", description: "Fully accessible." },

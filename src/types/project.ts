@@ -21,6 +21,7 @@ export type Standard = {
     highlight: string;
 };
 export type ProjectCaseStudy = {
+    id: number;
     slug: string;
     title: string;
     subtitle: string;
