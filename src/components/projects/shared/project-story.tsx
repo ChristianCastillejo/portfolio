@@ -26,7 +26,7 @@ export const ProjectStory = ({ project }: {
 }) => {
     if (!project.storySteps || project.storySteps.length === 0)
         return null;
-    return (<section className="w-full max-w-[1600px] mx-auto px-6 md:px-12 py-32 md:py-48 bg-background overflow-hidden">
+    return (<section className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-32 md:py-48 bg-background overflow-hidden">
 
         <div className="max-w-4xl mx-auto text-center mb-24 md:mb-40">
             <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-mono text-xs text-accent font-bold uppercase tracking-widest mb-6 block">

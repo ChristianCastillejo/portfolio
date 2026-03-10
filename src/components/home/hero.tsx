@@ -2,7 +2,8 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 export const HomeHero = () => {
-    return (<section className="relative z-10 pt-40 md:pt-52 pb-20 px-6 md:px-12 max-w-[1400px] mx-auto min-h-[80vh] flex flex-col justify-between">
+    return (
+        <section className="relative z-10 pt-40 md:pt-52 pb-20 px-6 md:px-12 max-w-[1400px] mx-auto min-h-[80vh] flex flex-col justify-between">
             <div className="max-w-5xl">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
 
@@ -28,9 +29,9 @@ export const HomeHero = () => {
             </div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="flex items-center gap-4 opacity-40">
-                <div className="h-px w-12 bg-foreground"/>
+                <div className="h-px w-12 bg-foreground" />
                 <span className="font-mono text-xs uppercase tracking-widest">Selected Work</span>
-                <ArrowDown className="w-4 h-4 mt-1 animate-bounce"/>
+                <ArrowDown className="w-4 h-4 mt-1 animate-bounce" />
             </motion.div>
         </section>);
 };
