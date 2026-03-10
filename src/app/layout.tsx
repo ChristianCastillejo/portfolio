@@ -9,9 +9,9 @@ import { StructuredData } from "@/components/structured-data";
 export const metadata: Metadata = {
     title: {
         default: "Christian Castillejo | Design Engineer",
-        template: "%s | Christian Castillejo",
+        template: "%s",
     },
-    description: "Design Engineer bridging the gap between design and engineering. I build scalable products combining architectural logic with creative curiosity. Remote (Europe/CET).",
+    description: "Bridging the gap between design and engineering. I build scalable products combining architectural logic with creative curiosity. Remote (Europe/CET).",
     keywords: [
         "Design Engineer",
         "Product Design Engineer",
