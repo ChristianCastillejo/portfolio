@@ -22,7 +22,7 @@ export const KSI: ProjectCaseStudy = {
         { name: "Resend", iconKey: "mail" },
     ],
     links: {
-        live: "https://ksi-plum.vercel.app",
+        live: "https://kashmirshaivainstitute.com",
         repo: "https://github.com/christiancastillejo/ksi"
     },
     storySteps: [
