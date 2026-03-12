@@ -4,7 +4,7 @@ export function StructuredData() {
         "@type": "Person",
         "name": "Christian Castillejo",
         "url": "https://christiancastillejo.com",
-        "jobTitle": "Design Engineer",
+        "jobTitle": "Frontend & Design Engineer",
         "email": "christiancastillejo@proton.me",
         "image": "https://christiancastillejo.com/images/profile.jpg",
         "address": {
@@ -21,7 +21,8 @@ export function StructuredData() {
             "https://github.com/christiancastillejo"
         ],
         "knowsAbout": [
-            "Design Engineer",
+            "Frontend & Design Engineer",
+            "Frontend Engineering",
             "Design Engineering",
             "Next.js",
             "Shopify Headless",
@@ -31,5 +32,5 @@ export function StructuredData() {
             "AI Workflows"
         ]
     };
-    return (<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}/>);
+    return (<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />);
 }

@@ -2,8 +2,8 @@ import { Mail, Linkedin, Download } from "lucide-react";
 export const PHILOSOPHY_ITEMS = [
     {
         id: "01",
-        title: "The Design-Code Bridge",
-        content: "I comfortably discuss React Architecture and Design Tokens in the same sentence. I translate design needs into component structures that engineers actually enjoy maintaining."
+        title: "Fluent Execution",
+        content: "I comfortably discuss React Architecture and Design Tokens in the same sentence. I translate & build premium UI needs into strict component structures that engineering teams actually enjoy maintaining."
     },
     {
         id: "02",
@@ -17,13 +17,14 @@ export const PHILOSOPHY_ITEMS = [
     },
     {
         id: "04",
-        title: "Engineering Rigor",
-        content: "Visual sensitivity doesn't mean lowering the engineering bar. I focus on strict TypeScript and stability, writing solid code that others can read, extend, and trust."
+        title: "Pixel-to-Production",
+        content: "Code mirrors design natively. Strict Figma variables and tokens map 1:1 to React components, ensuring a flawless execution from the creative vision to the final, typed TypeScript codebase."
     }
 ];
 export const EXPERIENCE_ITEMS = [
-    { company: "Nectar Studio", role: "Founding Design Engineer", period: "2024 - Present" },
-    { company: "Grandado", role: "Lead Frontend Engineer & Design Engineer", period: "2020 - 2023" },
+    { company: "Nectar", role: "Frontend & Design Engineer Consultant", period: "2025 - Present" },
+    { company: "Sabbatical R&D", role: "Skill Upgrade", period: "2023 - 2024" },
+    { company: "Grandado", role: "Lead Frontend & Design Engineer", period: "2020 - 2023" },
     { company: "OGD", role: "Full Stack Engineer", period: "2018 - 2020" },
     { company: "Stack Shuttle", role: "Full Stack Engineer", period: "2017 - 2018" },
     { company: "IBT", role: "Software Engineer", period: "2016 - 2017" },

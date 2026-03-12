@@ -4,7 +4,7 @@ export const NECTAR_UI: ProjectCaseStudy = {
     id: 3,
     slug: "nectar-ui",
     title: "Nectar UI",
-    subtitle: "Design Engineering System", // Más potente que "Multi-tenant Design System"
+    subtitle: "Frontend & Design Engineering System",
     description: "A headless, semantic component architecture designed to bridge the gap between Figma tokens and React production code.",
     tagline: "I realized standard libraries assume too much styling. Nectar is my answer: a headless infrastructure powered by Tailwind v4 variables that allows logic to be shared while aesthetics remain fluid.",
     tags: ["Design Systems", "Tailwind v4", "Radix UI", "Architecture", "A11y"],

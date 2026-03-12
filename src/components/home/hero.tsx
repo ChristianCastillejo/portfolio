@@ -13,22 +13,23 @@ export const HomeHero = () => {
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent group-hover:scale-125 transition-transform duration-300"></span>
                         </div>
                         <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent/80 group-hover:text-accent transition-colors">
-                            Design Engineer
+                            Frontend & Design Engineer
                         </span>
                     </div>
 
                     <h1 className="font-display text-6xl md:text-[5.5rem] leading-[0.95] font-bold text-foreground tracking-tight text-balance mb-8">
-                        I bridge the gap between <br />
-                        <span className="text-foreground/30">pure design</span> & <span className="text-accent">production code.</span>
+                        I engineer scalable frontend architectures with <br />
+                        <span className="text-foreground/30"> </span>
+                        uncompromising visual craft.
                     </h1>
 
                     <p className="font-sans text-xl md:text-2xl text-foreground/60 leading-relaxed max-w-2xl text-pretty">
-                        Building digital products requires two languages. I speak both fluently, ensuring that the soul of the design survives the engineering process.
+                        Building digital products requires two languages: design and engineering. I speak both fluently, ensuring the soul of the design thrives within a strict, highly performant codebase.
                     </p>
                 </motion.div>
             </div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="flex items-center gap-4 opacity-40">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="flex items-center gap-4 opacity-40 pt-8">
                 <div className="h-px w-12 bg-foreground" />
                 <span className="font-mono text-xs uppercase tracking-widest">Selected Work</span>
                 <ArrowDown className="w-4 h-4 mt-1 animate-bounce" />

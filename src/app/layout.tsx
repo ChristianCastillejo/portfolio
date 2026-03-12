@@ -8,13 +8,14 @@ import { Footer } from "@/components/layout/footer";
 import { StructuredData } from "@/components/structured-data";
 export const metadata: Metadata = {
     title: {
-        default: "Christian Castillejo | Design Engineer",
+        default: "Christian Castillejo | Frontend & Design Engineer",
         template: "%s",
     },
     description: "Bridging the gap between design and engineering. I build scalable products combining architectural logic with creative curiosity. Remote (Europe/CET).",
     keywords: [
+        "Frontend & Design Engineer",
+        "Frontend Engineer",
         "Design Engineer",
-        "Product Design Engineer",
         "Next.js",
         "React Server Components",
         "Design Systems",
@@ -31,14 +32,14 @@ export const metadata: Metadata = {
         type: "website",
         locale: "en_US",
         url: "https://christiancastillejo.com",
-        title: "Christian Castillejo | Design Engineer",
-        description: "Design Engineer bridging the gap between design and engineering.",
+        title: "Christian Castillejo | Frontend & Design Engineer",
+        description: "Engineering scalable React architectures with uncompromising visual craft.",
         siteName: "Christian Castillejo Portfolio",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Christian Castillejo | Design Engineer",
-        description: "Design Engineer bridging the gap between design and engineering.",
+        title: "Christian Castillejo | Frontend & Design Engineer",
+        description: "Engineering scalable React architectures with uncompromising visual craft.",
     },
     metadataBase: new URL("https://christiancastillejo.com"),
     other: {

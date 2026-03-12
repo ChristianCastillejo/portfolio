@@ -7,7 +7,7 @@
 ## 🧭 The Philosophy
 
 **I bridge the gap between pure design and production code.**
-This repository isn't just a gallery; it's a live proof of concept for **Design Engineering**. I built this to dogfood **Next.js 16** and **Tailwind v4**, proving that high-performance sites can still have organic, complex motion.
+This repository isn't just a gallery; it's a live proof of concept for **Frontend & Design Engineering**. I built this to dogfood **Next.js 16** and **Tailwind v4**, proving that high-performance sites can still have organic, complex motion.
 
 ## 🛠 The Stack
 
